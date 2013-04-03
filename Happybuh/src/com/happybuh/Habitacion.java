@@ -1,8 +1,11 @@
 package com.happybuh;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -94,6 +97,46 @@ public class Habitacion extends Activity {
 	            return handled;
 	        }
 	    });
+	    
+	    Button cambiar = (Button)findViewById(R.id.change_name);
+	    cambiar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				//poner el dialog alert del tutorial
+				AlertDialog.Builder alerta = new AlertDialog.Builder(v.getContext());
+				LayoutInflater inflater = getLayoutInflater();
+				alerta.setView(inflater.inflate(R.layout.dialog_change_user, null))
+					// set title
+				//alerta.setTitle("Your Title");
+		 
+					// set dialog message
+				//alerta.setMessage("Click yes to exit!")
+						//.setCancelable(false)
+						.setPositiveButton("summit",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, close
+								// current activity
+								Habitacion.this.finish();
+							}
+						  })
+						.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, just close
+								// the dialog box and do nothing
+								dialog.cancel();
+							}
+						});
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alerta.create();
+		 
+						// show it
+						alertDialog.show();
+					}
+				});
 		
     }
     
