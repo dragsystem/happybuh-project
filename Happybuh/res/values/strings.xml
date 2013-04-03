@@ -9,5 +9,6 @@
 	<string name="user_name_change">Cambiar</string>
 	<string name="username">Username</string>
 	<string name="password">Password</string>
+	<string name="descripcion"><h1>HAPPYBUH Help Menu</h1></string>
 	
 </resources>
