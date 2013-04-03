@@ -3,6 +3,7 @@ package com.happybuh;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.animation.AnimationUtils;
@@ -16,7 +17,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         ImageView myImage = (ImageView) findViewById(R.id.buh);
         //myImage.setAlpha(127);
         myImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.carga_fantasma));

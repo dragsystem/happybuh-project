@@ -3,6 +3,7 @@ package com.happybuh;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class Habitacion extends Activity {
 	private float old, now;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
         vf = (ViewFlipper) findViewById(R.id.viewFlipper1);
