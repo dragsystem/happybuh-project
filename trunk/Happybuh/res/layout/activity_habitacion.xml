@@ -85,13 +85,20 @@
             
             <EditText
 			    android:id="@+id/user_name"
-			    android:layout_width="fill_parent"
+			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:hint="@string/user_name_hint"
 			    android:inputType="textPersonName"
 			    android:maxLength="10"
+			    android:maxLines="1"
 			    android:imeOptions="actionDone"
-			    android:imeActionLabel="@string/user_name_change"/>
+			    android:imeActionLabel="@string/user_name_change"
+			    android:gravity="left"/>
+            <Button android:id="@+id/change_name"
+                android:text="Cambiar"
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="right"/>
             
             <Button
 	            android:id="@+id/Button02"

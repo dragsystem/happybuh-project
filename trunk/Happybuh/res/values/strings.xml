@@ -7,5 +7,7 @@
     <string name="title_activity_habitacion">Habitacion</string>
 	<string name="user_name_hint">Happybuh (Max 10)</string>
 	<string name="user_name_change">Cambiar</string>
+	<string name="username">Username</string>
+	<string name="password">Password</string>
 	
 </resources>
