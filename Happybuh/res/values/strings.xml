@@ -4,5 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Happy Buh</string>
-
+    <string name="title_activity_habitacion">Habitacion</string>
+	<string name="user_name_hint">Happybuh (Max 10)</string>
+	<string name="user_name_change">Cambiar</string>
+	
 </resources>
