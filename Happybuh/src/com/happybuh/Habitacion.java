@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -14,12 +13,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
@@ -39,7 +36,7 @@ public class Habitacion extends Activity {
 		vf.setOutAnimation(AnimationUtils.loadAnimation(this,
 				android.R.anim.fade_out));
 		
-		Button nextButton = (Button) Habitacion.this.findViewById(R.id.Button01); 
+		ImageButton nextButton = (ImageButton) Habitacion.this.findViewById(R.id.b_opt_izq); 
 		nextButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
@@ -50,7 +47,7 @@ public class Habitacion extends Activity {
 			}
 		}); 
 		
-		Button previousButton = (Button) Habitacion.this.findViewById(R.id.Button02); 
+		ImageButton previousButton = (ImageButton) Habitacion.this.findViewById(R.id.b_help_der); 
 		previousButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
@@ -58,7 +55,49 @@ public class Habitacion extends Activity {
 				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
 				vf.showPrevious(); 
 			} 
+		});
+		
+		ImageButton nextButton2 = (ImageButton) Habitacion.this.findViewById(R.id.b_help_izq); 
+		nextButton.setOnClickListener(new OnClickListener() 
+		{ 
+			public void onClick(View v) { 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
+				vf.showNext(); 
+
+			}
 		}); 
+		
+		ImageButton previousButton2 = (ImageButton) Habitacion.this.findViewById(R.id.b_room_der); 
+		previousButton.setOnClickListener(new OnClickListener() 
+		{ 
+			public void onClick(View v) { 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
+				vf.showPrevious(); 
+			} 
+		});
+		
+		ImageButton nextButton3 = (ImageButton) Habitacion.this.findViewById(R.id.b_room_izq); 
+		nextButton.setOnClickListener(new OnClickListener() 
+		{ 
+			public void onClick(View v) { 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
+				vf.showNext(); 
+
+			}
+		}); 
+		
+		ImageButton previousButton3 = (ImageButton) Habitacion.this.findViewById(R.id.b_opt_der); 
+		previousButton.setOnClickListener(new OnClickListener() 
+		{ 
+			public void onClick(View v) { 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
+				vf.showPrevious(); 
+			} 
+		});
 		
 		RelativeLayout browseByTheme = (RelativeLayout) Habitacion.this.findViewById(R.id.Relativelayout01); 
 	    browseByTheme.setOnTouchListener(new OnTouchListener() {
@@ -88,20 +127,8 @@ public class Habitacion extends Activity {
 	        }
 	    });
 	    
-	    EditText editText = (EditText) findViewById(R.id.user_name);
-	    editText.setOnEditorActionListener(new OnEditorActionListener() {
-	        @Override
-	        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-	            boolean handled = false;
-	            if (actionId == EditorInfo.IME_ACTION_DONE) {
-	                //GUARDAREMOS EN BBDD EL NOMBRE DE USUARIO
-	                handled = true;
-	            }
-	            return handled;
-	        }
-	    });
 	    
-	    Button cambiar = (Button)findViewById(R.id.change_name);
+	    ImageButton cambiar = (ImageButton)findViewById(R.id.change_name);
 	    cambiar.setOnClickListener(new OnClickListener() {
 			
 			@Override
