@@ -5,11 +5,12 @@
     android:id="@+id/Relativelayout01"
     android:background="@drawable/fondo2">
     
-    <LinearLayout
+   <!-- <LinearLayout
         android:id="@+id/LinearLayout03"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
+        
         <Button
             android:id="@+id/Button01"
             android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
             android:text="Previous"
             android:onClick="prev" >
         </Button>
-    </LinearLayout>
+    </LinearLayout> -->
     
     <LinearLayout
         android:id="@+id/LinearLayout02"
@@ -43,90 +44,119 @@
         android:layout_width="match_parent"
     	android:layout_height="match_parent"    	
     	android:gravity="center">
-	        <Button
-            android:id="@+id/Button02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Options"
-            android:onClick="next"
-            android:gravity="left">
-        </Button>
+    	
+            <ImageButton 
+                android:id="@+id/b_opt_izq"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="next"
+	            android:gravity="left"
+	            android:src="@drawable/opt_izq"
+	            android:background="@android:color/transparent"/>
+            
+            <ImageButton 
+                android:id="@+id/b_armario"
+                android:src="@drawable/armario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@android:color/transparent"/>
+            <ImageButton 
+                android:id="@+id/b_mando"
+                android:src="@drawable/b_mando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@android:color/transparent"/>
+            
 	        <ImageView 
 	            android:id="@+id/buh"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:src="@drawable/buh"/>
-	        <Button
-            android:id="@+id/Button01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Info|Help" 
-            android:onClick="prev"
-            android:gravity="right">
-        </Button>
+	        <ImageButton 
+	            android:id="@+id/b_help_der"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="prev"
+	            android:gravity="right"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/help_der"/>	    
         
     	</LinearLayout>
         
 <!-- OPCIONES -->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/viewFlipper1"
             android:layout_width="match_parent"
         	android:layout_height="match_parent"
-        	android:orientation="vertical"
         	android:background="#80ff0000">
 	        
-            <ToggleButton 
-			    android:id="@+id/sonido"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textOn="Musica on"
-			    android:textOff="Musica off"
-			    android:onClick="onToggleClicked"/>
-            
-            <EditText
-			    android:id="@+id/user_name"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:hint="@string/user_name_hint"
-			    android:inputType="textPersonName"
-			    android:maxLength="10"
-			    android:maxLines="1"
-			    android:imeOptions="actionDone"
-			    android:imeActionLabel="@string/user_name_change"
-			    android:gravity="left"/>
-            <Button android:id="@+id/change_name"
-                android:text="Cambiar"
-                android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:gravity="right"/>
-            
-            <Button
-	            android:id="@+id/Button02"
+            <ImageButton 
+                android:id="@+id/b_help_izq"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="Info|Help"
 	            android:onClick="next"
-	            android:gravity="left|center_vertical">
-        	</Button>
+	            android:gravity="left"
+	            android:layout_marginTop="40dp"
+	            android:layout_alignParentLeft="true"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/help_izq"/>
             
-            <TextView
-                    android:id="@+id/TextView03"
+	        
+            <RelativeLayout
+                android:id="@+id/layout_medio"
+                android:layout_width="wrap_content"
+	        	android:layout_height="match_parent"
+	        	android:layout_toRightOf="@id/b_help_izq"
+	        	android:layout_toLeftOf="@+id/b_room_der">
+                
+                <ToggleButton 
+				    android:id="@+id/sonido"
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:textOn="Musica on"
+				    android:textOff="Musica off"
+				    android:onClick="onToggleClicked"
+				    android:gravity="left"/>
+                
+                <ImageView 
+                    android:id="@+id/nombre"
+                    android:src="@drawable/nombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OPCIONES" >
-            </TextView>
+                    android:layout_below="@id/sonido"/>
+	            
+                <TextView 
+                    android:id="@+id/user_name"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="User"
+				    android:layout_below="@id/nombre"
+				    android:layout_alignParentLeft="true"/>
+                <ImageButton 
+                    android:id="@+id/change_name"
+	                android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_toRightOf="@id/user_name"
+				    android:background="@android:color/transparent"
+	            	android:src="@drawable/cambiar"/>
+                	            
+            </RelativeLayout>
             
-            <Button
-	            android:id="@+id/Button01"
+            <ImageButton
+	            android:id="@id/b_room_der"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="Habitacion" 
 	            android:onClick="prev"
-	            android:gravity="right|center_vertical">
-        	</Button>
+	            android:gravity="right"
+	            android:layout_alignParentRight="true"
+	            android:layout_toRightOf="@id/change_name"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/room_derecha"/>
 
             
-        </LinearLayout>
+        </RelativeLayout>
  <!-- INFO HELP -->       
         <LinearLayout 
             android:id="@+id/viewFlipper1"
@@ -135,17 +165,17 @@
         	android:orientation="vertical"
         	android:background="#30ff0000">
             
-            <Button
-	            android:id="@+id/Button02"
+            <ImageButton
+	            android:id="@+id/b_room_izq"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="Habitacion"
 	            android:onClick="next"
-	            android:gravity="left|center_vertical">
-	        </Button>
+	            android:gravity="left|center_vertical"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/room_izq"/>
             
             <ScrollView 
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 
                 <RelativeLayout 
@@ -161,23 +191,16 @@
                 </RelativeLayout>
                 
             </ScrollView>
+
             
-            
-            <TextView
-                    android:id="@+id/TextView03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="INFO | HELP" >
-            </TextView>
-            
-            <Button
-            android:id="@+id/Button01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Options" 
-            android:onClick="prev"
-            android:gravity="right|center_vertical">
-        </Button>
+            <ImageButton
+	            android:id="@+id/b_opt_der"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="prev"
+	            android:gravity="right|center_vertical"
+	            android:background="@android:color/transparent"
+		        android:src="@drawable/opt_der"/>
             
         </LinearLayout>
         
