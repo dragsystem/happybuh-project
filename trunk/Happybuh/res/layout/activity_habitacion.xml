@@ -41,48 +41,70 @@
         >
  <!-- HABITACION -->       
         <LinearLayout 
-        android:layout_width="match_parent"
-    	android:layout_height="match_parent"    	
-    	android:gravity="center">
+	        android:layout_width="match_parent"
+	    	android:layout_height="match_parent"    	
+    		android:orientation="vertical">
     	
-            <ImageButton 
-                android:id="@+id/b_opt_izq"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="next"
-	            android:gravity="left"
-	            android:src="@drawable/opt_izq"
-	            android:background="@android:color/transparent"/>
-            
-            <ImageButton 
+            <LinearLayout 
+                android:layout_width="match_parent"
+	    		android:layout_height="wrap_content"    	
+    			android:orientation="vertical">
+                
+                <ImageButton 
                 android:id="@+id/b_armario"
                 android:src="@drawable/armario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:background="@android:color/transparent"/>
-            <ImageButton 
-                android:id="@+id/b_mando"
-                android:src="@drawable/b_mando"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="@android:color/transparent"/>
+                
+                <TextView 
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HappyBuh!"
+                    android:layout_gravity="center"/>
+                
+	            <ImageButton 
+	                android:id="@+id/b_mando"
+	                android:src="@drawable/b_mando"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="right"
+	                android:background="@android:color/transparent"/>
             
-	        <ImageView 
-	            android:id="@+id/buh"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:src="@drawable/buh"/>
-	        <ImageButton 
-	            android:id="@+id/b_help_der"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="prev"
-	            android:gravity="right"
-	            android:background="@android:color/transparent"
-	            android:src="@drawable/help_der"/>	    
-        
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+	    		android:layout_height="wrap_content"    	
+    			android:orientation="vertical">
+                
+                <ImageButton 
+	                android:id="@+id/b_opt_izq"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:onClick="next"
+		            android:gravity="left"
+		            android:src="@drawable/opt_izq"
+		            android:background="@android:color/transparent"/>
+            
+		        <ImageView 
+		            android:id="@+id/buh"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:src="@drawable/buh"
+			        android:layout_gravity="center"/>
+		        <ImageButton 
+		            android:id="@+id/b_help_der"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:onClick="prev"
+		            android:gravity="right"
+		            android:background="@android:color/transparent"
+		            android:src="@drawable/help_der"/>
+                
+            </LinearLayout>
     	</LinearLayout>
         
 <!-- OPCIONES -->
@@ -128,7 +150,7 @@
                     android:layout_below="@id/sonido"/>
 	            
                 <TextView 
-                    android:id="@+id/user_name"
+                    android:id="@id/user_name"
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"
 				    android:text="User"

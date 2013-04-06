@@ -3,6 +3,7 @@ package com.happybuh;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.Html;
@@ -11,12 +12,13 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
@@ -24,11 +26,16 @@ public class Habitacion extends Activity {
 
 	private ViewFlipper vf;
 	private float old, now;
+	ImageButton boton_armario;
+	ImageButton boton_mando;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
+        addListenerOnButton();
+        
         vf = (ViewFlipper) findViewById(R.id.viewFlipper1);
 
 		vf.setInAnimation(AnimationUtils.loadAnimation(this,
@@ -174,6 +181,57 @@ public class Habitacion extends Activity {
 	    		""));
 		
     }
+    
+    public void addListenerOnButton() {
+   	 
+		boton_armario = (ImageButton) findViewById(R.id.b_armario);
+ 
+		boton_armario.setOnClickListener(new OnClickListener() {
+ 
+			@Override
+			public void onClick(View arg0) {
+ 
+			   Toast.makeText(Habitacion.this,"Entra!! Descubrirás nuevos looks para tu Buuh!", Toast.LENGTH_SHORT).show();
+ 
+			}
+		});
+		
+		boton_armario.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent("com.habbybuh.ARMARIO");
+				startActivity(i);
+				return false;
+			}
+		});
+		
+		boton_armario = (ImageButton) findViewById(R.id.b_armario);
+		 
+		boton_armario.setOnClickListener(new OnClickListener() {
+ 
+			@Override
+			public void onClick(View arg0) {
+ 
+			   Toast.makeText(Habitacion.this,"Entra!! Descubrirás nuevos looks para tu Buuh!", Toast.LENGTH_SHORT).show();
+ 
+			}
+		});
+		
+		boton_mando.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				/*Intent i = new Intent("com.habbybuh.ARMARIO");
+				startActivity(i);*/
+				//COLOCAR ACTIVIDAD DE LOS JUEGOS
+				return false;
+			}
+		});
+ 
+	}
     
     public void onToggleClicked(View view) {
         // Is the toggle on?
