@@ -5,10 +5,11 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Happy Buh</string>
     <string name="title_activity_habitacion">Habitacion</string>
-	<string name="user_name_hint">Happybuh (Max 10)</string>
-	<string name="user_name_change">Cambiar</string>
-	<string name="username">Username</string>
-	<string name="password">Password</string>
-	<string name="descripcion"><h1>HAPPYBUH Help Menu</h1></string>
-	
+    <string name="user_name_hint">Happybuh (Max 10)</string>
+    <string name="user_name_change">Cambiar</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="descripcion"><h1>HAPPYBUH Help Menu</h1></string>
+    <string name="title_activity_armario">Armario</string>
+
 </resources>

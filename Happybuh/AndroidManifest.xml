@@ -23,12 +23,22 @@
         </activity>
         <activity
             android:name=".Habitacion"
-            android:label="@string/title_activity_habitacion" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:label="@string/title_activity_habitacion"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="com.happybuh.HABITACION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Armario"
+            android:label="@string/title_activity_armario"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="com.happybuh.ARMARIO" />
+
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>
