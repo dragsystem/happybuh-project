@@ -99,4 +99,13 @@ public class VG_Database {
 		ourContext = c;
 	}
 	
+	public VG_Database open() {
+		ourHelper = new DbHelper(ourContext);
+		ourDatabase = ourHelper.getWritableDatabase();
+		return this;
+	}
+	
+	public void close() {
+		ourHelper.close();
+	}
 }
