@@ -11,16 +11,14 @@ import android.widget.ListView;
 public class Armario extends ListActivity {
 	
 	String classes[] = {"ChangeColor", "ChangeGlasses", "ChangeBeard"};
-	private ListView prueba = null;
+	//private ListView prueba = null;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_armario);
-        
+       // setContentView(R.layout.activity_armario);
+        setListAdapter(new ArrayAdapter<String>(Armario.this,android.R.layout.simple_expandable_list_item_1,classes));
         //Cogemos la view de la list
       //  prueba = (ListView)findViewById(R.id.listView1);
-        
-        setListAdapter(new ArrayAdapter<String>(Armario.this,android.R.layout.simple_expandable_list_item_1,classes));
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,classes);
         
         //prueba.setAdapter(adapter);

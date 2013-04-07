@@ -2,61 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-    <ImageButton
-	            android:id="@id/b_room_der"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="prev"
-	            android:background="@android:color/transparent"
-	            android:src="@drawable/room_derecha"
-	            android:layout_alignParentRight="true"
-	            android:layout_centerVertical="true"/> 
-    
+
 	<ImageButton 
-                android:id="@+id/b_help_izq"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="next"
-	            android:background="@android:color/transparent"
-	            android:src="@drawable/help_izq"
-	            android:layout_alignParentLeft="true"
-	            android:layout_centerVertical="true"/>
-	
-            <ToggleButton 
-				    android:id="@+id/sonido"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:textOn="Musica on"
-				    android:textOff="Musica off"
-				    android:onClick="onToggleClicked"
-				    android:layout_toRightOf="@id/b_help_izq"
-				    android:layout_marginTop="50pt"
-				    />
+		android:id="@+id/b_help_der"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="prev"
+		android:background="@android:color/transparent"
+		android:src="@drawable/help_der"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"/>
+	<ImageButton 
+		android:id="@+id/b_opt_izq"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="next"
+		android:src="@drawable/opt_izq"
+		android:background="@android:color/transparent"
+		android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"/>
+    		        
+                
+	<TextView 
+		android:id="@+id/user_name"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="HappyBuh!"
+		android:textColor="@android:color/black"
+		android:layout_centerHorizontal="true"
+		android:textSize="50dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="10dp"/>
+
+	<ImageButton 
+		android:id="@+id/b_armario"
+		android:src="@drawable/armario"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@android:color/transparent"
+		android:layout_below="@id/user_name"
+		android:layout_alignLeft="@id/user_name"
+		/>
+                
+	<ImageButton 
+		android:id="@+id/b_mando"
+		android:src="@drawable/b_mando"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@android:color/transparent"
+		android:layout_alignBaseline="@id/b_armario"
+		android:layout_below="@id/user_name"
+		android:layout_alignRight="@id/user_name"/>
             
-            <ImageView 
-                    android:id="@+id/nombre"
-                    android:src="@drawable/nombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/sonido"
-                    android:layout_alignLeft="@id/sonido"
-                    />
-            
-            <TextView 
-                    android:id="@+id/user_name2"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:text="User"
-				    android:layout_below="@id/nombre"
-				    android:layout_alignLeft="@id/nombre"
-				    />
-	         <ImageButton 
-                    android:id="@+id/change_name"
-	                android:layout_width="match_parent"
-				    android:layout_height="wrap_content"
-				    android:background="@android:color/transparent"
-	            	android:src="@drawable/cambiar"
-	            	android:layout_below="@id/user_name2"
-	            	android:layout_alignLeft="@id/user_name2"/>
+                
+	<ImageView 
+		android:id="@+id/buh"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/buh"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"/>
+                
 </RelativeLayout>

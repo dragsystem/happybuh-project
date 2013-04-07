@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.sax.TextElementListener;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,12 +34,16 @@ public class Habitacion extends Activity {
 	private float old, now;
 	ImageButton boton_armario;
 	ImageButton boton_mando;
+	Typeface type;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
+        
+        type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
+        
         addListenerOnButton();
         
         vf = (ViewFlipper) findViewById(R.id.viewFlipper1);
@@ -146,7 +152,7 @@ public class Habitacion extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				//poner el dialog alert del tutorial
+				//ALERTDIALOG CON EL NOMBRE DE USUARIO PARA CAMBIAR
 				AlertDialog.Builder alerta = new AlertDialog.Builder(v.getContext());
 				LayoutInflater inflater = getLayoutInflater();
 				alerta.setView(inflater.inflate(R.layout.dialog_change_user, null))
@@ -180,6 +186,7 @@ public class Habitacion extends Activity {
 				});
 	    
 	    TextView texto = (TextView)findViewById(R.id.desc); 
+	    texto.setTypeface(type);
 	    texto.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br><p>HappyBuh esta formado por una coleccion de mini-juegos</p>" +
 	    		"<p><i>Ahora</i><b> Haremos </b> pruebas varias con <font color='red'>los colores </font></p>" +
 	    		""));
@@ -191,11 +198,13 @@ public class Habitacion extends Activity {
 		    db.open();
 		    	String user_name = db.getUserName();
 		    db.close();
-		    Typeface type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 		    name.setTypeface(type);
 		    name.setText(user_name);
 		    name2.setTypeface(type);
 		    name2.setText(user_name);
+		    
+		    ToggleButton tb = (ToggleButton)findViewById(R.id.sonido);
+		    tb.setTypeface(type);
 	    }catch(Exception e) {
 	    	e.getMessage();
 	    }
