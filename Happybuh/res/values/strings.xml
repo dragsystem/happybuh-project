@@ -11,5 +11,7 @@
     <string name="password">Password</string>
     <string name="descripcion"><h1>HAPPYBUH Help Menu</h1></string>
     <string name="title_activity_armario">Armario</string>
+    <string name="title_activity_change_color">ChangeColor</string>
+    <string name="title_activity_new__user">New_User</string>
 
 </resources>

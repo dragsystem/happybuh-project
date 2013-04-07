@@ -1,13 +1,23 @@
 package com.happybuh;
 
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	Thread logoTimer;
@@ -28,10 +38,23 @@ public class MainActivity extends Activity {
 		logoTimer = new Thread(){
 			public void run(){
 				try{
-					sleep(4000);
+					sleep(2000);
 					if(!stopped) {
-						Intent i = new Intent("com.happybuh.HABITACION");
-						startActivity(i);
+						final TextView user = (TextView)findViewById(R.id.new_user);
+						
+						VG_Database info = new VG_Database(MainActivity.this);
+						info.open();
+						ArrayList a = info.info_user();
+						info.close();
+						if(a.isEmpty()) {
+							//poner el dialog alert del tutorial
+							Intent i = new Intent("com.happybuh.NEW_USER");
+							startActivity(i);
+						}
+						else {
+							Intent i = new Intent("com.happybuh.HABITACION");
+							startActivity(i);
+						}
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();

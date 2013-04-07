@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<ImageButton
+	    android:id="@+id/b_help_izq"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:background="@android:color/transparent"
+	    android:onClick="next"
+	    android:src="@drawable/help_izq" />
+	        
+	 <ToggleButton 
+		android:id="@+id/sonido"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textOn="Musica on"
+		android:textOff="Musica off"
+		android:onClick="onToggleClicked"
+		android:gravity="left"/>
+		
+            <RelativeLayout
+                android:id="@+id/layout_medio"
+                android:layout_width="wrap_content"
+	        	android:layout_height="match_parent"
+	        	android:layout_toRightOf="@id/b_help_izq"
+	        	android:layout_toLeftOf="@+id/b_room_der">
+                
+               
+                
+                <ImageView 
+                    android:id="@+id/nombre"
+                    android:src="@drawable/nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sonido"/>
+	            
+                <TextView 
+                    android:id="@+id/user_name2"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="User"
+				    android:layout_below="@id/nombre"
+				    android:layout_alignParentLeft="true"/>
+                <ImageButton 
+                    android:id="@+id/change_name"
+	                android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_toRightOf="@id/user_name"
+				    android:background="@android:color/transparent"
+	            	android:src="@drawable/cambiar"/>
+                	            
+            </RelativeLayout>
+            
+            <ImageButton
+	            android:id="@id/b_room_der"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="prev"
+	            android:gravity="right"
+	            android:layout_alignParentRight="true"
+	            android:layout_toRightOf="@id/change_name"
+	            android:background="@android:color/transparent"
+	            android:src="@drawable/room_derecha"/>
+</RelativeLayout>
