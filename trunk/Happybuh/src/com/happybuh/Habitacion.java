@@ -1,9 +1,12 @@
 package com.happybuh;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.Html;
@@ -15,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -179,7 +183,22 @@ public class Habitacion extends Activity {
 	    texto.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br><p>HappyBuh esta formado por una coleccion de mini-juegos</p>" +
 	    		"<p><i>Ahora</i><b> Haremos </b> pruebas varias con <font color='red'>los colores </font></p>" +
 	    		""));
-		
+	    
+	    try {
+	    	TextView name = (TextView)findViewById(R.id.user_name);
+	    	TextView name2 = (TextView)findViewById(R.id.user_name2);
+		    VG_Database db = new VG_Database(Habitacion.this);
+		    db.open();
+		    	String user_name = db.getUserName();
+		    db.close();
+		    Typeface type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
+		    name.setTypeface(type);
+		    name.setText(user_name);
+		    name2.setTypeface(type);
+		    name2.setText(user_name);
+	    }catch(Exception e) {
+	    	e.getMessage();
+	    }
     }
     
     public void addListenerOnButton() {
@@ -201,20 +220,20 @@ public class Habitacion extends Activity {
 			@Override
 			public boolean onLongClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent("com.habbybuh.ARMARIO");
+				Intent i = new Intent("com.happybuh.ARMARIO");
 				startActivity(i);
 				return false;
 			}
 		});
 		
-		boton_armario = (ImageButton) findViewById(R.id.b_armario);
+		boton_mando = (ImageButton) findViewById(R.id.b_mando);
 		 
-		boton_armario.setOnClickListener(new OnClickListener() {
+		boton_mando.setOnClickListener(new OnClickListener() {
  
 			@Override
 			public void onClick(View arg0) {
  
-			   Toast.makeText(Habitacion.this,"Entra!! Descubrirás nuevos looks para tu Buuh!", Toast.LENGTH_SHORT).show();
+			   Toast.makeText(Habitacion.this,"Entra!! Y empieza a ganar experiencia y coins", Toast.LENGTH_SHORT).show();
  
 			}
 		});
