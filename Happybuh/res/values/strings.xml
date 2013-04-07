@@ -13,5 +13,6 @@
     <string name="title_activity_armario">Armario</string>
     <string name="title_activity_change_color">ChangeColor</string>
     <string name="title_activity_new__user">New_User</string>
+    <string name="summit">&lt;bold&gt;summit&lt;/bold&gt;</string>
 
 </resources>
