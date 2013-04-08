@@ -2,42 +2,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="fill_vertical" >
+    android:gravity="fill_vertical">
 
-    <LinearLayout
+    <ImageView 
+        android:id="@+id/imagen_presentacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:src="@drawable/buh_presentacion"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical" >
-
-        <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"/>
+    
+    <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="Introduce tu nombre de usuario" />
-
-        <EditText
+            android:textColor="@android:color/white"
+            android:text="Introduce tu nombre de usuario 
+MIN 5 LETRAS MAX 10 LETRAS" 
+            android:layout_below="@id/imagen_presentacion"
+            android:layout_marginLeft="20dp"/>
+    
+    <EditText
             android:id="@+id/new_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
             android:maxLines="1"
-            android:maxLength="10">
+            android:maxLength="10"
+            android:layout_below="@id/textView1"
+            android:layout_alignLeft="@id/textView1"
+            android:layout_marginRight="20dp"/>
+    
+    <ImageButton 
+        android:id="@+id/b_new_user"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/newuser"
+		android:layout_below="@id/new_user"
+		android:background="@android:color/transparent"
+		android:layout_alignRight="@id/new_user"/>
 
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/b_new_user"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:text="Accept" />
-
-    </LinearLayout>
 
 </RelativeLayout>

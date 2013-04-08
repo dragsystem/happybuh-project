@@ -34,8 +34,8 @@ public class Armario extends ListActivity {
  
         List<Closet_Info> info = new ArrayList<Closet_Info>();
         info.add(new Closet_Info("ChangeColor"));
-        info.add(new Closet_Info("ChangeGlasses"));
         info.add(new Closet_Info("ChangeBeard"));
+        info.add(new Closet_Info("ChangeGlasses"));
         setListAdapter(new Closer_Adapter(this, info));
     }
 	
