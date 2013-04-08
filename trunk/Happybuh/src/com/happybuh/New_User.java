@@ -28,15 +28,21 @@ public class New_User extends Activity {
 		    		Toast.makeText(getApplicationContext(), "El usuario debe contener al menos 5 carácteres", Toast.LENGTH_LONG);
 		    	}
 		    	else {
-		    		VG_Database entry = new VG_Database(New_User.this);
-		    		entry.open();
-		    		crear_entrada_color(entry);
-		    		crear_entrada_glass(entry);
-		    		crear_entrada_beard(entry);
-		    		entry.createEntry_userinfo(username);
-		    		entry.close();
-		    		Intent i = new Intent("com.happybuh.HABITACION");
-					startActivity(i);
+		    		try {
+			    		VG_Database entry = new VG_Database(New_User.this);
+			    		entry.open();
+			    		crear_entrada_color(entry);
+			    		crear_entrada_glass(entry);
+			    		crear_entrada_beard(entry);
+			    		entry.createEntry_userinfo(username);
+			    		entry.close();
+			    		Intent i = new Intent("com.happybuh.HABITACION");
+						startActivity(i);
+		    		} catch (Exception e) {
+						e.printStackTrace();
+					}finally {
+						finish();
+					}
 		    	}
 			}
 

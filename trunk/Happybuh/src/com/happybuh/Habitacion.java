@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.sax.TextElementListener;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -49,9 +50,9 @@ public class Habitacion extends Activity {
         vf = (ViewFlipper) findViewById(R.id.viewFlipper1);
 
 		vf.setInAnimation(AnimationUtils.loadAnimation(this,
-				android.R.anim.fade_in));
-		vf.setOutAnimation(AnimationUtils.loadAnimation(this,
 				android.R.anim.fade_out));
+		vf.setOutAnimation(AnimationUtils.loadAnimation(this,
+				android.R.anim.fade_in));
 		
 		ImageButton nextButton = (ImageButton) Habitacion.this.findViewById(R.id.b_opt_izq); 
 		nextButton.setOnClickListener(new OnClickListener() 
@@ -151,12 +152,13 @@ public class Habitacion extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
 				//ALERTDIALOG CON EL NOMBRE DE USUARIO PARA CAMBIAR
 				AlertDialog.Builder alerta = new AlertDialog.Builder(v.getContext());
 				LayoutInflater inflater = getLayoutInflater();
-				alerta.setView(inflater.inflate(R.layout.dialog_change_user, null))
-					// set title
+				View layout = inflater.inflate(R.layout.dialog_change_user, null);
+				final EditText et = (EditText)layout.findViewById(R.id.username);
+				alerta.setView(layout)
+				// set title
 				//alerta.setTitle("Your Title");
 		 
 					// set dialog message
@@ -166,7 +168,16 @@ public class Habitacion extends Activity {
 							public void onClick(DialogInterface dialog,int id) {
 								// if this button is clicked, close
 								// current activity
-								Habitacion.this.finish();
+								if (et.getText().toString().isEmpty()) {
+									Toast t = Toast.makeText(getApplicationContext(), "cagarruta no lee", Toast.LENGTH_LONG);
+									t.show();
+								}
+								else {
+									VG_Database db = new VG_Database(getApplicationContext());
+									db.open();
+									db.setUser(db.getUserName(), et.getText().toString());
+									db.close();
+								}
 							}
 						  })
 						.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
@@ -185,11 +196,38 @@ public class Habitacion extends Activity {
 					}
 				});
 	    
+	    TextView info_tit = (TextView)findViewById(R.id.info_title);
+	    info_tit.setTypeface(type);
+	    info_tit.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br>"));
 	    TextView texto = (TextView)findViewById(R.id.desc); 
+	    texto.setMovementMethod(new ScrollingMovementMethod());
 	    texto.setTypeface(type);
-	    texto.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br><p>HappyBuh esta formado por una coleccion de mini-juegos</p>" +
+	    texto.setText(Html.fromHtml("<p>HappyBuh esta formado por una coleccion de mini-juegos</p>" +
 	    		"<p><i>Ahora</i><b> Haremos </b> pruebas varias con <font color='red'>los colores </font></p>" +
-	    		""));
+	    		"<p>Deberas subir niveles a medida que juegues y alcances nuevos Records a la vez que consiguas coins para poder personalizar a tu personaje</p>" +
+	    		"<p>Tambien podras probar un nuevo juego que se desbloqueara al llegar al nivel 10</p>" + 
+	    		"<p>Hay 3 tipos de juegos. DIVERTIDISIMOS!!</p>"+
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" +
+	    		"<p>meeeeeeeeeerp</p>" ));
 	    
 	    try {
 	    	TextView name = (TextView)findViewById(R.id.user_name);
