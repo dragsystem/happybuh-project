@@ -50,16 +50,16 @@ public class Habitacion extends Activity {
         vf = (ViewFlipper) findViewById(R.id.viewFlipper1);
 
 		vf.setInAnimation(AnimationUtils.loadAnimation(this,
-				android.R.anim.fade_out));
-		vf.setOutAnimation(AnimationUtils.loadAnimation(this,
 				android.R.anim.fade_in));
+		vf.setOutAnimation(AnimationUtils.loadAnimation(this,
+				android.R.anim.fade_out));
 		
 		ImageButton nextButton = (ImageButton) Habitacion.this.findViewById(R.id.b_opt_izq); 
 		nextButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
 				vf.showNext(); 
 
 			}
@@ -69,8 +69,8 @@ public class Habitacion extends Activity {
 		previousButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
 				vf.showPrevious(); 
 			} 
 		});
@@ -79,8 +79,8 @@ public class Habitacion extends Activity {
 		nextButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
 				vf.showNext(); 
 
 			}
@@ -90,8 +90,8 @@ public class Habitacion extends Activity {
 		previousButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
 				vf.showPrevious(); 
 			} 
 		});
@@ -100,8 +100,8 @@ public class Habitacion extends Activity {
 		nextButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
 				vf.showNext(); 
 
 			}
@@ -111,8 +111,8 @@ public class Habitacion extends Activity {
 		previousButton.setOnClickListener(new OnClickListener() 
 		{ 
 			public void onClick(View v) { 
-				vf.setInAnimation(Habitacion.this, R.anim.slide_right_in); 
-				vf.setOutAnimation(Habitacion.this, R.anim.slide_right_out); 
+				vf.setInAnimation(Habitacion.this, R.anim.slide_left_in); 
+				vf.setOutAnimation(Habitacion.this, R.anim.slide_left_out); 
 				vf.showPrevious(); 
 			} 
 		});

@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" 
+    android:background="@android:color/transparent">
     <TextView
 		android:id="@+id/closet_name"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@android:color/black"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="20dp"
-	/>
+		android:layout_alignParentLeft="true"
+		android:text="HOLA"
+		android:textSize="15dp"
+		android:textColor="@android:color/white"/>
     <ImageView
 		android:id="@+id/closet_img1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"
-		android:layout_alignBaseline="@id/closet_name"/>
+		android:layout_toRightOf="@id/closet_name"
+		android:layout_alignBaseline="@id/closet_name"
+		android:layout_marginRight="10dp"
+		android:src="@drawable/b_mando"/>
     
-    <ImageView
+   <!-- <ImageView
 		android:id="@+id/closet_img2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_toRightOf="@id/closet_img1"/>
+		android:layout_toRightOf="@id/closet_img1"/> -->
 </RelativeLayout>
