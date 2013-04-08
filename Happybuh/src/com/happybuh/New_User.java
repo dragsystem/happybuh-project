@@ -25,7 +25,8 @@ public class New_User extends Activity {
 				EditText user = (EditText)findViewById(R.id.new_user);
 		    	String username = user.getText().toString();
 		    	if(username.length() < 5) {
-		    		Toast.makeText(getApplicationContext(), "El usuario debe contener al menos 5 carácteres", Toast.LENGTH_LONG);
+		    		Toast t = Toast.makeText(getApplicationContext(), "El usuario debe contener al menos 5 carácteres", Toast.LENGTH_LONG);
+		    		t.show();
 		    	}
 		    	else {
 		    		try {
