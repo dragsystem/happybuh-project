@@ -17,23 +17,27 @@ public class VG_Database {
 	public static final String KEY_COLOR = "user_color";
 	public static final String KEY_GLASSES = "user_glasses";
 	public static final String KEY_BEARD = "user_beard";
+	public static final String KEY_EXP = "user_exp";
 	
 	//VARIABLES USER_COLOR
 	public static final String KEY_COLOR_NAME = "name_color";
 	public static final String KEY_COLOR_PRICE = "price";
 	public static final String KEY_COLOR_LVL = "lvl_req";
+	public static final String KEY_COLOR_BOUGHT = "bought";
 	
 	//VARIABLES USER_GLASSES
 	public static final String KEY_NUM_GLASS = "num_glass";
 	public static final String KEY_COLOR_GLASSES = "color_glass";
 	public static final String KEY_GLASSES_PRICE = "price";
 	public static final String KEY_GLASSES_LVL = "lvl_req";
+	public static final String KEY_GLASSES_BOUGHT = "bought";
 	
 	//VARIABLES USER_BEARD
 	public static final String KEY_NUM_BEARD = "num_beard";
 	public static final String KEY_COLOR_BEARD = "color_beard";
 	public static final String KEY_BEARD_PRICE = "price";
 	public static final String KEY_BEARD_LVL = "lvl_req";
+	public static final String KEY_BEARD_BOUGHT = "bought";
 	
 	
 	
@@ -63,7 +67,8 @@ public class VG_Database {
 					KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 					KEY_COLOR_NAME + " TEXT NOT NULL, " + 
 					KEY_COLOR_PRICE + " INTEGER NOT NULL, " + 
-					KEY_COLOR_LVL + " INTEGER NOT NULL);"
+					KEY_COLOR_LVL + " INTEGER NOT NULL, " +
+					KEY_COLOR_BOUGHT + " INTEGER NOT NULL);"
 			);
 			
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE_GLASSES + " (" +
@@ -71,7 +76,8 @@ public class VG_Database {
 					KEY_NUM_GLASS + " INTEGER NOT NULL, " + 
 					KEY_COLOR_GLASSES + " INTEGER NOT NULL, " +
 					KEY_GLASSES_PRICE + " INTEGER NOT NULL, " +
-					KEY_GLASSES_LVL + " INTEGER NOT NULL);"
+					KEY_GLASSES_LVL + " INTEGER NOT NULL, " +
+					KEY_GLASSES_BOUGHT + " INTEGER NOT NULL);"
 			);
 			
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE_BEARD + " (" +
@@ -79,7 +85,8 @@ public class VG_Database {
 					KEY_NUM_BEARD + " INTEGER NOT NULL, " + 
 					KEY_COLOR_BEARD + " INTEGER NOT NULL, " +
 					KEY_BEARD_PRICE + " INTEGER NOT NULL, " +
-					KEY_BEARD_LVL + " INTEGER NOT NULL);"
+					KEY_BEARD_LVL + " INTEGER NOT NULL, " +
+					KEY_BEARD_BOUGHT + " INTEGER NOT NULL);"
 			);
 			
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" +
@@ -90,6 +97,7 @@ public class VG_Database {
 					KEY_COLOR + " INTEGER NOT NULL, " +
 					KEY_GLASSES + " INTEGER NOT NULL, " + 
 					KEY_BEARD + " INTEGER NOT NULL, " +
+					KEY_EXP + " INTEGER NOT NULL, " +
 					"FOREIGN KEY (" + KEY_COLOR + ") REFERENCES " + DATABASE_TABLE_COLOR + " (" + KEY_ROWID + "), " +
 					"FOREIGN KEY (" + KEY_GLASSES + ") REFERENCES " + DATABASE_TABLE_GLASSES + " (" + KEY_ROWID + "), " +
 					"FOREIGN KEY (" + KEY_BEARD + ") REFERENCES " + DATABASE_TABLE_BEARD + " (" + KEY_ROWID + ")); "
@@ -127,11 +135,12 @@ public class VG_Database {
 		cv.put(KEY_COLOR, 0);
 		cv.put(KEY_GLASSES, 0);
 		cv.put(KEY_BEARD, 0);
+		cv.put(KEY_EXP, 0);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	
 	public ArrayList info_user() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		ArrayList a = new ArrayList();
@@ -143,6 +152,7 @@ public class VG_Database {
 		int iColor = c.getColumnIndex(KEY_COLOR);
 		int iGlasses = c.getColumnIndex(KEY_GLASSES);
 		int iBeard = c.getColumnIndex(KEY_BEARD);
+		int iExp = c.getColumnIndex(KEY_EXP);
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			a.add(c.getString(iRow));
@@ -152,6 +162,7 @@ public class VG_Database {
 			a.add(c.getString(iColor));
 			a.add(c.getString(iGlasses));
 			a.add(c.getString(iBeard));
+			a.add(c.getString(iExp));
 		}
 		c.close();
 		
@@ -161,9 +172,10 @@ public class VG_Database {
 	public void Create_color_glass_beard(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_COLOR + " (" +
 				KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-				KEY_COLOR + " TEXT NOT NULL, " + 
+				KEY_COLOR_NAME + " TEXT NOT NULL, " + 
 				KEY_COLOR_PRICE + " INTEGER NOT NULL, " + 
-				KEY_COLOR_LVL + " INTEGER NOT NULL);"
+				KEY_COLOR_LVL + " INTEGER NOT NULL, " +
+				KEY_COLOR_BOUGHT + " INTEGER NOT NULL);"
 		);
 		
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_GLASSES + " (" +
@@ -171,7 +183,8 @@ public class VG_Database {
 				KEY_NUM_GLASS + " INTEGER NOT NULL, " + 
 				KEY_COLOR_GLASSES + " INTEGER NOT NULL, " +
 				KEY_GLASSES_PRICE + " INTEGER NOT NULL, " +
-				KEY_GLASSES_LVL + " INTEGER NOT NULL);"
+				KEY_GLASSES_LVL + " INTEGER NOT NULL, " +
+				KEY_GLASSES_BOUGHT + " INTEGER NOT NULL);"
 		);
 		
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_BEARD + " (" +
@@ -179,10 +192,9 @@ public class VG_Database {
 				KEY_NUM_BEARD + " INTEGER NOT NULL, " + 
 				KEY_COLOR_BEARD + " INTEGER NOT NULL, " +
 				KEY_BEARD_PRICE + " INTEGER NOT NULL, " +
-				KEY_BEARD_LVL + " INTEGER NOT NULL);"
+				KEY_BEARD_LVL + " INTEGER NOT NULL, " +
+				KEY_BEARD_BOUGHT + " INTEGER NOT NULL);"
 		);
-		
-		
 	}
 	
 	public void Upgrade_color_glass_beard (SQLiteDatabase db) {
@@ -192,7 +204,7 @@ public class VG_Database {
 
 	
 	//INSERTAMOS LOS DATOS DE BEARD
-	public long Insert_beard(int num, int color, int price, int lvl) {
+	public long Insert_beard(int num, int color, int price, int lvl, int comprado) {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
 		
@@ -200,32 +212,35 @@ public class VG_Database {
 		cv.put(KEY_COLOR_BEARD, color);
 		cv.put(KEY_BEARD_PRICE, price);
 		cv.put(KEY_BEARD_LVL, lvl);
+		cv.put(KEY_BEARD_BOUGHT, comprado);
 		
 		return ourDatabase.insert(DATABASE_TABLE_BEARD, null, cv);
 	}
 	//INSERTAMOS LOS DATOS DE GLASSES
-	public long Insert_glass(int num_glass, int color, int price, int lvl) {
+	public long Insert_glass(int num_glass, int color, int price, int lvl, int comprado) {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NUM_GLASS, num_glass);
 		cv.put(KEY_COLOR_GLASSES, color);
 		cv.put(KEY_GLASSES_PRICE, price);
 		cv.put(KEY_GLASSES_LVL, lvl);
+		cv.put(KEY_GLASSES_BOUGHT, comprado);
 		return ourDatabase.insert(DATABASE_TABLE_GLASSES, null, cv);
 	}
 
 	//INSERTAMOS LOS DATOS DE COLOR
-	public long Insert_color(String color, int price, int lvl) {
+	public long Insert_color(String color, int price, int lvl, int comprado) {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_COLOR_NAME, color);
 		cv.put(KEY_COLOR_PRICE, price);
 		cv.put(KEY_COLOR_LVL, lvl);
+		cv.put(KEY_COLOR_BOUGHT, comprado);
 		return ourDatabase.insert(DATABASE_TABLE_COLOR, null, cv);
 	}
 	
 	public String getUserName() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_NAME);
