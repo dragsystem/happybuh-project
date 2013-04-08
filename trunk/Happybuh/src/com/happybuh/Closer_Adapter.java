@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,17 +60,17 @@ public class Closer_Adapter extends BaseAdapter {
         final TextView closet_name = (TextView) v.findViewById(com.happybuh.R.id.closet_name);
         
         String name = infos.getName();
-        if(name == "color") {
+        if(name == "ChangeColor") {
         	image1.setImageResource(R.drawable.mando_p);
         	//image2.setImageResource(R.drawable.mando_p);
         	closet_name.setText("Body Color");
         }
-        else if (name == "glasses") {
+        else if (name == "ChangeGlasses") {
         	image1.setImageResource(R.drawable.buh);
         	//image2.setImageResource(R.drawable.buh);
         	closet_name.setText("Fashion Glasses");
         }
-        else if (name == "beard") {
+        else if (name == "ChangeBeard") {
         	image1.setImageResource(R.drawable.armario_abierto);
         	//image2.setImageResource(R.drawable.armario_cerrado);
         	closet_name.setText("Beards");
