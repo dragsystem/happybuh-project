@@ -75,7 +75,6 @@ public class Closer_Adapter extends BaseAdapter {
         	//image2.setImageResource(R.drawable.armario_cerrado);
         	closet_name.setText("Beards");
         }
- 
         
         closet_name.setTypeface(type);
         return v;
