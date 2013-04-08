@@ -34,7 +34,7 @@
         <activity
             android:name=".Armario"
             android:label="@string/title_activity_armario"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@style/Theme.Closet" >
             <intent-filter>
                 <action android:name="com.happybuh.ARMARIO" />
 
