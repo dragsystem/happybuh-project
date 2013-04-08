@@ -235,5 +235,12 @@ public class VG_Database {
 		c.close();
 		return name;
 	}
+
+	public void setUser(String user, String new_user) {
+		// TODO Auto-generated method stub
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NAME, new_user);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_NAME + "=" + user, null);
+	}
 	
 }
