@@ -1,9 +1,12 @@
 package com.happybuh;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +18,12 @@ public class ChangeColor extends Activity {
 	private ImageView iv;
 	private Button bt;
 	private Typeface type;
+	private int u_lvl;
+	private int u_coins;
+	private int u_color;
+	private int u_glasses;
+	private int u_beard;
+	private VG_Database db;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,24 @@ public class ChangeColor extends Activity {
         bt.setTypeface(type);
         
         
+        //RECOGEMOS VALORES DE LA BBDD
+        db = new VG_Database(ChangeColor.this);
+        db.open();
+        ArrayList a = new ArrayList();
+        a = db.info_user();
+	        u_lvl = (Integer)a.get(2);
+	        u_coins = (Integer)a.get(3);
+	        u_color = (Integer)a.get(4);
+	        u_glasses = (Integer)a.get(5);
+	        u_beard = (Integer)a.get(6);
+	        db.close();
+        
+        //RECOGEMOS MAS DATOS DE BBDD COLOR
+        	
+        
+	    //COLOCO LA IMAGEN DE BUH
+	    iv = (ImageView)findViewById(R.id.buh_body_change);
+	        
     }
 
     @Override
@@ -55,29 +82,63 @@ public class ChangeColor extends Activity {
         return true;
     }
 
-    public void cambio_color_azul() {
+    public void cambio_color_azul(View v) {
     	//CAMBIO LVL_REQ
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
     }
     
-    public void cambio_color_rojo() {
-    	
+    public void cambio_color_rojo(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
     }
     
-    public void cambio_color_verde() {
-    	
+    public void cambio_color_verde(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
     }
-    public void cambio_color_amarillo() {
-    	
+    public void cambio_color_amarillo(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
     }
-    public void cambio_color_negro() {
-    	
+    public void cambio_color_negro(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
     }
     
-    public void volver() {
-    	moveTaskToBack(true);
+    public void cambio_gafas1(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.armario_abierto);
+    }
+    
+    public void cambio_gafas2(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    }
+    
+    public void cambio_gafas3(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    }
+    
+    public void volver(View v) {
+    	//moveTaskToBack(true);
     	finish();
     }
 }

@@ -22,27 +22,33 @@
    	    android:background="@android:color/transparent"
    	    android:onClick="volver"/>
    	
-   	<ImageView 
+   	<ImageButton
    		android:id="@+id/img_glass_3"
    	    android:layout_height="wrap_content"
    	    android:layout_width="wrap_content"
    	    android:layout_below="@id/titulo_body"
    	    android:layout_alignParentRight="true"
-   	    android:src="@drawable/b_gafas3"/>
-   	<ImageView 
+   	    android:src="@drawable/b_gafas3"
+   	    android:onClick="cambio_gafas3"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
    		android:id="@+id/img_glass_2"
    	    android:layout_height="wrap_content"
    	    android:layout_width="wrap_content"
    	    android:layout_toLeftOf="@id/img_glass_3"
    	    android:layout_below="@id/titulo_body"
-   	    android:src="@drawable/b_gafas2"/>
-   	<ImageView 
+   	    android:src="@drawable/b_gafas2"
+   	    android:onClick="cambio_gafas2"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
    		android:id="@+id/img_glass_1"
    	    android:layout_height="wrap_content"
    	    android:layout_width="wrap_content"
    	    android:layout_toLeftOf="@id/img_glass_2"
    	    android:layout_below="@id/titulo_body"
-   	    android:src="@drawable/b_gafas1"/>
+   	    android:src="@drawable/b_gafas1"
+   	    android:onClick="cambio_gafas1"
+   	    android:background="@android:color/transparent"/>
    	
    	<TextView 
    	    android:id="@+id/glass_lvlreq"

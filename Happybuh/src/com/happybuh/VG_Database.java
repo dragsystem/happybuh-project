@@ -239,6 +239,8 @@ public class VG_Database {
 		return ourDatabase.insert(DATABASE_TABLE_COLOR, null, cv);
 	}
 	
+	//METODOS GET
+	
 	public String getUserName() {
 		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
@@ -250,7 +252,34 @@ public class VG_Database {
 		c.close();
 		return name;
 	}
+	
+	/*public int getColorLevel() {
+		String[] columns = new String[]{KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR,columns, null, null, null, null, null);
+		
+		int iLvlReq = c.getColumnIndex(KEY_COLOR_LVL);
+		c.moveToFirst();
+		
+		int level = Integer.parseInt(c.getString(iLvlReq));
+		c.close();
+		return level;
+	}
+	
+	public int getColorCoins() {
+		String[] columns = new String[]{KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR,columns, null, null, null, null, null);
+		
+		int iPrice = c.getColumnIndex(KEY_COLOR_PRICE);
+		c.moveToFirst();
+		
+		int price = Integer.parseInt(c.getString(iPrice));
+		c.close();
+		return price;
+	}*/
 
+
+	
+	//METODOS SET
 	public void setUser(String user, String new_user) {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
