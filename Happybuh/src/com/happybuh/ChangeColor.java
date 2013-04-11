@@ -61,19 +61,26 @@ public class ChangeColor extends Activity {
         db.open();
         ArrayList a = new ArrayList();
         a = db.info_user();
-	        u_lvl = (Integer)a.get(2);
-	        u_coins = (Integer)a.get(3);
-	        u_color = (Integer)a.get(4);
-	        u_glasses = (Integer)a.get(5);
-	        u_beard = (Integer)a.get(6);
+	        //u_lvl = (Integer)a.get(2);
+	        u_lvl = Integer.parseInt((String) a.get(2));
+	        u_coins = Integer.parseInt((String) a.get(3));
+	        u_color = Integer.parseInt((String) a.get(4));
+	        u_glasses = Integer.parseInt((String) a.get(5));
+	        u_beard = Integer.parseInt((String) a.get(6));
 	        db.close();
         
         //RECOGEMOS MAS DATOS DE BBDD COLOR
-        	
-        
+	        db.open();
+	        db.getColorById(u_color);
+	        db.close();
+        //RECOGEMOS MAS DATOS DE BBDD GAFAS
+	        db.open();
+	        //String buh_ = db.getGlassesById(u_color);
+	        db.close();
+	    //RECOGEMOS MAS DATOS DE BBDD BARBA
 	    //COLOCO LA IMAGEN DE BUH
 	    iv = (ImageView)findViewById(R.id.buh_body_change);
-	        
+	    iv.setImageResource(R.drawable.red_0_0_0_0);
     }
 
     @Override
@@ -87,6 +94,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.blue_0_0_0_0);
     }
     
     public void cambio_color_rojo(View v) {
@@ -94,6 +102,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.red_0_0_0_0);
     }
     
     public void cambio_color_verde(View v) {
@@ -101,18 +110,21 @@ public class ChangeColor extends Activity {
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.green_0_0_0_0);
     }
     public void cambio_color_amarillo(View v) {
     	//CAMBIO LVL_REQ
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.yellow_0_0_0_0);
     }
     public void cambio_color_negro(View v) {
     	//CAMBIO LVL_REQ
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.black_0_0_0_0);
     }
     
     public void cambio_gafas1(View v) {

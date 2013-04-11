@@ -9,8 +9,8 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentLeft="true"
 		android:text="HOLA"
-		android:textSize="20dp"
-		android:textColor="@android:color/white"/>
+		android:textSize="50dp"
+		android:textColor="@android:color/black"/>
     <ImageView
 		android:id="@+id/closet_img1"
 		android:layout_width="wrap_content"

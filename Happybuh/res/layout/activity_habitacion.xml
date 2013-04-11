@@ -94,7 +94,25 @@
 				android:layout_alignBaseline="@id/b_armario"
 				android:layout_below="@id/user_name"
 				android:layout_alignRight="@id/user_name"/>
-		            
+		          
+			<TextView 
+			    android:id="@+id/t_armario"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="PERSONALÍZAME"
+			    android:layout_below="@+id/b_armario"
+			    android:layout_alignLeft="@+id/b_armario"
+			    android:textColor="@android:color/black"/>
+			
+			<TextView 
+			    android:id="@+id/t_mando"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="JUEGA"
+			    android:layout_below="@+id/b_mando"
+			    android:layout_alignLeft="@+id/b_mando"
+			    android:layout_alignBaseline="@id/t_armario"
+			    android:textColor="@android:color/black"/>
 		                
 			<ImageView 
 				android:id="@+id/buh"

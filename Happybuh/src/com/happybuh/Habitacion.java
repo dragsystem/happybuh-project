@@ -36,12 +36,15 @@ public class Habitacion extends Activity {
 	ImageButton boton_armario;
 	ImageButton boton_mando;
 	Typeface type;
+	User_Info us_gv;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
+        
+        us_gv = new User_Info(Habitacion.this);
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
         
@@ -197,6 +200,10 @@ public class Habitacion extends Activity {
 				});
 	    
 	    TextView info_tit = (TextView)findViewById(R.id.info_title);
+	    info_tit.setTypeface(type);
+	    TextView t_armario = (TextView)findViewById(R.id.t_armario);
+	    info_tit.setTypeface(type);
+	    TextView t_mando = (TextView)findViewById(R.id.t_mando);
 	    info_tit.setTypeface(type);
 	    info_tit.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br>"));
 	    TextView texto = (TextView)findViewById(R.id.desc); 
