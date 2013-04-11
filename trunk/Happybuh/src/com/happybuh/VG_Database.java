@@ -286,5 +286,11 @@ public class VG_Database {
 		cv.put(KEY_NAME, new_user);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
 	}
+
+	public String getColorById(int u_color) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
