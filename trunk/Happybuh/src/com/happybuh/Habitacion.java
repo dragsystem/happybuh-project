@@ -36,7 +36,8 @@ public class Habitacion extends Activity {
 	ImageButton boton_armario;
 	ImageButton boton_mando;
 	Typeface type;
-	User_Info us_gv;
+	
+	User_Info a;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class Habitacion extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
         
-        us_gv = new User_Info(Habitacion.this);
+        inicializar_user();
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
         
@@ -172,7 +173,7 @@ public class Habitacion extends Activity {
 								// if this button is clicked, close
 								// current activity
 								if (et.getText().toString().isEmpty()) {
-									Toast t = Toast.makeText(getApplicationContext(), "cagarruta no lee", Toast.LENGTH_LONG);
+									Toast t = Toast.makeText(getApplicationContext(), "a = " + a.name + "es distinta de " + User_Info.name, Toast.LENGTH_LONG);
 									t.show();
 								}
 								else {
@@ -255,7 +256,32 @@ public class Habitacion extends Activity {
 	    }
     }
     
-    public void addListenerOnButton() {
+    private void inicializar_user() {
+		// TODO Auto-generated method stub
+    	VG_Database db = new VG_Database(Habitacion.this);
+	    db.open();
+		    ArrayList<String> a = new ArrayList<String>();
+	        a = db.info_user();
+	        User_Info.name = a.get(1);
+	        User_Info.level = Integer.parseInt(a.get(2));
+	        User_Info.coins = Integer.parseInt(a.get(3));
+	        User_Info.color = Integer.parseInt(a.get(4));
+	        User_Info.glasses = Integer.parseInt(a.get(5));
+	        User_Info.beard = Integer.parseInt(a.get(6));
+	        
+	        Long lc, lg, lb;
+	        lc = Long.parseLong((String) a.get(4));
+	        User_Info.color_name = db.getColorName(lc);
+	        lg = Long.parseLong((String) a.get(5));
+	        User_Info.num_glasses = db.getNumGlasses(lg);
+	        User_Info.col_glasses = db.getColGlasses(lg);
+	        lb = Long.parseLong((String) a.get(6));
+	        User_Info.num_beard = db.getNumBeard(lb);
+	        User_Info.col_beard = db.getColBeard(lb);
+	    db.close();
+	}
+
+	public void addListenerOnButton() {
    	 
 		boton_armario = (ImageButton) findViewById(R.id.b_armario);
  
