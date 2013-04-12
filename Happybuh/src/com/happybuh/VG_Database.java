@@ -139,11 +139,11 @@ public class VG_Database {
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	
-	public ArrayList info_user() {
+	public ArrayList<String> info_user() {
 		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
-		ArrayList a = new ArrayList();
+		ArrayList<String> a = new ArrayList<String>();
 		
 		int iRow = c.getColumnIndex(KEY_ROWID);
 		int iName = c.getColumnIndex(KEY_NAME);
@@ -287,8 +287,58 @@ public class VG_Database {
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
 	}
 
-	public String getColorById(int u_color) {
-		// TODO Auto-generated method stub
+	public String getColorName(Long lc) {
+		String [] columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + "=" + lc, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_COLOR_NAME);
+		c.moveToFirst();
+		
+		String name = c.getString(iName);
+		c.close();
+		return name;
+	}
+
+	public String getNumGlasses(Long lg) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(1);
+			return name;
+		}
+		return null;
+	}
+
+	public String getColGlasses(Long lg) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(2);
+			return name;
+		}
+		return null;
+	}
+
+	public String getColBeard(Long lb) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + "=" + lb, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(1);
+			return name;
+		}
+		return null;
+	}
+
+	public String getNumBeard(Long lb) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + "=" + lb, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(2);
+			return name;
+		}
 		return null;
 	}
 
