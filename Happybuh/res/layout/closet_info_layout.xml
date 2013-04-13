@@ -3,20 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" 
     android:background="@color/fondo">
+
+   
+    
     <TextView
 		android:id="@+id/closet_name"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
 		android:text="HOLA"
-		android:textSize="50dp"
-		android:textColor="@android:color/black"/>
-    <ImageView
-		android:id="@+id/closet_img1"
+		android:textSize="45dp"
+		android:textColor="@android:color/black"
+		android:layout_toRightOf="@+id/closet_img1"/>
+ <ImageView
+		android:id="@id/closet_img1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		/>
+		android:layout_alignParentLeft="true"/>
     
    <!-- <ImageView
 		android:id="@+id/closet_img2"

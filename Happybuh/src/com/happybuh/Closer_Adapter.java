@@ -80,7 +80,7 @@ public class Closer_Adapter extends BaseAdapter {
 	        else if (name == "ChangeGlasses") {
 	        	image1.setImageResource(R.drawable.gafas1_mini);
 	        	//image2.setImageResource(R.drawable.buh);
-	        	closet_name.setText("Fashion Glasses");
+	        	closet_name.setText("Glasses");
 	        }
 	        else if (name == "ChangeBeard") {
 	        	image1.setImageResource(R.drawable.gafas2_mini);

@@ -18,10 +18,9 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="20dp"
             android:textColor="@android:color/white"
-            android:text="Introduce tu nombre de usuario 
-MIN 5 LETRAS MAX 10 LETRAS" 
+            android:text="@string/new_user"
             android:layout_below="@id/imagen_presentacion"
             android:layout_marginLeft="20dp"/>
     

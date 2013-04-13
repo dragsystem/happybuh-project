@@ -14,5 +14,8 @@
     <string name="title_activity_change_color">ChangeColor</string>
     <string name="title_activity_new__user">New_User</string>
     <string name="summit">&lt;bold&gt;summit&lt;/bold&gt;</string>
+    <string name="reques">No puedes comprar este Color: \n Nivel muy bajo o coins insuficientes</string>
+    <string name="new_user">Introduce tu nombre de usuario: \n MINIMO 5 LETRAS \n MAXIMO 10 LETRAS</string>
+    
 
 </resources>

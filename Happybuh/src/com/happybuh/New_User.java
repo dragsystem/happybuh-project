@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,11 +46,12 @@ public class New_User extends Activity {
 		    		try {
 			    		VG_Database entry = new VG_Database(New_User.this);
 			    		entry.open();
-			    		crear_entrada_color(entry);
-			    		crear_entrada_glass(entry);
-			    		crear_entrada_beard(entry);
-			    		entry.createEntry_userinfo(username);
+			    		Long n = entry.createEntry_userinfo(username);
+			    		Log.v("INSERTO USUARIOS" , "" + n);
 			    		entry.close();
+			    		crear_entrada_color();
+			    		crear_entrada_glass();
+			    		crear_entrada_beard();
 			    		Intent i = new Intent("com.happybuh.HABITACION");
 						startActivity(i);
 		    		} catch (Exception e) {
@@ -60,17 +62,27 @@ public class New_User extends Activity {
 		    	}
 			}
 
-			private void crear_entrada_color(VG_Database db) {
+			private void crear_entrada_color() {
 				// TODO Auto-generated method stub
-				db.Insert_color("Blue", 0, 0, 1);
-				db.Insert_color("Red", 100, 5, 0);
-				db.Insert_color("Yellow", 200, 7, 0);
-				db.Insert_color("Green", 300, 9, 0);
-				db.Insert_color("Black", 400, 20, 0);
+				VG_Database db = new VG_Database(New_User.this);
+				db.open();
+				Long n = db.Insert_color("Blue", 0, 0, 1);
+				Log.v("INSERTO AZUL" , "" + n);
+				Long d = db.Insert_color("Red", 100, 5, 0);
+				Log.v("INSERTO rojo" , "" + d);
+				Long a = db.Insert_color("Yellow", 200, 7, 0);
+				Log.v("INSERTO AZUL" , "" + a);
+				Long b = db.Insert_color("Green", 300, 9, 0);
+				Log.v("INSERTO AZUL" , "" + b);
+				Long c = db.Insert_color("Black", 400, 20, 0);
+				Log.v("INSERTO AZUL" , "" + c);
+				db.close();
 			}
 			
-			private void crear_entrada_glass(VG_Database db) {
+			private void crear_entrada_glass() {
 				// TODO Auto-generated method stub
+				VG_Database db = new VG_Database(New_User.this);
+				db.open();
 				db.Insert_glass(0, 0, 0, 0, 1);
 				db.Insert_glass(1, 1, 100, 2, 0);
 				db.Insert_glass(1, 2, 200, 4, 0);
@@ -87,11 +99,13 @@ public class New_User extends Activity {
 				db.Insert_glass(3, 3, 2600, 30, 0);
 				db.Insert_glass(3, 4, 2900, 34, 0);
 				db.Insert_glass(3, 5, 3000, 36, 0);
-				
+				db.close();
 			}
 			
-			private void crear_entrada_beard(VG_Database db) {
+			private void crear_entrada_beard() {
 				// TODO Auto-generated method stub
+				VG_Database db = new VG_Database(New_User.this);
+				db.open();
 				db.Insert_beard(0, 0, 0, 0, 1);
 				db.Insert_beard(1, 1, 100, 2, 0);
 				db.Insert_beard(1, 2, 200, 4, 0);
@@ -108,6 +122,7 @@ public class New_User extends Activity {
 				db.Insert_beard(3, 3, 2600, 30, 0);
 				db.Insert_beard(3, 4, 2900, 34, 0);
 				db.Insert_beard(3, 5, 3000, 36, 0);
+				db.close();
 			}
 			
 		});
