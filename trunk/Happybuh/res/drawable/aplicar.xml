@@ -4,6 +4,6 @@
            android:drawable="@drawable/b_aplicar_p" /> <!-- pressed -->
      <item android:state_focused="true"
            android:drawable="@drawable/b_aplicar" /> <!-- focused -->
-     <item android:drawable="@drawable/armario_cerrado" /> <!-- default -->
+     <item android:drawable="@drawable/b_aplicar" /> <!-- default -->
 
 </selector>

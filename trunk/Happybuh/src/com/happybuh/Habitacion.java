@@ -9,9 +9,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.sax.TextElementListener;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -20,7 +20,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -271,6 +270,7 @@ public class Habitacion extends Activity {
 	        
 	        Long lc, lg, lb;
 	        lc = Long.parseLong((String) a.get(4));
+	        Log.v("INDICE COLO", lc.toString());
 	        User_Info.color_name = db.getColorName(lc);
 	        lg = Long.parseLong((String) a.get(5));
 	        User_Info.num_glasses = db.getNumGlasses(lg);

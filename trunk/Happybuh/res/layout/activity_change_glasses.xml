@@ -22,101 +22,84 @@
    	    android:background="@android:color/transparent"
    	    android:onClick="volver"/>
    	
-   	<TextView 
-   	    android:id="@+id/color_coins"
-   	    android:layout_width="wrap_content"
+   	<ImageButton
+   		android:id="@+id/img_glass_3"
    	    android:layout_height="wrap_content"
-   	    android:text="Coins Disponibles:"
+   	    android:layout_width="wrap_content"
    	    android:layout_below="@id/titulo_body"
    	    android:layout_alignParentRight="true"
-   	    android:layout_marginRight="20dp"/>
-   	
-   	<TextView 
-   	    android:id="@+id/color_coins_et"
-   	    android:layout_width="wrap_content"
+   	    android:src="@drawable/b_gafas3"
+   	    android:onClick="cambio_gafas3"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
+   		android:id="@+id/img_glass_2"
    	    android:layout_height="wrap_content"
-   	    android:text="100"
-   	    android:layout_below="@id/color_coins"
-   	    android:layout_alignRight="@id/color_coins"
-   	    android:textStyle="bold"/>
-   	
-   	<TextView 
-   	    android:id="@+id/color_lvl"
    	    android:layout_width="wrap_content"
+   	    android:layout_toLeftOf="@id/img_glass_3"
+   	    android:layout_below="@id/titulo_body"
+   	    android:src="@drawable/b_gafas2"
+   	    android:onClick="cambio_gafas2"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
+   		android:id="@+id/img_glass_1"
    	    android:layout_height="wrap_content"
-   	    android:text="Nivel Actual:"
-   	    android:layout_below="@id/color_coins_et"
-   	    android:layout_alignParentRight="true"
-   	    android:layout_marginRight="20dp"/>
-   	
-   	<TextView 
-   	    android:id="@+id/color_lvl_et"
    	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:layout_below="@id/color_lvl"
-   	    android:layout_alignRight="@id/color_lvl"
-   	    android:textStyle="bold"/>
-   	
+   	    android:layout_toLeftOf="@id/img_glass_2"
+   	    android:layout_below="@id/titulo_body"
+   	    android:src="@drawable/b_gafas1"
+   	    android:onClick="cambio_gafas1"
+   	    android:background="@android:color/transparent"/>
    	
    	<TextView 
-   	    android:id="@+id/color_lvlreq"
+   	    android:id="@+id/glass_lvlreq"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Level Requerido"
    	    android:layout_alignParentLeft="true"
-   	    android:layout_below="@id/body_volver"
+   	    android:layout_below="@id/img_glass_1"
    	    android:layout_marginTop="100dp"/>
    	
    	<TextView
-   	    android:id="@+id/color_lvlreq_et"
+   	    android:id="@+id/glass_lvlreq_et"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="0"
-   	    android:layout_toRightOf="@id/color_lvlreq"
-   	    android:layout_alignBaseline="@id/color_lvlreq"
+   	    android:layout_toRightOf="@id/glass_lvlreq"
+   	    android:layout_alignBaseline="@id/glass_lvlreq"
    	    android:layout_marginLeft="30dp"/>
    	
-   	<TextView
-   	    android:id="@+id/requisitos"
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content"
-   	    android:text="@string/reques"
-   	    android:layout_below="@id/color_lvl_et"
-   	    android:layout_alignParentRight="true"
-   	    android:visibility="invisible"/>
-   	
    	<TextView 
-   	    android:id="@+id/color_price"
+   	    android:id="@+id/glass_price"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Precio"
-   	    android:layout_below="@id/color_lvlreq"
-   	    android:layout_alignLeft="@id/color_lvlreq"/>
+   	    android:layout_below="@id/glass_lvlreq"
+   	    android:layout_alignLeft="@id/glass_lvlreq"/>
    	
    	<TextView
-   	    android:id="@+id/color_price_et"
+   	    android:id="@+id/glass_price_et"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="0"
-   	    android:layout_below="@id/color_lvlreq_et"
-   	    android:layout_alignLeft="@id/color_lvlreq_et"
-   	    android:layout_alignBaseline="@id/color_price"/>
+   	    android:layout_below="@id/glass_lvlreq_et"
+   	    android:layout_alignLeft="@id/glass_lvlreq_et"
+   	    android:layout_alignBaseline="@id/glass_price"/>
    	
    	<ImageButton 
-   	    android:id="@+id/color_buy_bought"
+   	    android:id="@+id/glass_buy_bought"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:src="@drawable/comprar"
    	    android:background="@android:color/transparent"
-   	    android:layout_alignLeft="@id/color_lvlreq"
-   	    android:layout_below="@id/color_price"/>
+   	    android:layout_alignLeft="@id/glass_lvlreq"
+   	    android:layout_below="@id/glass_price"/>
    	
    	<ImageView 
    	    android:id="@+id/buh_body_change"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:src="@drawable/buh"
-   	    android:layout_below="@id/color_buy_bought"
+   	    android:layout_below="@id/glass_buy_bought"
    	    android:layout_centerHorizontal="true"
    	    android:layout_marginTop="20dp"
    	    />

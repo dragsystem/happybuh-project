@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class VG_Database {
 	//VARIABLES USER_INFO
@@ -132,10 +133,10 @@ public class VG_Database {
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_LVL, 1);
 		cv.put(KEY_COINS, 100);
-		cv.put(KEY_COLOR, 0);
-		cv.put(KEY_GLASSES, 0);
-		cv.put(KEY_BEARD, 0);
-		cv.put(KEY_EXP, 0);
+		cv.put(KEY_COLOR, 1);
+		cv.put(KEY_GLASSES, 1);
+		cv.put(KEY_BEARD, 1);
+		cv.put(KEY_EXP, 1);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	
@@ -289,13 +290,14 @@ public class VG_Database {
 
 	public String getColorName(Long lc) {
 		String [] columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
-		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + "=" + lc, null, null, null, null);
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + " = " + lc, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_COLOR_NAME);
-		c.moveToFirst();
-		
-		String name = c.getString(iName);
-		c.close();
-		return name;
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
 	}
 
 	public String getNumGlasses(Long lg) {
@@ -340,6 +342,43 @@ public class VG_Database {
 			return name;
 		}
 		return null;
+	}
+
+
+	public String getColorLvl(Long lc) {
+		String [] columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + " = " + lc, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_COLOR_LVL);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public String getColorPrice(Long lc) {
+		String [] columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + " = " + lc, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_COLOR_PRICE);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public int getColorBought(Long lc) {
+		String [] columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + " = " + lc, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_COLOR_BOUGHT);
+		if(c != null) {
+			c.moveToFirst();
+			int bought = c.getInt(iName);
+			return bought;
+		}
+		return 0;
 	}
 
 	
