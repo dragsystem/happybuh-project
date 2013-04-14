@@ -381,5 +381,51 @@ public class VG_Database {
 		return 0;
 	}
 
+	public String getGlassLvl(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_GLASSES_LVL);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public String getGlassPrice(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_GLASSES_PRICE);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
 	
+	public String getGlassColor(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_GLASSES);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+	
+	public String getGlassNum(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_NUM_GLASS);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
 }

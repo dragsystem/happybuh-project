@@ -7,7 +7,7 @@
         android:id="@+id/titulo_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change The Body Color"
+        android:text="Personaliza tus gafas"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -51,12 +51,49 @@
    	    android:background="@android:color/transparent"/>
    	
    	<TextView 
+   	    android:id="@+id/glass_coins"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Coins Disponibles:"
+   	    android:layout_below="@id/img_glass_1"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"
+   	    android:layout_marginTop="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_coins_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="100"
+   	    android:layout_below="@id/glass_coins"
+   	    android:layout_alignRight="@id/glass_coins"
+   	    android:textStyle="bold"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_lvl"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Nivel Actual:"
+   	    android:layout_below="@id/glass_coins_et"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_lvl_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/color_lvl"
+   	    android:layout_alignRight="@id/glass_lvl"
+   	    android:textStyle="bold"/>
+   	
+   	
+   	<TextView 
    	    android:id="@+id/glass_lvlreq"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Level Requerido"
    	    android:layout_alignParentLeft="true"
-   	    android:layout_below="@id/img_glass_1"
+   	    android:layout_below="@id/body_volver"
    	    android:layout_marginTop="100dp"/>
    	
    	<TextView
@@ -67,6 +104,15 @@
    	    android:layout_toRightOf="@id/glass_lvlreq"
    	    android:layout_alignBaseline="@id/glass_lvlreq"
    	    android:layout_marginLeft="30dp"/>
+   	
+   	<TextView
+   	    android:id="@+id/requisitos"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/reques"
+   	    android:layout_below="@id/glass_lvl_et"
+   	    android:layout_alignParentRight="true"
+   	    android:visibility="invisible"/>
    	
    	<TextView 
    	    android:id="@+id/glass_price"
@@ -165,54 +211,4 @@
 	   	    />
 
     </LinearLayout>
-   	
-   	
-   <!-- 	
-   	
-   	<Button 
-   	        android:id="@+id/body_boton_azul"
-   	    	android:layout_width="wrap_content"
-   	    	android:layout_height="wrap_content"
-   	    	android:text="Azul"
-   	    	android:background="@color/blue"
-   	    	android:layout_alignParentBottom="true"
-   	    	android:layout_alignParentLeft="true"
-   	    />
-   	<Button 
-   	        android:id="@+id/body_boton_verde"
-   	    	android:layout_width="wrap_content"
-   	    	android:layout_height="wrap_content"
-   	    	android:text="Verde"
-   	    	android:background="@color/green"
-   	    	android:layout_alignParentBottom="true"
-   	    	android:layout_toRightOf="@id/body_boton_azul"
-   	    />
-   	<Button 
-   	        android:id="@+id/body_boton_amarillo"
-   	    	android:layout_width="wrap_content"
-   	    	android:layout_height="wrap_content"
-   	    	android:text="Amarillo"
-   	    	android:background="@color/yellow"
-   	    	android:layout_alignParentBottom="true"
-   	    	android:layout_toRightOf="@id/body_boton_verde"
-   	    />
-   	<Button 
-   	        android:id="@+id/body_boton_rojo"
-   	    	android:layout_width="wrap_content"
-   	    	android:layout_height="wrap_content"
-   	    	android:text="Rojo"
-   	    	android:background="@color/red"
-   	    	android:layout_alignParentBottom="true"
-   	    	android:layout_toRightOf="@id/body_boton_amarillo"
-   	    />
-   	<Button 
-   	        android:id="@+id/body_boton_negro"
-   	    	android:layout_width="wrap_content"
-   	    	android:layout_height="wrap_content"
-   	    	android:text="Negro"
-   	    	android:background="@color/black"
-   	    	android:layout_alignParentBottom="true"
-   	    	android:layout_toRightOf="@id/body_boton_rojo"
-   	    />
- -->
 </RelativeLayout>
