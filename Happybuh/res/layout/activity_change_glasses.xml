@@ -50,15 +50,65 @@
    	    android:onClick="cambio_gafas1"
    	    android:background="@android:color/transparent"/>
    	
+   	
+   	<TextView
+   	    android:id="@+id/requisitos"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/reques"
+   	    android:layout_below="@id/img_glass_1"
+   	    android:layout_alignParentRight="true"
+   	    android:visibility="visible"
+   	    android:layout_marginTop="20dp"
+   	    android:layout_marginLeft="20dp"
+   	    android:textStyle="bold"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_lvlreq"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Level Requerido:"
+   	    android:layout_alignParentLeft="true"
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_marginTop="20dp"
+   	    android:layout_marginLeft="20dp"/>
+   	
+   	<TextView
+   	    android:id="@+id/glass_lvlreq_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="0"
+   	    android:textStyle="bold"
+   	    android:layout_below="@id/glass_lvlreq"
+   	    android:layout_alignRight="@id/glass_lvlreq"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_lvl"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Nivel Actual:"
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"
+   	    android:layout_marginTop="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/glass_lvl_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/glass_lvl"
+   	    android:text="1"
+   	    android:layout_alignRight="@id/glass_lvl"
+   	    android:textStyle="bold"/>
+   	
    	<TextView 
    	    android:id="@+id/glass_coins"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Coins Disponibles:"
-   	    android:layout_below="@id/img_glass_1"
+   	    android:layout_below="@id/glass_lvl_et"
    	    android:layout_alignParentRight="true"
-   	    android:layout_marginRight="20dp"
-   	    android:layout_marginTop="20dp"/>
+   	    android:layout_marginRight="20dp"/>
    	
    	<TextView 
    	    android:id="@+id/glass_coins_et"
@@ -70,56 +120,11 @@
    	    android:textStyle="bold"/>
    	
    	<TextView 
-   	    android:id="@+id/glass_lvl"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:text="Nivel Actual:"
-   	    android:layout_below="@id/glass_coins_et"
-   	    android:layout_alignParentRight="true"
-   	    android:layout_marginRight="20dp"/>
-   	
-   	<TextView 
-   	    android:id="@+id/glass_lvl_et"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:layout_below="@id/color_lvl"
-   	    android:layout_alignRight="@id/glass_lvl"
-   	    android:textStyle="bold"/>
-   	
-   	
-   	<TextView 
-   	    android:id="@+id/glass_lvlreq"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:text="Level Requerido"
-   	    android:layout_alignParentLeft="true"
-   	    android:layout_below="@id/body_volver"
-   	    android:layout_marginTop="100dp"/>
-   	
-   	<TextView
-   	    android:id="@+id/glass_lvlreq_et"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:text="0"
-   	    android:layout_toRightOf="@id/glass_lvlreq"
-   	    android:layout_alignBaseline="@id/glass_lvlreq"
-   	    android:layout_marginLeft="30dp"/>
-   	
-   	<TextView
-   	    android:id="@+id/requisitos"
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content"
-   	    android:text="@string/reques"
-   	    android:layout_below="@id/glass_lvl_et"
-   	    android:layout_alignParentRight="true"
-   	    android:visibility="invisible"/>
-   	
-   	<TextView 
    	    android:id="@+id/glass_price"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
-   	    android:text="Precio"
-   	    android:layout_below="@id/glass_lvlreq"
+   	    android:text="Precio:"
+   	    android:layout_below="@id/glass_lvlreq_et"
    	    android:layout_alignLeft="@id/glass_lvlreq"/>
    	
    	<TextView
@@ -127,9 +132,9 @@
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="0"
-   	    android:layout_below="@id/glass_lvlreq_et"
-   	    android:layout_alignLeft="@id/glass_lvlreq_et"
-   	    android:layout_alignBaseline="@id/glass_price"/>
+   	    android:layout_below="@id/glass_price"
+   	    android:layout_alignRight="@id/glass_lvlreq_et"
+   	    android:textStyle="bold"/>
    	
    	<ImageButton 
    	    android:id="@+id/glass_buy_bought"
@@ -138,25 +143,44 @@
    	    android:src="@drawable/comprar"
    	    android:background="@android:color/transparent"
    	    android:layout_alignLeft="@id/glass_lvlreq"
-   	    android:layout_below="@id/glass_price"/>
+   	    android:layout_below="@id/glass_price_et"/>
    	
    	<ImageView 
    	    android:id="@+id/buh_body_change"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
-   	    android:src="@drawable/buh"
+   	    android:src="@drawable/buh_blue"
    	    android:layout_below="@id/glass_buy_bought"
    	    android:layout_centerHorizontal="true"
    	    android:layout_marginTop="20dp"
    	    />
    	
+   	<ImageView
+   	    android:id="@+id/buh_glasses_change"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/gafas_1_0" 
+   	    android:visibility="invisible"/>
+   	
+   	<ImageView
+   	    android:id="@+id/buh_glasses_beard"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/barba_1_0" 
+   	    android:visibility="invisible"/>
+   	
    	
    	<LinearLayout
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content"
-    android:weightSum="1.0"
-    android:layout_below="@id/buh_body_change"
-    android:layout_marginTop="40dp">
+   	    android:id="@+id/layout_glass_colores"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content"
+	    android:weightSum="1.0"
+	    android:layout_below="@id/buh_body_change"
+	    android:layout_marginTop="40dp">
     
    	    <Button 
    	        android:id="@+id/body_boton_azul"

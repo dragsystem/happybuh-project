@@ -5,29 +5,6 @@
     android:id="@+id/Relativelayout01"
     android:background="@drawable/fondo2">
     
-   <!-- <LinearLayout
-        android:id="@+id/LinearLayout03"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        
-        <Button
-            android:id="@+id/Button01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next" 
-            android:onClick="next">
-        </Button>
-
-        <Button
-            android:id="@+id/Button02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Previous"
-            android:onClick="prev" >
-        </Button>
-    </LinearLayout> -->
-    
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"
@@ -35,7 +12,7 @@
         android:gravity="center_horizontal">
  
     <ViewFlipper
-        android:id="@+id/viewFlipper1"
+        android:id="@+id/viewFlipper2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -44,75 +21,13 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent" >
 		
-			<ImageButton 
-				android:id="@+id/b_help_der"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="prev"
-				android:background="@android:color/transparent"
-				android:src="@drawable/help_der"
-				android:layout_alignParentRight="true"
-				android:layout_centerVertical="true"/>
-			<ImageButton 
-				android:id="@+id/b_opt_izq"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="next"
-				android:src="@drawable/opt_izq"
-				android:background="@android:color/transparent"
-				android:layout_alignParentLeft="true"
-				android:layout_centerVertical="true"/>
-		    		        
-		                
 			<TextView 
-				android:id="@+id/user_name"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="HappyBuh!"
-				android:textColor="@android:color/black"
-				android:layout_centerHorizontal="true"
-				android:textSize="50dp"
-				android:layout_marginTop="20dp"
-				android:layout_marginBottom="10dp"/>
-		
-			<ImageButton 
-				android:id="@+id/b_armario"
-				android:src="@drawable/armario"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:background="@android:color/transparent"
-				android:layout_below="@id/user_name"
-				android:layout_alignLeft="@id/user_name"
-				/>
-		                
-			<ImageButton 
-				android:id="@+id/b_mando"
-				android:src="@drawable/b_mando"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:background="@android:color/transparent"
-				android:layout_alignBaseline="@id/b_armario"
-				android:layout_below="@id/user_name"
-				android:layout_alignRight="@id/user_name"/>
-		          
-			<TextView 
-			    android:id="@+id/t_armario"
+			    android:id="@+id/t_titulo_juego1"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="PERSONALÍZAME"
-			    android:layout_below="@+id/b_armario"
-			    android:layout_alignLeft="@+id/b_armario"
-			    android:textColor="@android:color/black"/>
-			
-			<TextView 
-			    android:id="@+id/t_mando"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="JUEGA"
-			    android:layout_below="@+id/b_mando"
-			    android:layout_alignLeft="@+id/b_mando"
-			    android:layout_alignBaseline="@id/t_armario"
-			    android:textColor="@android:color/black"/>
+			    android:text="BURBUJAS"
+			    android:textColor="@android:color/black"
+			    android:gravity="center"/>
 		                
 			<ImageView 
 				android:id="@+id/buh"
