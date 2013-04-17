@@ -1,0 +1,238 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="14dp" >
+
+    <TextView 
+        android:id="@+id/titulo_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personaliza tus gafas"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+   	<ImageButton 
+   	    android:id="@+id/body_volver"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignParentLeft="true"
+   	    android:layout_below="@id/titulo_body"
+   	    android:src="@drawable/menu_volver"
+   	    android:background="@android:color/transparent"
+   	    android:onClick="volver"/>
+   	
+   	<ImageButton
+   		android:id="@+id/img_barba_3"
+   	    android:layout_height="wrap_content"
+   	    android:layout_width="wrap_content"
+   	    android:layout_below="@id/titulo_body"
+   	    android:layout_alignParentRight="true"
+   	    android:src="@drawable/b_barba3"
+   	    android:onClick="cambio_barba3"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
+   		android:id="@+id/img_barba_2"
+   	    android:layout_height="wrap_content"
+   	    android:layout_width="wrap_content"
+   	    android:layout_toLeftOf="@id/img_barba_3"
+   	    android:layout_below="@id/titulo_body"
+   	    android:src="@drawable/b_barba2"
+   	    android:onClick="cambio_barba2"
+   	    android:background="@android:color/transparent"/>
+   	<ImageButton 
+   		android:id="@+id/img_barba_1"
+   	    android:layout_height="wrap_content"
+   	    android:layout_width="wrap_content"
+   	    android:layout_toLeftOf="@id/img_barba_2"
+   	    android:layout_below="@id/titulo_body"
+   	    android:src="@drawable/b_barba1"
+   	    android:onClick="cambio_barba1"
+   	    android:background="@android:color/transparent"/>
+   	
+   	
+   	<TextView
+   	    android:id="@+id/requisitos"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/reques"
+   	    android:layout_below="@id/img_barba_1"
+   	    android:layout_alignParentRight="true"
+   	    android:visibility="invisible"
+   	    android:layout_marginTop="20dp"
+   	    android:layout_marginLeft="20dp"
+   	    android:textStyle="bold"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_lvlreq"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Level Requerido:"
+   	    android:layout_alignParentLeft="true"
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_marginTop="20dp"
+   	    android:layout_marginLeft="20dp"/>
+   	
+   	<TextView
+   	    android:id="@+id/beard_lvlreq_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="0"
+   	    android:textStyle="bold"
+   	    android:layout_below="@id/beard_lvlreq"
+   	    android:layout_alignRight="@id/beard_lvlreq"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_lvl"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Nivel Actual:"
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"
+   	    android:layout_marginTop="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_lvl_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/beard_lvl"
+   	    android:text="1"
+   	    android:layout_alignRight="@id/beard_lvl"
+   	    android:textStyle="bold"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_coins"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Coins Disponibles:"
+   	    android:layout_below="@id/beard_lvl_et"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_coins_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="100"
+   	    android:layout_below="@id/beard_coins"
+   	    android:layout_alignRight="@id/beard_coins"
+   	    android:textStyle="bold"/>
+   	
+   	<TextView 
+   	    android:id="@+id/beard_price"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Precio:"
+   	    android:layout_below="@id/beard_lvlreq_et"
+   	    android:layout_alignLeft="@id/beard_lvlreq"/>
+   	
+   	<TextView
+   	    android:id="@+id/beard_price_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="0"
+   	    android:layout_below="@id/beard_price"
+   	    android:layout_alignRight="@id/beard_lvlreq_et"
+   	    android:textStyle="bold"/>
+   	
+   	<ImageButton 
+   	    android:id="@+id/beard_buy_bought"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:src="@drawable/comprar"
+   	    android:background="@android:color/transparent"
+   	    android:layout_alignLeft="@id/beard_lvlreq"
+   	    android:layout_below="@id/beard_price_et"/>
+   	
+   	<ImageView 
+   	    android:id="@+id/buh_body_change"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:src="@drawable/buh_blue"
+   	    android:layout_below="@id/beard_buy_bought"
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="20dp"
+   	    />
+   	
+   	<ImageView
+   	    android:id="@+id/buh_beard_change"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/barba_1_0" 
+   	    android:visibility="invisible"/>
+   	
+   	<ImageView
+   	    android:id="@+id/buh_beard_glasses"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/gafas_1_0" 
+   	    android:visibility="invisible"/>
+   	
+   	<LinearLayout
+   	    android:id="@+id/layout_beard_colores"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content"
+	    android:weightSum="1.0"
+	    android:layout_below="@id/buh_body_change"
+	    android:layout_marginTop="40dp">
+    
+   	    <Button 
+   	        android:id="@+id/body_boton_azul"
+   	    	android:layout_width="0dp"
+   	    	android:layout_height="wrap_content"
+   	    	android:layout_weight=".20"
+   	    	android:text="Azul"
+   	    	android:background="@color/blue"
+   	    	android:textSize="15dp"
+   	    	android:onClick="cambio_color_azul"
+   	    />
+   	    
+   	    <Button 
+   	        android:id="@+id/body_boton_verde"
+   	    	android:layout_width="0dp"
+   	    	android:layout_height="wrap_content"
+   	    	android:layout_weight=".20"
+   	    	android:text="Verde"
+   	    	android:background="@color/green"
+   	    	android:textSize="15dp"
+   	    	android:onClick="cambio_color_verde"
+   	    />
+	   	<Button 
+	   	    android:id="@+id/body_boton_amarillo"
+	   	    android:layout_width="0dp"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_weight=".20"
+	   	    android:text="Amarillo"
+	   	    android:background="@color/yellow"
+	   	    android:textSize="15dp"
+	   	    android:onClick="cambio_color_amarillo"
+	   	    />
+	   	<Button 
+	   	    android:id="@+id/body_boton_rojo"
+	   	    android:layout_width="0dp"
+   	    	android:layout_height="wrap_content"
+   	    	android:layout_weight=".20"
+	   	    android:text="Rojo"
+	   	    android:background="@color/red"
+	   	    android:textSize="15dp"
+	   	    android:onClick="cambio_color_rojo"
+	   	    />
+	   	<Button 
+	   	   	android:id="@+id/body_boton_negro"
+	   	    android:layout_width="0dp"
+   	    	android:layout_height="wrap_content"
+   	    	android:layout_weight=".20"
+	   	    android:text="Negro"
+	   	    android:background="@color/black"
+	   	    android:textSize="15dp"
+	   	    android:onClick="cambio_color_negro"
+	   	    />
+
+    </LinearLayout>
+</RelativeLayout>

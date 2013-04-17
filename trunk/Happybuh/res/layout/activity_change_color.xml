@@ -22,12 +22,41 @@
    	    android:background="@android:color/transparent"
    	    android:onClick="volver"/>
    	
+   	<TextView
+   	    android:id="@+id/requisitos"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/reques"
+   	    android:layout_below="@id/body_volver"
+   	    android:layout_alignParentRight="true"
+   	    android:visibility="visible"
+   	    android:layout_marginLeft="20dp"
+   	    android:layout_marginTop="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/color_lvl"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="Nivel Actual:"
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_alignParentRight="true"
+   	    android:layout_marginRight="20dp"
+   	    android:layout_marginTop="20dp"/>
+   	
+   	<TextView 
+   	    android:id="@+id/color_lvl_et"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/color_lvl"
+   	    android:layout_alignRight="@id/color_lvl"
+   	    android:textStyle="bold"/>
+   	
    	<TextView 
    	    android:id="@+id/color_coins"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Coins Disponibles:"
-   	    android:layout_below="@id/titulo_body"
+   	    android:layout_below="@id/color_lvl_et"
    	    android:layout_alignParentRight="true"
    	    android:layout_marginRight="20dp"/>
    	
@@ -40,23 +69,6 @@
    	    android:layout_alignRight="@id/color_coins"
    	    android:textStyle="bold"/>
    	
-   	<TextView 
-   	    android:id="@+id/color_lvl"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:text="Nivel Actual:"
-   	    android:layout_below="@id/color_coins_et"
-   	    android:layout_alignParentRight="true"
-   	    android:layout_marginRight="20dp"/>
-   	
-   	<TextView 
-   	    android:id="@+id/color_lvl_et"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:layout_below="@id/color_lvl"
-   	    android:layout_alignRight="@id/color_lvl"
-   	    android:textStyle="bold"/>
-   	
    	
    	<TextView 
    	    android:id="@+id/color_lvlreq"
@@ -64,33 +76,24 @@
    	    android:layout_height="wrap_content"
    	    android:text="Level Requerido"
    	    android:layout_alignParentLeft="true"
-   	    android:layout_below="@id/body_volver"
-   	    android:layout_marginTop="100dp"/>
+   	    android:layout_below="@id/requisitos"
+   	    android:layout_marginTop="20dp"
+   	    android:layout_marginLeft="20dp"/>
    	
    	<TextView
    	    android:id="@+id/color_lvlreq_et"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="0"
-   	    android:layout_toRightOf="@id/color_lvlreq"
-   	    android:layout_alignBaseline="@id/color_lvlreq"
-   	    android:layout_marginLeft="30dp"/>
-   	
-   	<TextView
-   	    android:id="@+id/requisitos"
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content"
-   	    android:text="@string/reques"
-   	    android:layout_below="@id/color_lvl_et"
-   	    android:layout_alignParentRight="true"
-   	    android:visibility="invisible"/>
+   	    android:layout_below="@id/color_lvlreq"
+   	    android:layout_alignRight="@id/color_lvlreq"/>
    	
    	<TextView 
    	    android:id="@+id/color_price"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="Precio"
-   	    android:layout_below="@id/color_lvlreq"
+   	    android:layout_below="@id/color_lvlreq_et"
    	    android:layout_alignLeft="@id/color_lvlreq"/>
    	
    	<TextView
@@ -98,9 +101,8 @@
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:text="0"
-   	    android:layout_below="@id/color_lvlreq_et"
-   	    android:layout_alignLeft="@id/color_lvlreq_et"
-   	    android:layout_alignBaseline="@id/color_price"/>
+   	    android:layout_below="@id/color_price"
+   	    android:layout_alignRight="@id/color_lvlreq_et"/>
    	
    	<ImageButton 
    	    android:id="@+id/color_buy_bought"
@@ -109,17 +111,35 @@
    	    android:src="@drawable/comprar"
    	    android:background="@android:color/transparent"
    	    android:layout_alignLeft="@id/color_lvlreq"
-   	    android:layout_below="@id/color_price"/>
+   	    android:layout_below="@id/color_price_et"/>
    	
    	<ImageView 
    	    android:id="@+id/buh_body_change"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
-   	    android:src="@drawable/buh"
+   	    android:src="@drawable/buh_blue"
    	    android:layout_below="@id/color_buy_bought"
    	    android:layout_centerHorizontal="true"
    	    android:layout_marginTop="20dp"
    	    />
+   	
+   	<ImageView
+   	    android:id="@+id/buh_color_glasses"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/gafas_1_0" 
+   	    android:visibility="invisible"/>
+   	
+   	<ImageView
+   	    android:id="@+id/buh_color_beard"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_alignTop="@id/buh_body_change"
+   	    android:layout_alignLeft="@id/buh_body_change"
+   	    android:src="@drawable/barba_1_0" 
+   	    android:visibility="invisible"/>
    	
    	
    	<LinearLayout

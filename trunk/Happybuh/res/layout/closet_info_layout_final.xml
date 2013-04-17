@@ -7,7 +7,7 @@
 		android:id="@+id/closet_img_final"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/buh"
+		android:src="@drawable/buh_blue"
 		android:layout_alignParentBottom="true"
 		android:layout_centerHorizontal="true"/>
 </RelativeLayout>
