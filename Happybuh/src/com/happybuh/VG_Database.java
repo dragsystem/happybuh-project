@@ -300,28 +300,6 @@ public class VG_Database {
 		return null;
 	}
 
-	public String getNumGlasses(Long lg) {
-		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
-		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
-		if(c != null) {
-			c.moveToFirst();
-			String name = c.getString(1);
-			return name;
-		}
-		return null;
-	}
-
-	public String getColGlasses(Long lg) {
-		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
-		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
-		if(c != null) {
-			c.moveToFirst();
-			String name = c.getString(2);
-			return name;
-		}
-		return null;
-	}
-
 	public String getColBeard(Long lb) {
 		String[] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + "=" + lb, null, null, null, null);
@@ -380,11 +358,12 @@ public class VG_Database {
 		}
 		return 0;
 	}
-
+	//OBTENEMOS NIVEL REQUERIDO
 	public String getGlassLvl(Long lg) {
-		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_GLASSES_LVL);
+		Log.v("CURSOR LVLGLASS", ""+iName);
 		if(c != null) {
 			c.moveToFirst();
 			String name = c.getString(iName);
@@ -392,9 +371,9 @@ public class VG_Database {
 		}
 		return null;
 	}
-
+	//OBTENEMOS PRECIO REQUERIDO
 	public String getGlassPrice(Long lg) {
-		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_GLASSES_PRICE);
 		if(c != null) {
@@ -404,9 +383,9 @@ public class VG_Database {
 		}
 		return null;
 	}
-	
+	//OBTENEMOS COLOR EN USO DE LAS GLASSES
 	public String getGlassColor(Long lg) {
-		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_GLASSES);
 		if(c != null) {
@@ -416,9 +395,9 @@ public class VG_Database {
 		}
 		return null;
 	}
-	
+	//OBTENEMOS EL NUMERO DE GLASSES EN USO
 	public String getGlassNum(Long lg) {
-		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_NUM_GLASS);
 		if(c != null) {
@@ -427,5 +406,111 @@ public class VG_Database {
 			return name;
 		}
 		return null;
+	}
+	//OBTENEMOS EL INDICE DE LAS GLASSES USADAS PARA ALMACENARLA EN EL USUARIO
+	public String getGlassIndex(String num_glasses, String col_glasses) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns,  KEY_NUM_GLASS + " = " + num_glasses + " AND " + KEY_COLOR_GLASSES + " = " + col_glasses, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_ROWID);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+	
+	//INICIALIZAR USER INFO
+	public String getNumGlasses(Long lg) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(1);
+			return name;
+		}
+		return null;
+	}
+	//INICIALIZAR USER INFO
+	public String getColGlasses(Long lg) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(2);
+			return name;
+		}
+		return null;
+	}
+
+	public int getGlassBought(Long lg) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			int index = c.getInt(0);
+			return index;
+		}
+		return 0;
+	}
+
+	public String getBeardIndex(String num_beard, String col_beard) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns,  KEY_NUM_BEARD + " = " + num_beard + " AND " + KEY_COLOR_BEARD + " = " + col_beard, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_ROWID);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public String getBeardLvl(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_BEARD_LVL);
+		//Log.v("CURSOR LVLGLASS", ""+iName);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public String getBeardPrice(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_BEARD_PRICE);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public String getBeardNum(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + " = " + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_NUM_BEARD);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		return null;
+	}
+
+	public int getBeardBought(Long lg) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		if(c != null) {
+			c.moveToFirst();
+			int index = c.getInt(0);
+			return index;
+		}
+		return 0;
 	}
 }

@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class ChangeColor extends Activity {
 	private TextView tv, tv2;
 	private ImageButton ib;
-	private ImageView iv, iv2;
+	private ImageView iv, iv2, iv3;
 	private Button bt;
 	private Typeface type;
 	private int u_lvl;
@@ -32,7 +32,6 @@ public class ChangeColor extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_color);
         
-        User_Info.color_name = "blue";
         
         db = new VG_Database(getApplicationContext());
         
@@ -40,12 +39,12 @@ public class ChangeColor extends Activity {
 
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
-        iv2 = (ImageView)findViewById(R.id.color_buy_bought);
-        iv2.setClickable(false);
+        iv3 = (ImageView)findViewById(R.id.color_buy_bought);
+        iv3.setClickable(false);
         
         //TEXTO CUANDO NO CUMPLE REQUISITOS
         tv2 = (TextView)findViewById(R.id.requisitos);
-        
+        tv2.setTypeface(type);
         //APLICO TIPOLOGIA A LOS TEXTVIEW
         tv = (TextView)findViewById(R.id.titulo_body);
         tv.setTypeface(type);
@@ -57,8 +56,8 @@ public class ChangeColor extends Activity {
         db.open();
 	    	tv.setText(db.getColorLvl(lc));
 	    	comprado = db.getColorBought(lc);
-	    	if(comprado == 1) iv2.setImageResource(R.drawable.aplicar);
-	    	else iv2.setImageResource(R.drawable.comprar);
+	    	if(comprado == 1) iv3.setImageResource(R.drawable.aplicar);
+	    	else iv3.setImageResource(R.drawable.comprar);
 	    db.close();
         tv = (TextView)findViewById(R.id.color_price);
         tv.setTypeface(type);
@@ -72,7 +71,6 @@ public class ChangeColor extends Activity {
         tv = (TextView)findViewById(R.id.color_coins_et);
         tv.setTypeface(type);
         String a = ""+User_Info.coins;
-        Log.v("COINS ", a);
         //tv.setText(User_Info.coins);
         tv = (TextView)findViewById(R.id.color_lvl);
         tv.setTypeface(type);
@@ -94,11 +92,27 @@ public class ChangeColor extends Activity {
         bt.setTypeface(type);
         
         
-        
-	    //COLOCO LA IMAGEN DE BUH
-        String imagen = User_Info.color_name + "_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard; 
-	    iv = (ImageView)findViewById(R.id.buh_body_change);
-	    iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
+	    
+	    //COLOCO LAS GAFAS DE BUH
+	    int numg = Integer.parseInt(User_Info.num_glasses);
+	    if (numg > 0) {
+		    String gafas = "gafas_" + User_Info.num_glasses + "_" + User_Info.col_glasses;
+		    iv2 = (ImageView)findViewById(R.id.buh_glasses_change);
+		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
+		    iv2.setVisibility(View.VISIBLE);
+	    }
+	    
+	    //COLOCO LA BARBA DE BUH
+	    int numb = Integer.parseInt(User_Info.num_beard);
+	    if (numb > 0) {
+		    String barba = "barba_" + User_Info.num_beard + "_" + User_Info.col_beard;
+		    iv2 = (ImageView)findViewById(R.id.buh_beard_change);
+		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + barba, null, this.getPackageName()));
+		    iv2.setVisibility(View.VISIBLE);
+	    }
+	    
+	    //CARLO EL VIEW DE BUH
+        iv = (ImageView)findViewById(R.id.buh_body_change);
     
     }
 
@@ -113,7 +127,57 @@ public class ChangeColor extends Activity {
     	//CAMBIO PRECIO
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.buh_blue);
     	Long lc = Long.parseLong("" +1);
+    	carga_color(lc);
+    }
+    
+    
+
+	public void cambio_color_rojo(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+		iv.setImageResource(R.drawable.buh_red);
+    	Long lc = Long.parseLong("" + 2);
+    	carga_color(lc);
+    }
+    
+    public void cambio_color_verde(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.buh_green);
+    	Long lc = Long.parseLong("" +4);
+    	carga_color(lc);
+    }
+    public void cambio_color_amarillo(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.buh_yellow);
+    	Long lc = Long.parseLong("" +3);
+    	carga_color(lc);
+    }
+    public void cambio_color_negro(View v) {
+    	//CAMBIO LVL_REQ
+    	//CAMBIO PRECIO
+    	//CAMBIO BOTON COMPRAR
+    	//CAMBIO ASPECTO
+    	iv.setImageResource(R.drawable.buh_black);
+    	Long lc = Long.parseLong("" +5);
+    	carga_color(lc);
+    }
+
+    public void volver(View v) {
+    	User_Info.inicializar(getApplicationContext());
+    	finish();
+    }
+    
+    private void carga_color(Long lc) {
     	tv = (TextView)findViewById(R.id.color_lvlreq_et);
         db.open();
 	    	level_req = Integer.parseInt(db.getColorLvl(lc));
@@ -123,106 +187,19 @@ public class ChangeColor extends Activity {
 	    	tv.setText(""+db.getColorPrice(lc));
 	    	comprado = db.getColorBought(lc);
 	    db.close();
-    	String imagen = "blue_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard;
-    	iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
-    	if(comprado == 1)iv2.setImageResource(R.drawable.aplicar);
-    	else iv2.setImageResource(R.drawable.comprar);
-    	if(User_Info.level < level_req || User_Info.coins < precio_req) tv2.setVisibility(View.VISIBLE);
-    	else tv2.setVisibility(View.INVISIBLE);
-    }
-    
-    public void cambio_color_rojo(View v) {
-    	//CAMBIO LVL_REQ
-    	//CAMBIO PRECIO
-    	//CAMBIO BOTON COMPRAR
-    	//CAMBIO ASPECTO
-    	Long lc = Long.parseLong("" + 2);
-    	tv = (TextView)findViewById(R.id.color_lvlreq_et);
-        db.open();
-	        level_req = Integer.parseInt(db.getColorLvl(lc));
-	    	precio_req = Integer.parseInt(db.getColorPrice(lc));
-	    	tv.setText(""+db.getColorLvl(lc));
-	    	tv = (TextView)findViewById(R.id.color_price_et);
-	    	tv.setText(""+db.getColorPrice(lc));
-	    	comprado = db.getColorBought(lc);
-	    db.close();
-    	String imagen = "red_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard;
-    	iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
-    	if(comprado == 1)iv2.setImageResource(R.drawable.aplicar);
-    	else iv2.setImageResource(R.drawable.comprar);
-    	if(User_Info.level < level_req || User_Info.coins < precio_req) tv2.setVisibility(View.VISIBLE);
-    	else tv2.setVisibility(View.INVISIBLE);
-    }
-    
-    public void cambio_color_verde(View v) {
-    	//CAMBIO LVL_REQ
-    	//CAMBIO PRECIO
-    	//CAMBIO BOTON COMPRAR
-    	//CAMBIO ASPECTO
-    	Long lc = Long.parseLong("" +3);
-    	tv = (TextView)findViewById(R.id.color_lvlreq_et);
-        db.open();
-	        level_req = Integer.parseInt(db.getColorLvl(lc));
-	    	precio_req = Integer.parseInt(db.getColorPrice(lc));
-        	tv.setText(""+db.getColorLvl(lc));
-	    	tv = (TextView)findViewById(R.id.color_price_et);
-	    	tv.setText(""+db.getColorPrice(lc));
-	    	comprado = db.getColorBought(lc);
-	    db.close();
-    	String imagen = "green_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard;
-    	iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
-    	if(comprado == 1)iv2.setImageResource(R.drawable.aplicar);
-    	else iv2.setImageResource(R.drawable.comprar);
-    	if(User_Info.level < level_req || User_Info.coins < precio_req) tv2.setVisibility(View.VISIBLE);
-    	else tv2.setVisibility(View.INVISIBLE);
-    }
-    public void cambio_color_amarillo(View v) {
-    	//CAMBIO LVL_REQ
-    	//CAMBIO PRECIO
-    	//CAMBIO BOTON COMPRAR
-    	//CAMBIO ASPECTO
-    	Long lc = Long.parseLong("" +4);
-    	tv = (TextView)findViewById(R.id.color_lvlreq_et);
-        db.open();
-	        level_req = Integer.parseInt(db.getColorLvl(lc));
-	    	precio_req = Integer.parseInt(db.getColorPrice(lc));
-	    	tv.setText(""+db.getColorLvl(lc));
-	    	tv = (TextView)findViewById(R.id.color_price_et);
-	    	tv.setText(""+db.getColorPrice(lc));
-	    	comprado = db.getColorBought(lc);
-	    db.close();
-    	String imagen = "yellow_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard;
-    	iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
-    	if(comprado == 1)iv2.setImageResource(R.drawable.aplicar);
-    	else iv2.setImageResource(R.drawable.comprar);
-    	if(User_Info.level < level_req || User_Info.coins < precio_req) tv2.setVisibility(View.VISIBLE);
-    	else tv2.setVisibility(View.INVISIBLE);
-    }
-    public void cambio_color_negro(View v) {
-    	//CAMBIO LVL_REQ
-    	//CAMBIO PRECIO
-    	//CAMBIO BOTON COMPRAR
-    	//CAMBIO ASPECTO
-    	Long lc = Long.parseLong("" +5);
-    	tv = (TextView)findViewById(R.id.color_lvlreq_et);
-        db.open();
-	        level_req = Integer.parseInt(db.getColorLvl(lc));
-	    	precio_req = Integer.parseInt(db.getColorPrice(lc));
-	    	tv.setText(""+db.getColorLvl(lc));
-	    	tv = (TextView)findViewById(R.id.color_price_et);
-	    	tv.setText(""+db.getColorPrice(lc));
-	    	comprado = db.getColorBought(lc);
-	    db.close();
-    	String imagen = "black_" + User_Info.num_glasses + "_" + User_Info.col_glasses + "_" + User_Info.num_beard + "_" + User_Info.col_beard;
-    	iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
-    	if(comprado == 1)iv2.setImageResource(R.drawable.aplicar);
-    	else iv2.setImageResource(R.drawable.comprar);
-    	if(User_Info.level < level_req || User_Info.coins < precio_req) tv2.setVisibility(View.VISIBLE);
-    	else tv2.setVisibility(View.INVISIBLE);
-    }
-
-    public void volver(View v) {
-    	//moveTaskToBack(true);
-    	finish();
-    }
+    	if(User_Info.level < level_req || User_Info.coins < precio_req) {
+    		tv2.setVisibility(View.VISIBLE);
+    		iv3.setVisibility(View.INVISIBLE);
+    	}
+    	else if(comprado == 1) {
+    		tv2.setVisibility(View.INVISIBLE);
+    		iv3.setImageResource(R.drawable.aplicar);
+    		iv3.setVisibility(View.VISIBLE);
+    	}
+    	else if(comprado == 0) {
+    		tv2.setVisibility(View.VISIBLE);
+    		iv3.setImageResource(R.drawable.comprar);
+    		iv3.setVisibility(View.VISIBLE);
+    	}
+	}
 }

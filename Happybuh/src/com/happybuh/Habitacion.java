@@ -257,6 +257,7 @@ public class Habitacion extends Activity {
     
     private void inicializar_user() {
 		// TODO Auto-generated method stub
+    	
     	VG_Database db = new VG_Database(Habitacion.this);
 	    db.open();
 		    ArrayList<String> a = new ArrayList<String>();
@@ -323,8 +324,8 @@ public class Habitacion extends Activity {
 			@Override
 			public boolean onLongClick(View v) {
 				// TODO Auto-generated method stub
-				/*Intent i = new Intent("com.habbybuh.ARMARIO");
-				startActivity(i);*/
+				Intent i = new Intent("com.habbybuh.JUEGOS");
+				startActivity(i);
 				//COLOCAR ACTIVIDAD DE LOS JUEGOS
 				return false;
 			}
