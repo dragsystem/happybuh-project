@@ -1,9 +1,11 @@
 package com.happybuh;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -22,6 +24,7 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,23 +32,36 @@ import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
 public class Habitacion extends Activity {
-
+	private LayoutInflater li;
 	private ViewFlipper vf;
 	private float old, now;
 	ImageButton boton_armario;
 	ImageButton boton_mando;
 	TextView tv;
 	Typeface type;
-	
+	static ImageView iv_buh, iv_gafas, iv_barba;
+	static View v;
 	User_Info a;
+	static Random rand;
+	static Context c;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habitacion);
-        
+        //v = li.inflate(com.happybuh.R.layout.activity_habitacion, null);
         inicializar_user();
+        rand = new Random();
+        c = this;
+        
+        iv_buh = (ImageView)findViewById(R.id.buh);
+    	iv_gafas = (ImageView)findViewById(R.id.buh_gafas);
+    	iv_barba = (ImageView)findViewById(R.id.buh_barba);
+    	int num = rand.nextInt(2); 
+    	ChangeBuhAppearance(iv_buh, num, 1);
+    	ChangeBuhAppearance(iv_gafas, num, 2);
+    	ChangeBuhAppearance(iv_barba, num, 3);
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
         
@@ -362,6 +378,49 @@ public class Habitacion extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_habitacion, menu);
         return true;
+    }
+    
+    static void ChangeBuhAppearance(ImageView a, int num, int objeto) {
+    	/*iv_buh = (ImageView)v.findViewById(com.happybuh.R.id.buh);
+    	iv_gafas = (ImageView)v.findViewById(com.happybuh.R.id.buh_gafas);
+    	iv_barba = (ImageView)v.findViewById(com.happybuh.R.id.buh_barba);*/
+    	
+    	if(objeto == 1) {
+    		/*if(User_Info.color_name.equals("blue")) a.setImageResource(R.drawable.buh_blue);
+    		else if(User_Info.color_name.equals("red")) a.setImageResource(R.drawable.buh_red);
+    		else if(User_Info.color_name.equals("yellow")) a.setImageResource(R.drawable.buh_yellow);
+    		else if(User_Info.color_name.equals("green")) a.setImageResource(R.drawable.buh_green);
+    		else if(User_Info.color_name.equals("black")) a.setImageResource(R.drawable.buh_black);*/
+    		String cuerpo = "buh_" + User_Info.color_name;
+    		a.setImageResource(c.getResources().getIdentifier("drawable/" + cuerpo, null, c.getPackageName()));
+    	}
+    	else if (objeto == 2) {
+    		int numg = Integer.parseInt(User_Info.num_glasses);
+    	    if (numg > 0) {
+    		    String gafas = "gafas_" + User_Info.num_glasses + "_" + User_Info.col_glasses;
+    		    a.setImageResource(c.getResources().getIdentifier("drawable/" + gafas, null, c.getPackageName()));
+    		    a.setVisibility(View.VISIBLE);
+    	    }
+    	    else a.setVisibility(View.INVISIBLE);
+    	}
+    	
+    	else if (objeto == 3) {
+    		int numb = Integer.parseInt(User_Info.num_beard);
+    	    if (numb > 0) {
+    		    String barba = "barba_" + User_Info.num_beard + "_" + User_Info.col_beard;
+    		    a.setImageResource(c.getResources().getIdentifier("drawable/" + barba, null, c.getPackageName()));
+    		    a.setVisibility(View.VISIBLE);
+    	    }
+    	    else a.setVisibility(View.INVISIBLE);
+    	}
+    	
+    	if(a.getVisibility() == View.VISIBLE && num == 0) {
+    		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_move));
+    	}
+    	else if(a.getVisibility() == View.VISIBLE && num != 0) {
+    		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_desaparece));
+    	}
+//    	iv_buh.startAnimation(AnimationUtils.loadAnimation(this, R.anim.carga_fantasma));
     }
 
 }
