@@ -34,6 +34,7 @@ public class Habitacion extends Activity {
 	private float old, now;
 	ImageButton boton_armario;
 	ImageButton boton_mando;
+	TextView tv;
 	Typeface type;
 	
 	User_Info a;
@@ -180,6 +181,10 @@ public class Habitacion extends Activity {
 									db.open();
 									db.setUser(db.getUserName(), et.getText().toString());
 									db.close();
+									tv = (TextView)findViewById(R.id.user_name);
+									tv.setText(et.getText());
+									tv = (TextView)findViewById(R.id.user_name2);
+									tv.setText(et.getText());
 								}
 							}
 						  })
@@ -199,11 +204,12 @@ public class Habitacion extends Activity {
 					}
 				});
 	    
-	    TextView info_tit = (TextView)findViewById(R.id.info_title);
-	    info_tit.setTypeface(type);
+	    //SET TYPEFACE DE LOS TEXTOS
 	    TextView t_armario = (TextView)findViewById(R.id.t_armario);
-	    info_tit.setTypeface(type);
+	    t_armario.setTypeface(type);
 	    TextView t_mando = (TextView)findViewById(R.id.t_mando);
+	    t_mando.setTypeface(type);
+	    TextView info_tit = (TextView)findViewById(R.id.info_title);
 	    info_tit.setTypeface(type);
 	    info_tit.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br>"));
 	    TextView texto = (TextView)findViewById(R.id.desc); 
@@ -324,7 +330,7 @@ public class Habitacion extends Activity {
 			@Override
 			public boolean onLongClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent("com.habbybuh.JUEGOS");
+				Intent i = new Intent("com.happybuh.JUEGO");
 				startActivity(i);
 				//COLOCAR ACTIVIDAD DE LOS JUEGOS
 				return false;

@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
-    android:id="@+id/Relativelayout01"
-    android:background="@drawable/fondo2">
+    android:id="@+id/Relativelayout02">
     
     <LinearLayout
         android:id="@+id/LinearLayout02"
@@ -19,137 +18,229 @@
  <!-- HABITACION -->       
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:layout_width="match_parent"
-		    android:layout_height="match_parent" >
-		
-			<TextView 
-			    android:id="@+id/t_titulo_juego1"
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/juego1">
+		                
+			<ImageButton 
+			    android:id="@+id/inicio_juego1"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="BURBUJAS"
-			    android:textColor="@android:color/black"
-			    android:gravity="center"/>
-		                
-			<ImageView 
-				android:id="@+id/buh"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:src="@drawable/buh_blue"
-				android:layout_centerHorizontal="true"
-				android:layout_centerVertical="true"/>
-		                
-		</RelativeLayout>
-        
-<!-- OPCIONES -->
-		<RelativeLayout 
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent" >
-		    
-		    <ImageButton
-			            android:id="@+id/b_room_der"
-			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
-			            android:onClick="prev"
-			            android:background="@android:color/transparent"
-			            android:src="@drawable/room_derecha"
-			            android:layout_alignParentRight="true"
-			            android:layout_centerVertical="true"/> 
+			    android:src="@drawable/room_izq"
+			    android:onClick="inicio_juego1"
+			    android:background="@android:color/transparent"
+			    android:layout_centerInParent="true"/>
 		    
 			<ImageButton 
-		                android:id="@+id/b_help_izq"
-			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
-			            android:onClick="next"
-			            android:background="@android:color/transparent"
-			            android:src="@drawable/help_izq"
-			            android:layout_alignParentLeft="true"
-			            android:layout_centerVertical="true"/>
+			    android:id="@+id/inicio_help1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/help_der"
+			    android:onClick="inicio_help1"
+			    android:layout_below="@id/inicio_juego1"
+			    android:background="@android:color/transparent"
+			    android:layout_alignLeft="@id/inicio_juego1"/>
 			
-		            <ToggleButton 
-						    android:id="@+id/sonido"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content"
-						    android:textOn="Musica on"
-						    android:textOff="Musica off"
-						    android:onClick="onToggleClicked"
-						    android:layout_toRightOf="@id/b_help_izq"
-						    android:layout_marginTop="50pt"
-						    android:layout_marginBottom="10pt"/>
-		            
-		            <ImageView 
-		                    android:id="@+id/nombre"
-		                    android:src="@drawable/nombre"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_below="@id/sonido"
-		                    android:layout_alignLeft="@id/sonido"
-		                    />
-		            
-		            <TextView 
-		                    android:id="@+id/user_name2"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content"
-						    android:text="User"
-						    android:layout_below="@id/nombre"
-						    android:layout_alignLeft="@id/nombre"
-						    android:textColor="@android:color/black"
-						    android:textSize="20dp"/>
-			         <ImageButton 
-		                    android:id="@+id/change_name"
-			                android:layout_width="match_parent"
-						    android:layout_height="wrap_content"
-						    android:background="@android:color/transparent"
-			            	android:src="@drawable/cambiar"
-			            	android:layout_below="@id/user_name2"
-			            	android:layout_alignLeft="@id/user_name2"/>
+			<ImageView 
+			    android:id="@+id/info_juego1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/info"
+			    android:visibility="invisible"
+			    android:layout_centerInParent="true"/>
+			
+			
+			<ScrollView 
+		      android:id="@+id/scroll_info1" 
+		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego1"
+			  android:layout_alignLeft="@id/info_juego1"
+			  android:layout_alignBottom="@id/info_juego1"
+			  android:layout_alignRight="@id/info_juego1"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"
+			  >
+				<RelativeLayout 
+				    android:id="@+id/RelativeLayout_info"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent">
+				    
+				    
+				    <TextView 
+						android:id="@+id/texto_info1"
+				    	android:layout_width="match_parent"
+				    	android:layout_height="wrap_content"
+				    	android:text="@string/t_info1"
+				    	android:layout_alignParentTop="true"
+				    	android:textColor="@android:color/white"/>
+				</RelativeLayout>
+			</ScrollView>
+			
+			<ImageButton 
+			    android:id="@+id/cerrar_info_juego1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/cerrar_info"
+			    android:onClick="cerrar_info_juego1"
+			    android:background="@android:color/transparent"
+			    android:layout_alignTop="@id/info_juego1"
+			    android:layout_alignRight="@id/info_juego1"
+			    android:visibility="invisible"/>
 		</RelativeLayout>
- <!-- INFO HELP -->       
+        
+<!-- JUEGO 2 -->
+		<RelativeLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/juego2">
+		    
+		    <ImageButton 
+			    android:id="@+id/inicio_juego2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/room_izq"
+			    android:onClick="inicio_juego2"
+			    android:background="@android:color/transparent"
+			    android:layout_centerInParent="true"/>
+		    
+			<ImageButton 
+			    android:id="@+id/inicio_help2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/help_der"
+			    android:onClick="inicio_help2"
+			    android:layout_below="@id/inicio_juego2"
+			    android:background="@android:color/transparent"
+			    android:layout_alignLeft="@id/inicio_juego2"/>
+			
+			<ImageView 
+			    android:id="@+id/info_juego2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/info"
+			    android:visibility="invisible"
+			    android:layout_centerInParent="true"/>
+			
+			
+			<ScrollView 
+		      android:id="@+id/scroll_info2" 
+		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego2"
+			  android:layout_alignLeft="@id/info_juego2"
+			  android:layout_alignBottom="@id/info_juego2"
+			  android:layout_alignRight="@id/info_juego2"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"
+			  >
+				<RelativeLayout 
+				    android:id="@+id/RelativeLayout_info"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent">
+				    
+				    <TextView 
+						android:id="@+id/texto_info2"
+				    	android:layout_width="match_parent"
+				    	android:layout_height="wrap_content"
+				    	android:text="@string/t_info2"
+				    	android:layout_alignParentTop="true"
+				    	android:textColor="@android:color/white"/>
+				</RelativeLayout>
+			</ScrollView>
+			
+			<ImageButton 
+			    android:id="@+id/cerrar_info_juego2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/cerrar_info"
+			    android:onClick="cerrar_info_juego2"
+			    android:background="@android:color/transparent"
+			    android:layout_alignTop="@id/info_juego2"
+			    android:layout_alignRight="@id/info_juego2"
+			    android:visibility="invisible"/>
+		   
+		    
+		</RelativeLayout>
+ <!-- JUEGO 3 -->       
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:layout_width="match_parent"
-		    android:layout_height="match_parent" >
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/juego2">
 		    
-			<ImageButton
-				android:id="@+id/b_room_izq"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="next"
-				android:background="@android:color/transparent"
-				android:src="@drawable/room_izq"
-				android:layout_alignParentLeft="true"
-				android:layout_centerVertical="true"/>
+			<ImageButton 
+			    android:id="@+id/inicio_juego3"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/room_izq"
+			    android:onClick="inicio_juego3"
+			    android:background="@android:color/transparent"
+			    android:layout_centerInParent="true"/>
+		    
+			<ImageButton 
+			    android:id="@+id/inicio_help3"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/help_der"
+			    android:onClick="inicio_help3"
+			    android:layout_below="@id/inicio_juego3"
+			    android:background="@android:color/transparent"
+			    android:layout_alignLeft="@id/inicio_juego3"/>
 			
-			<ImageButton
-				android:id="@+id/b_opt_der"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="prev"
-				android:background="@android:color/transparent"
-				android:src="@drawable/opt_der"
-				android:layout_alignParentRight="true"
-				android:layout_centerVertical="true"/>
+			<ImageView 
+			    android:id="@+id/info_juego3"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/info"
+			    android:visibility="invisible"
+			    android:layout_centerInParent="true"/>
 			
-			<TextView
-				android:id="@+id/info_title"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="HELP MENU"
-				android:textColor="@android:color/black"
-				android:layout_centerHorizontal="true"
-				android:layout_marginTop="20dp"
-				android:layout_marginBottom="20dp"/>
-			       
-			<TextView
-				android:id="@+id/desc"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="akmsofm"
-				android:textColor="@android:color/black"
-				android:textColorHighlight="@android:color/primary_text_light"
-				android:layout_toRightOf="@id/b_room_izq"
-				android:layout_toLeftOf="@id/b_opt_der"
-				android:layout_below="@id/info_title"
-				android:maxLines="20"
-				android:scrollbars="vertical"/>
-		            
+			
+			<ScrollView 
+		      android:id="@+id/scroll_info3" 
+		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego3"
+			  android:layout_alignLeft="@id/info_juego3"
+			  android:layout_alignBottom="@id/info_juego3"
+			  android:layout_alignRight="@id/info_juego3"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"
+			  >
+				<RelativeLayout 
+				    android:id="@+id/RelativeLayout_info"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent">
+				    
+				    <TextView 
+						android:id="@+id/texto_info3"
+				    	android:layout_width="match_parent"
+				    	android:layout_height="wrap_content"
+				    	android:text="@string/t_info3"
+				    	android:layout_alignParentTop="true"
+				    	android:textColor="@android:color/white"/>
+				</RelativeLayout>
+			</ScrollView>
+			
+			<ImageButton 
+			    android:id="@+id/cerrar_info_juego3"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/cerrar_info"
+			    android:onClick="cerrar_info_juego3"
+			    android:background="@android:color/transparent"
+			    android:layout_alignTop="@id/info_juego3"
+			    android:layout_alignRight="@id/info_juego3"
+			    android:visibility="invisible"/>
+					            
 		</RelativeLayout>
     </ViewFlipper>
     

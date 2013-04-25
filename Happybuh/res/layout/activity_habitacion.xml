@@ -101,8 +101,9 @@
 			    android:layout_height="wrap_content"
 			    android:text="PERSONALÍZAME"
 			    android:layout_below="@+id/b_armario"
-			    android:layout_alignLeft="@+id/b_armario"
-			    android:textColor="@android:color/black"/>
+			    android:textColor="@android:color/black"
+			    android:layout_alignLeft="@id/b_armario"
+			    android:layout_marginLeft="-20dp"/>
 			
 			<TextView 
 			    android:id="@+id/t_mando"
@@ -110,9 +111,10 @@
 			    android:layout_height="wrap_content"
 			    android:text="JUEGA"
 			    android:layout_below="@+id/b_mando"
-			    android:layout_alignLeft="@+id/b_mando"
 			    android:layout_alignBaseline="@id/t_armario"
-			    android:textColor="@android:color/black"/>
+			    android:textColor="@android:color/black"
+			    android:layout_alignRight="@id/b_mando"
+			    android:layout_marginRight="14dp"/>
 		                
 			<ImageView 
 				android:id="@+id/buh"
