@@ -5,10 +5,13 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -27,6 +30,10 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		GV.Screen.wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GameOnLock");
+        
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         ImageView myImage = (ImageView) findViewById(R.id.buh);
         //myImage.setAlpha(127);
@@ -85,5 +92,19 @@ public class MainActivity extends Activity {
 		finish();
 		//activity transition animation
 		super.onBackPressed();
+	}
+	
+	@Override
+	protected void onPause() {
+		GV.Screen.wl.release();
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		GV.Screen.metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(GV.Screen.metrics);
+		GV.Screen.wl.acquire();
 	}
 }

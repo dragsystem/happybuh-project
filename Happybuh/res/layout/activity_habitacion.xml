@@ -123,6 +123,23 @@
 				android:src="@drawable/buh_blue"
 				android:layout_centerHorizontal="true"
 				android:layout_centerVertical="true"/>
+			<ImageView 
+				android:id="@+id/buh_gafas"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/gafas_1_0"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:visibility="invisible"/>
+			
+			<ImageView 
+				android:id="@+id/buh_barba"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/barba_1_0"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:visibility="invisible"/>
 		                
 		</RelativeLayout>
         

@@ -1,6 +1,7 @@
 package com.happybuh;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +11,6 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -78,7 +78,8 @@ public class Juego extends Activity {
     }
 
     public void inicio_juego1(View v) {
-    	
+			Intent ourIntent = new Intent("com.happybuh.BUBBLEGAME");
+			startActivity(ourIntent);
     }
     
     public void inicio_juego2(View v) {
