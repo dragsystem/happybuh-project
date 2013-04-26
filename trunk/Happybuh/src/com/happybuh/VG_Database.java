@@ -513,4 +513,13 @@ public class VG_Database {
 		}
 		return 0;
 	}
+
+	public void actualiza_user(int level, int exp, int coins) {
+		// TODO Auto-generated method stub
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_COINS, coins);
+		cv.put(KEY_EXP, exp);
+		cv.put(KEY_LVL, level);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
+	}
 }

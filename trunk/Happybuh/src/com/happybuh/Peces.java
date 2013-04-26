@@ -6,6 +6,7 @@ import java.util.Random;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.os.Message;
 
 
 
@@ -47,7 +48,8 @@ public class Peces {
 		y = -ty;
 		vx = 0;
 		vy = (0.01f+(float)rand.nextInt(20)/1000)*GV.Screen.metrics.heightPixels;
-		objectes.add(new Objecte(bitmaps.get(rand.nextInt(bitmaps.size())),x,y,tx,ty,vx,vy));
+		int num = rand.nextInt(bitmaps.size());
+		objectes.add(new Objecte(bitmaps.get(num),num ,x,y,tx,ty,vx,vy));
 	}
 	
 	public void actualitza() {
@@ -68,12 +70,52 @@ public class Peces {
 	public void colisions(float x, float y, float tx, float ty) {
 		for(int i=objectes.size()-1; i>=0; i--) {
 			Objecte o = objectes.get(i);
-			if(o.y>GV.Screen.metrics.heightPixels) {
+			if(o.y > GV.Screen.metrics.heightPixels) { //SE ESCAPAN BURBUJAS 
 				objectes.remove(i);
+				GV.Activities.bubblegame.handler.sendEmptyMessage(1);
+				--GV.puntuacio_bubble.vides;
 			}
 			else if(o.x+o.tx>x && o.x<x+tx && o.y+o.ty>y && o.y<y+ty) {
 				sprites.add(new Sprite(explosio, o.x, o.y, o.tx, o.ty, 0, 0, 5, 5, 1));
 				objectes.remove(i);
+				int num =objectes.get(i).num_burbuja; 
+				switch (num) {
+					case 0:
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 1:
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 2:
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 3:
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 4:
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 5:
+						GV.puntuacio_bubble.coins += 1;
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 6:
+						GV.puntuacio_bubble.coins += 1;
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 7:
+						GV.puntuacio_bubble.coins += 1;
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+					case 8:
+						GV.puntuacio_bubble.coins -= 2;
+						break;
+					case 9:
+						GV.puntuacio_bubble.coins += 2;
+						GV.puntuacio_bubble.get_exp += 0.001;
+						break;
+				}
+				GV.Activities.bubblegame.handler.sendEmptyMessage(2);
 			}
 		}
 	}
