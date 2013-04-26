@@ -61,6 +61,7 @@ public class BubbleGameSurfaceView extends SurfaceView {
 				//fons.setColor(0xFF00CCFF);
 				fons.setShader(shader);
 				surfacecreated = true;
+				GV.puntuacio_bubble.vides = 10;
 			}
 			
 			public void surfaceChanged(SurfaceHolder holder, int format, int width,

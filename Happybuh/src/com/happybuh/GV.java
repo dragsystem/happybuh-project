@@ -14,8 +14,13 @@ public class GV {
 	public static class Instancies {
 		public static BubbleGameSurfaceView bubbleview;
 	}
+	public static class Activities {
+		public static BubbleGame bubblegame;
+	}
 	
-	public static class puntuacio {
+	public static class puntuacio_bubble {
 		public static int vides;
+		public static int coins;
+		public static float get_exp;
 	}
 }

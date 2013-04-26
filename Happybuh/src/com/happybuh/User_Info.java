@@ -44,4 +44,43 @@ public class User_Info {
 	        User_Info.col_beard = db.getColBeard(lb);
 	    db.close();
 	}
+	
+	static void actualizar(Context c, int nexp, int ncoins) {
+		VG_Database db = new VG_Database(c);
+	    db.open();
+	    	coins += ncoins;
+	    	exp += nexp;
+	    	if(level >= 0 && level < 5) {
+	    		if (exp >= 1) {
+	    			++level;
+	    			exp = 1 - exp;
+	    		}
+	    	}
+	    	if(level >= 5 && level < 10) {
+	    		if (exp >= 5) {
+	    			++level;
+	    			exp = 5 - exp;
+	    		}
+	    	}
+	    	if(level >= 10 && level < 15) {
+	    		if (exp >= 10) {
+	    			++level;
+	    			exp = 10 - exp;
+	    		}
+	    	}
+	    	if(level >= 15 && level < 20) {
+	    		if (exp >= 15) {
+	    			++level;
+	    			exp = 15 - exp;
+	    		}
+	    	}
+	    	if(level >= 25 && level < 30) {
+	    		if (exp >= 20) {
+	    			++level;
+	    			exp = 20 - exp;
+	    		}
+	    	}
+	    	db.actualiza_user(level, exp, coins);
+	    db.close();
+	}
 }

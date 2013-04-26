@@ -7,4 +7,41 @@
    	android:id="@+id/bubblegameview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+	<RelativeLayout 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content">
+	    <TextView 
+		    android:id="@+id/bubble_coins"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Coins:"
+		    android:layout_alignParentTop="true"
+		    android:layout_alignParentLeft="true"/>
+		
+		<TextView 
+		    android:id="@+id/bubble_getcoins"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text=""
+		    android:layout_toRightOf="@id/bubble_coins"
+		    android:layout_alignBaseline="@id/bubble_coins"
+		    android:layout_marginLeft="10dp"/>
+		
+		<TextView 
+		    android:id="@+id/bubble_lives"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Vidas:"
+		    android:layout_below="@id/bubble_coins"
+		    android:layout_alignLeft="@id/bubble_coins"
+		    android:layout_marginTop="10dp"/>
+		<TextView 
+		    android:id="@+id/bubble_getlives"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="5"
+		    android:layout_below="@id/bubble_getcoins"
+		    android:layout_alignLeft="@id/bubble_getcoins"/>
+	    
+	</RelativeLayout>
 </FrameLayout>

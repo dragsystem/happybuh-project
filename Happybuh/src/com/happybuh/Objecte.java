@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class Objecte {
-	
+	int num_burbuja;
 	float x, y;
 	float vx,vy;
 	float tx, ty;
@@ -30,6 +30,16 @@ public class Objecte {
 		nuvol = Bitmap.createScaledBitmap(plataforma,(int)ntx,(int)nty,false);
 	}
 	
+	public Objecte(Bitmap burbuja, int num, float i, float j, float ntx,float nty, float nvx, float nvy) {
+		x = i;
+		y = j;
+		vx = nvx;
+		vy = nvy;
+		tx = ntx;
+		ty = nty;
+		num_burbuja = num;
+		nuvol = Bitmap.createScaledBitmap(burbuja,(int)ntx,(int)nty,false);
+	}
 	public void actualitza() {
 		x+=vx;
 		y+=vy;
