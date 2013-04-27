@@ -49,6 +49,7 @@ public class User_Info {
 		VG_Database db = new VG_Database(c);
 	    db.open();
 	    	coins += ncoins;
+	    	Log.d("COINS TRAS JUGAR", ""+coins);
 	    	exp += nexp;
 	    	if(level >= 0 && level < 5) {
 	    		if (exp >= 1) {
