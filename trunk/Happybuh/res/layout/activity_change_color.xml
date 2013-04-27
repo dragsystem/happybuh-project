@@ -111,7 +111,8 @@
    	    android:src="@drawable/comprar"
    	    android:background="@android:color/transparent"
    	    android:layout_alignLeft="@id/color_lvlreq"
-   	    android:layout_below="@id/color_price_et"/>
+   	    android:layout_below="@id/color_price_et"
+   	    android:onClick="comprar_aplicar"/>
    	
    	<ImageView 
    	    android:id="@+id/buh_body_change"

@@ -27,6 +27,7 @@ public class ChangeColor extends Activity {
 	private int precio_req;
 	private int level_req;
 	private VG_Database db;
+	private Long lc;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,7 @@ public class ChangeColor extends Activity {
         tv.setTypeface(type);
         tv = (TextView)findViewById(R.id.color_coins_et);
         tv.setTypeface(type);
+    	tv.setText(""+User_Info.coins);
         String a = ""+User_Info.coins;
         //tv.setText(User_Info.coins);
         tv = (TextView)findViewById(R.id.color_lvl);
@@ -128,7 +130,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
     	iv.setImageResource(R.drawable.buh_blue);
-    	Long lc = Long.parseLong("" +1);
+    	lc = Long.parseLong("" +1);
     	carga_color(lc);
     }
     
@@ -140,7 +142,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
 		iv.setImageResource(R.drawable.buh_red);
-    	Long lc = Long.parseLong("" + 2);
+    	lc = Long.parseLong("" + 2);
     	carga_color(lc);
     }
     
@@ -150,7 +152,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
     	iv.setImageResource(R.drawable.buh_green);
-    	Long lc = Long.parseLong("" +4);
+    	lc = Long.parseLong("" +4);
     	carga_color(lc);
     }
     public void cambio_color_amarillo(View v) {
@@ -159,7 +161,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
     	iv.setImageResource(R.drawable.buh_yellow);
-    	Long lc = Long.parseLong("" +3);
+    	lc = Long.parseLong("" +3);
     	carga_color(lc);
     }
     public void cambio_color_negro(View v) {
@@ -168,7 +170,7 @@ public class ChangeColor extends Activity {
     	//CAMBIO BOTON COMPRAR
     	//CAMBIO ASPECTO
     	iv.setImageResource(R.drawable.buh_black);
-    	Long lc = Long.parseLong("" +5);
+    	lc = Long.parseLong("" +5);
     	carga_color(lc);
     }
 
@@ -177,15 +179,15 @@ public class ChangeColor extends Activity {
     	finish();
     }
     
-    private void carga_color(Long lc) {
+    private void carga_color(Long lc_aux) {
     	tv = (TextView)findViewById(R.id.color_lvlreq_et);
         db.open();
-	    	level_req = Integer.parseInt(db.getColorLvl(lc));
-	    	precio_req = Integer.parseInt(db.getColorPrice(lc));
-        	tv.setText(""+db.getColorLvl(lc));
+	    	level_req = Integer.parseInt(db.getColorLvl(lc_aux));
+	    	precio_req = Integer.parseInt(db.getColorPrice(lc_aux));
+        	tv.setText(""+db.getColorLvl(lc_aux));
 	    	tv = (TextView)findViewById(R.id.color_price_et);
-	    	tv.setText(""+db.getColorPrice(lc));
-	    	comprado = db.getColorBought(lc);
+	    	tv.setText(""+db.getColorPrice(lc_aux));
+	    	comprado = db.getColorBought(lc_aux);
 	    db.close();
     	if(User_Info.level < level_req || User_Info.coins < precio_req) {
     		tv2.setVisibility(View.VISIBLE);
@@ -202,4 +204,13 @@ public class ChangeColor extends Activity {
     		iv3.setVisibility(View.VISIBLE);
     	}
 	}
+    
+    public void comprar_aplicar(View v) {
+    	db.open();
+    		User_Info.coins -= precio_req;
+    		db.setUserCoins(User_Info.coins);
+    		db.setColorBought(lc);
+    		comprado = db.getColorBought(lc);
+    	db.close();
+    }
 }

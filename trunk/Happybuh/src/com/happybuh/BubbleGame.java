@@ -2,16 +2,20 @@ package com.happybuh;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.view.Menu;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class BubbleGame extends Activity {
 	
 	public Handler handler;
+	public RelativeLayout rl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,16 @@ public class BubbleGame extends Activity {
 			public void handleMessage(Message msg) {
 				if(msg.what == 1) resta_vida();
 				if(msg.what == 2) gana_coins();
+				if(msg.what == 3) game_over();
 			}
 			
 		};
+    }
+    
+    public void game_over() {
+    	User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
+    	 rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
+    	rl.setVisibility(View.VISIBLE);
     }
     
     public void gana_coins() {
@@ -69,5 +80,20 @@ public class BubbleGame extends Activity {
         return true;
     }
 
+	public void retry (View v) {
+		rl.setVisibility(v.INVISIBLE);
+		try{
+			Intent i = new Intent("com.happybuh.BUBBLEGAME");
+			startActivity(i);
+		}
+		finally{
+			finish();
+		}
+	}
+	
+	public void cancel (View v) {
+		rl.setVisibility(v.INVISIBLE);
+		finish();
+	}
     
 }

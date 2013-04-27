@@ -78,9 +78,7 @@ public class ChangeBeard extends Activity {
         tv.setTypeface(type);
         tv = (TextView)findViewById(R.id.beard_coins_et);
         tv.setTypeface(type);
-        String a = ""+User_Info.coins;
-        Log.v("COINS ", a);
-        //tv.setText(User_Info.coins);
+        tv.setText(""+User_Info.coins);
         tv = (TextView)findViewById(R.id.beard_lvl);
         tv.setTypeface(type);
         tv = (TextView)findViewById(R.id.beard_lvl_et);
