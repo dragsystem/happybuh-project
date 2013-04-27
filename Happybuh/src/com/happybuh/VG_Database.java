@@ -522,4 +522,28 @@ public class VG_Database {
 		cv.put(KEY_LVL, level);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
 	}
+
+	public void setColorBought(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_COLOR_BOUGHT, 1);
+		ourDatabase.update(DATABASE_TABLE_COLOR, cv, KEY_ROWID + "= " + lc, null);
+	}
+	
+	public void setgLASSESBought(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_GLASSES_BOUGHT, 1);
+		ourDatabase.update(DATABASE_TABLE_GLASSES, cv, KEY_ROWID + "= " + lc, null);
+	}
+	
+	public void setBeardBought(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_BEARD_BOUGHT, 1);
+		ourDatabase.update(DATABASE_TABLE_BEARD, cv, KEY_ROWID + "= " + lc, null);
+	}
+
+	public void setUserCoins(int coins) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_COINS, coins);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
+	}
 }

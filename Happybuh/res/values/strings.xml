@@ -92,5 +92,6 @@
         \n wofjiwejfjwpejpowjefojwpefjpwoejfojwepfjpwjepfowejfpowjpfojwfjw
         \n wofjiwejfjwpejpowjefojwpefjpwoejfojwepfjpwjepfowejfpowjpfojwfjw </string>
     <string name="title_activity_bubble_game">BubbleGame</string>
+    <string name="texto_gameover">Buuh...has perdido, pero: \n</string>
 
 </resources>

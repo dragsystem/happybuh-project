@@ -22,5 +22,6 @@ public class GV {
 		public static int vides;
 		public static int coins;
 		public static float get_exp;
+		public static int gameover;
 	}
 }

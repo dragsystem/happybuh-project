@@ -72,12 +72,15 @@ public class Peces {
 			Objecte o = objectes.get(i);
 			if(o.y > GV.Screen.metrics.heightPixels) { //SE ESCAPAN BURBUJAS 
 				objectes.remove(i);
-				GV.Activities.bubblegame.handler.sendEmptyMessage(1);
 				--GV.puntuacio_bubble.vides;
+				GV.Activities.bubblegame.handler.sendEmptyMessage(1);
+				if(GV.puntuacio_bubble.vides == 0){
+					GV.puntuacio_bubble.gameover = 1;
+					GV.Activities.bubblegame.handler.sendEmptyMessage(3);
+				}
 			}
 			else if(o.x+o.tx>x && o.x<x+tx && o.y+o.ty>y && o.y<y+ty) {
 				sprites.add(new Sprite(explosio, o.x, o.y, o.tx, o.ty, 0, 0, 5, 5, 1));
-				objectes.remove(i);
 				int num =objectes.get(i).num_burbuja; 
 				switch (num) {
 					case 0:
@@ -115,6 +118,7 @@ public class Peces {
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 				}
+				objectes.remove(i);
 				GV.Activities.bubblegame.handler.sendEmptyMessage(2);
 			}
 		}

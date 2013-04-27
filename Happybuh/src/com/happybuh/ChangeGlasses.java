@@ -77,8 +77,7 @@ public class ChangeGlasses extends Activity {
         tv.setTypeface(type);
         tv = (TextView)findViewById(R.id.glass_coins_et);
         tv.setTypeface(type);
-        String a = ""+User_Info.coins;
-        Log.v("COINS ", a);
+        	tv.setText(""+User_Info.coins);
         //tv.setText(User_Info.coins);
         tv = (TextView)findViewById(R.id.glass_lvl);
         tv.setTypeface(type);

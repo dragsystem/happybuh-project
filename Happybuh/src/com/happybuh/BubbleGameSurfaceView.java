@@ -62,6 +62,8 @@ public class BubbleGameSurfaceView extends SurfaceView {
 				fons.setShader(shader);
 				surfacecreated = true;
 				GV.puntuacio_bubble.vides = 10;
+				GV.puntuacio_bubble.coins = 0;
+				GV.puntuacio_bubble.gameover = 0;
 			}
 			
 			public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -75,10 +77,16 @@ public class BubbleGameSurfaceView extends SurfaceView {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRect(0, 0, getWidth(),getHeight(), fons);
-		peces.actualitza();
-		peces.draw(canvas);
-		base.draw(canvas);
-		colisions();
+		if(GV.puntuacio_bubble.gameover == 0) {
+			peces.actualitza();
+			peces.draw(canvas);
+			base.draw(canvas);
+			colisions();
+		}
+		else {
+			peces.draw(canvas);
+			base.draw(canvas);
+		}
 	}
 	
 	private void colisions() {

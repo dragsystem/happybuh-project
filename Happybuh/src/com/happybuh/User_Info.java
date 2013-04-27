@@ -45,7 +45,7 @@ public class User_Info {
 	    db.close();
 	}
 	
-	static void actualizar(Context c, int nexp, int ncoins) {
+	static void actualizar(Context c, float nexp, int ncoins) {
 		VG_Database db = new VG_Database(c);
 	    db.open();
 	    	coins += ncoins;
