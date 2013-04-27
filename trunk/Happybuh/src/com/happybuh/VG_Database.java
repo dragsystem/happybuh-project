@@ -520,7 +520,7 @@ public class VG_Database {
 		cv.put(KEY_COINS, coins);
 		cv.put(KEY_EXP, exp);
 		cv.put(KEY_LVL, level);
-		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
 
 	public void setColorBought(Long lc) {

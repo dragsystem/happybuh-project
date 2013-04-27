@@ -84,18 +84,23 @@ public class Peces {
 				int num =objectes.get(i).num_burbuja; 
 				switch (num) {
 					case 0:
+						GV.puntuacio_bubble.coins += 1;
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 					case 1:
+						GV.puntuacio_bubble.coins += 1;
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 					case 2:
+						GV.puntuacio_bubble.coins += 1;
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 					case 3:
+						GV.puntuacio_bubble.coins += 1;
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 					case 4:
+						GV.puntuacio_bubble.coins += 1;
 						GV.puntuacio_bubble.get_exp += 0.001;
 						break;
 					case 5:
@@ -112,6 +117,12 @@ public class Peces {
 						break;
 					case 8:
 						GV.puntuacio_bubble.coins -= 2;
+						--GV.puntuacio_bubble.vides;
+						GV.Activities.bubblegame.handler.sendEmptyMessage(1);
+						if(GV.puntuacio_bubble.vides == 0){
+							GV.puntuacio_bubble.gameover = 1;
+							GV.Activities.bubblegame.handler.sendEmptyMessage(3);
+						}
 						break;
 					case 9:
 						GV.puntuacio_bubble.coins += 2;
