@@ -221,6 +221,8 @@ public class Habitacion extends Activity {
 				});
 	    
 	    //SET TYPEFACE DE LOS TEXTOS
+	    TextView t_opciones = (TextView)findViewById(R.id.habitacion_titulo_opciones);
+	    t_opciones.setTypeface(type);
 	    TextView t_armario = (TextView)findViewById(R.id.t_armario);
 	    t_armario.setTypeface(type);
 	    TextView t_mando = (TextView)findViewById(R.id.t_mando);
