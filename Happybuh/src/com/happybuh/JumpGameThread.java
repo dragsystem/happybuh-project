@@ -9,7 +9,7 @@ public class JumpGameThread extends Thread{
     private boolean running = false;
    
     public JumpGameThread(JumpGameSurfaceView view) {
-          view = view;
+          this.view = view;
     }
     
     public boolean isRunning() {

@@ -14,7 +14,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class BubbleGameSurfaceView extends SurfaceView {
+public class BubbleGameSurfaceView extends SurfaceView  {
 	private boolean surfacecreated;
 	private boolean threadrunning;
 	private BubbleGameThread thread;

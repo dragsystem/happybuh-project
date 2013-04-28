@@ -4,9 +4,9 @@
     android:layout_height="match_parent" >
     
  	  <com.happybuh.BubbleGameSurfaceView
-   	android:id="@+id/bubblegameview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>  
+	   	android:id="@+id/bubblegameview"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>  
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"

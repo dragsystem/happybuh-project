@@ -261,7 +261,7 @@ public class ChangeBeard extends Activity {
     		iv4.setImageResource(R.drawable.aplicar);
     	}
     	else if(comprado == 0) {
-    		tv2.setVisibility(View.VISIBLE);
+    		tv2.setVisibility(View.INVISIBLE);
     		iv4.setImageResource(R.drawable.comprar);
     	}
 	}
@@ -273,6 +273,9 @@ public class ChangeBeard extends Activity {
 	    		db.setUserCoins(User_Info.coins);
 	    		db.setColorBought(lc);
 	    		comprado = db.getColorBought(lc);
+	    		User_Info.actualizar_user(getApplicationContext());
+	    		tv = (TextView)findViewById(R.id.beard_coins_et);
+	    		tv.setText(""+User_Info.coins);
     		}
 			db.setUserBeard(lc);
     	db.close();

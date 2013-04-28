@@ -69,8 +69,6 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 		orientation = new float[3];
 		ultimAccel = new float[3];
 		ultimMF = new float[3];
-		//condicio de mort
-		entrar = true;
 		
 		//surfaceview
 		holder = getHolder();
@@ -96,6 +94,10 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 				surfacecreated = true;
 				GV.posiplataforma.modplataforma = false;
 				GV.posiplataforma.idplat = 0;
+				GV.puntuacio_bubble.vides = 3;
+				GV.puntuacio_bubble.coins = 0;
+				GV.puntuacio_bubble.gameover = 0;
+				GV.puntuacio_bubble.pause = 0;
 			}
 			
 			
@@ -109,17 +111,20 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 	@Override
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRect(0,0,getWidth(),getHeight(), fons);
-		jugador.actualitza(yAct, plataforma);
-		jugador.draw(canvas);
 		if(GV.puntuacio_jump.gameover == 0) {
-			plataforma.actualitza(jugador);
+			if(GV.puntuacio_jump.pause == 0)  {
+				jugador.actualitza(yAct, plataforma);
+				plataforma.actualitza(jugador);
+			}
+			jugador.draw(canvas);
 			plataforma.draw(canvas, jugador.getX()-100, getWidth());
 		}
-		else if(GV.puntuacio_jump.gameover  == 1 && entrar) {
-			GV.Activities.jumpgame.handler.sendEmptyMessage(1);
-			entrar = false;
+		else {
+			jugador.draw(canvas);
+			plataforma.draw(canvas, jugador.getX()-100, getWidth());
 		}
-		GV.Activities.jumpgame.handler.sendEmptyMessage(0);
+		
+		//GV.Activities.jumpgame.handler.sendEmptyMessage(0);
 //		if (GV.posiplataforma.modplataforma) {
 //			plataforma.actualitza(jugador);
 //			//plataforma.draw(canvas);

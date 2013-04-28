@@ -272,6 +272,9 @@ public class ChangeGlasses extends Activity {
 	    		db.setUserCoins(User_Info.coins);
 	    		db.setColorBought(lc);
 	    		comprado = db.getColorBought(lc);
+	    		User_Info.actualizar_user(getApplicationContext());
+	    		tv = (TextView)findViewById(R.id.glass_coins_et);
+	    		tv.setText(""+User_Info.coins);
     		}
 			db.setUserGlasses(lc);
     	db.close();

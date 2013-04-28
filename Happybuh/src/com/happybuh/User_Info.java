@@ -45,6 +45,20 @@ public class User_Info {
 	    db.close();
 	}
 	
+	static void actualizar_user(Context c) {
+		VG_Database db = new VG_Database(c);
+	    db.open();
+		    ArrayList<String> a = new ArrayList<String>();
+	        a = db.info_user();
+	        User_Info.name = a.get(1);
+	        User_Info.level = Integer.parseInt(a.get(2));
+	        User_Info.coins = Integer.parseInt(a.get(3));
+	        User_Info.color = Integer.parseInt(a.get(4));
+	        User_Info.glasses = Integer.parseInt(a.get(5));
+	        User_Info.beard = Integer.parseInt(a.get(6));
+	    db.close();
+	}
+	
 	static void actualizar(Context c, float nexp, int ncoins) {
 		VG_Database db = new VG_Database(c);
 	    db.open();
