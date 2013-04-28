@@ -30,7 +30,9 @@ public class ChangeGlasses extends Activity {
 	private int level_req;
 	private VG_Database db;
 	private int sel_glass;
-
+	private String num_gafas, col_gafas;
+	private Long lc;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +130,10 @@ public class ChangeGlasses extends Activity {
     	User_Info.num_glasses = "1";
     	carga_gafas();
     	carga_interficie("1", "0");
+    	num_gafas = "1";
+    	db.open();
+    		lc = db.getIndexGlasses(num_gafas, "0");
+    	db.close();
     }
     
 	public void cambio_gafas2(View v) {
@@ -135,6 +141,10 @@ public class ChangeGlasses extends Activity {
 		User_Info.num_glasses = "2";
 	    carga_interficie("2", "0");
 	    carga_gafas();
+	    num_gafas = "2";
+	    db.open();
+			lc = db.getIndexGlasses(num_gafas, "0");
+		db.close();
 	}
 
 	public void cambio_gafas3(View v) {
@@ -142,6 +152,10 @@ public class ChangeGlasses extends Activity {
 		User_Info.num_glasses = "3";
 	    carga_gafas();
 	    carga_interficie("3", "0");
+	    num_gafas = "3";
+	    db.open();
+			lc = db.getIndexGlasses(num_gafas, "0");
+		db.close();
 	}
 	
 	public void cambio_color_azul(View v){
@@ -149,6 +163,10 @@ public class ChangeGlasses extends Activity {
 			User_Info.col_glasses = "0";
 		    carga_interficie(User_Info.num_glasses,"0");
 		    carga_color();
+		    col_gafas = "0";
+		    db.open();
+				lc = db.getIndexGlasses(num_gafas, "0");
+			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
@@ -159,6 +177,10 @@ public class ChangeGlasses extends Activity {
 			User_Info.col_glasses = "1";
 		    carga_interficie(User_Info.num_glasses,"1");
 		    carga_color();
+		    col_gafas = "1";
+		    db.open();
+				lc = db.getIndexGlasses(num_gafas, "1");
+			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
@@ -168,6 +190,10 @@ public class ChangeGlasses extends Activity {
 			User_Info.col_glasses = "2";
 			carga_interficie(User_Info.num_glasses,"2");
 		    carga_color();
+		    col_gafas = "2";
+		    db.open();
+				lc = db.getIndexGlasses(num_gafas, "2");
+			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
@@ -177,6 +203,10 @@ public class ChangeGlasses extends Activity {
 			User_Info.col_glasses = "3";
 			carga_interficie(User_Info.num_glasses,"3");
 		    carga_color();
+		    col_gafas = "3";
+		    db.open();
+				lc = db.getIndexGlasses(num_gafas, "3");
+			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
@@ -186,6 +216,10 @@ public class ChangeGlasses extends Activity {
 			User_Info.col_glasses = "4";
 			carga_interficie(User_Info.num_glasses,"4");
 		    carga_color();
+		    col_gafas = "4";
+		    db.open();
+				lc = db.getIndexGlasses(num_gafas, "4");
+			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
@@ -231,4 +265,15 @@ public class ChangeGlasses extends Activity {
     		iv4.setImageResource(R.drawable.comprar);
     	}
 	}
+	public void comprar_aplicar(View v) {
+    	db.open();
+    		if(comprado == 0) {
+	    		User_Info.coins -= precio_req;
+	    		db.setUserCoins(User_Info.coins);
+	    		db.setColorBought(lc);
+	    		comprado = db.getColorBought(lc);
+    		}
+			db.setUserGlasses(lc);
+    	db.close();
+    }
 }
