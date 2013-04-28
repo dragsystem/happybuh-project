@@ -8,6 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Personaliza tus gafas"
+        android:textStyle="bold"
+        android:textSize="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -64,7 +66,7 @@
    	    android:text="@string/reques"
    	    android:layout_below="@id/img_glass_1"
    	    android:layout_alignParentRight="true"
-   	    android:visibility="visible"
+   	    android:visibility="invisible"
    	    android:layout_marginTop="20dp"
    	    android:layout_marginLeft="20dp"
    	    android:textStyle="bold"/>

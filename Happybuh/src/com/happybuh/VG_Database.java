@@ -285,7 +285,7 @@ public class VG_Database {
 		// TODO Auto-generated method stub
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, new_user);
-		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
 
 	public String getColorName(Long lc) {
@@ -446,10 +446,11 @@ public class VG_Database {
 	public int getGlassBought(Long lg) {
 		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_GLASSES_BOUGHT);
 		if(c != null) {
 			c.moveToFirst();
-			int index = c.getInt(0);
-			return index;
+			int bought = c.getInt(iName);
+			return bought;
 		}
 		return 0;
 	}
@@ -506,10 +507,11 @@ public class VG_Database {
 	public int getBeardBought(Long lg) {
 		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_ROWID + "=" + lg, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_COLOR_BOUGHT);
 		if(c != null) {
 			c.moveToFirst();
-			int index = c.getInt(0);
-			return index;
+			int bought = c.getInt(iName);
+			return bought;
 		}
 		return 0;
 	}
@@ -550,6 +552,43 @@ public class VG_Database {
 	public void setUserColor(Long lc) {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_COLOR, lc);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
+	}
+
+	public Long getIndexGlasses(String num_gafas, String col_gafas) {
+		String[] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_NUM_GLASS + "=" + num_gafas + " AND " + KEY_COLOR_GLASSES + "=" + col_gafas, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_ROWID);
+		if(c != null) {
+			c.moveToFirst();
+			Long index = c.getLong(iName);			
+			return index;
+		}
+		Long a = (long)0;
+		return a;
+	}
+
+	public void setUserGlasses(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NUM_GLASS, lc);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
+	}
+
+	public Long getIndexBeard(String num_barba, String col_barba) {
+		String [] columns = new String[] {KEY_ROWID, KEY_NUM_BEARD, KEY_COLOR_BEARD, KEY_BEARD_PRICE, KEY_BEARD_LVL, KEY_BEARD_BOUGHT};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_BEARD, columns, KEY_NUM_BEARD + "=" + num_barba + " AND " + KEY_COLOR_BEARD + "=" + col_barba, null, null, null, null);
+		int iName = c.getColumnIndex(KEY_ROWID);
+		if(c != null) {
+			c.moveToFirst();
+			Long index = c.getLong(iName);
+			return index;
+		}
+		return (long)0;
+	}
+	
+	public void setUserBeard(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NUM_BEARD, lc);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
 }
