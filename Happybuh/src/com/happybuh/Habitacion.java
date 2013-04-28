@@ -313,7 +313,7 @@ public class Habitacion extends Activity {
 			@Override
 			public void onClick(View arg0) {
  
-			   Toast.makeText(Habitacion.this,"Entra!! Descubrirás nuevos looks para tu Buuh!", Toast.LENGTH_SHORT).show();
+			   Toast.makeText(Habitacion.this,"Mantén el dedo presionado!! Descubrirás nuevos looks para tu Buuh!", Toast.LENGTH_SHORT).show();
  
 			}
 		});
@@ -336,7 +336,7 @@ public class Habitacion extends Activity {
 			@Override
 			public void onClick(View arg0) {
  
-			   Toast.makeText(Habitacion.this,"Entra!! Y empieza a ganar experiencia y coins", Toast.LENGTH_SHORT).show();
+			   Toast.makeText(Habitacion.this,"Mantén el dedo presionado!! Y empieza a ganar experiencia y coins", Toast.LENGTH_SHORT).show();
  
 			}
 		});

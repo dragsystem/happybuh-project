@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -19,4 +19,119 @@
         android:text="@string/hello_world"
         tools:context=".Armario" />
 
-</LinearLayout>
+</LinearLayout> -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<TextView 
+	    android:id="@+id/armario_titulo"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="¿Qué deseas cambiar de tu buh?"
+	    android:layout_centerHorizontal="true"
+	    android:textColor="@android:color/black"
+	    android:layout_marginTop="30dp"
+	    android:textSize="20dp"
+	    android:textStyle="bold"
+	    android:gravity="center_horizontal"/>
+    <LinearLayout 
+        android:id="@+id/ll_changecolor"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1.0"
+        android:layout_above="@+id/ll_changegafas"
+        android:background="@drawable/bg_button"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <Button 
+            android:id="@+id/armario_b_color"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:text="Cuerpo Buh"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:onClick="ChangeColor"
+            android:background="@android:color/transparent"/>
+        <ImageButton 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:onClick="ChangeColor"
+            android:background="@android:color/transparent"
+            android:src="@drawable/buh_mini"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@id/ll_changegafas"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1.0"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <Button 
+            android:id="@+id/armario_b_gafas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:text="Gafas"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:onClick="ChangeGafas"
+            android:background="@android:color/transparent"/>
+        <ImageButton 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:onClick="ChangeGafas"
+            android:src="@drawable/gafas3_mini"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/ll_changebarba"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1.0"
+        android:layout_below="@id/ll_changegafas"
+        android:background="@drawable/bg_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <Button 
+            android:id="@+id/armario_b_barba"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:text="Barba"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:onClick="ChangeBarba"
+            android:background="@android:color/transparent"/>
+        <ImageButton 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:onClick="ChangeBarba"
+            android:src="@drawable/barba_mini2"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+    
+    <ImageButton 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_volver"
+        android:onClick="volver"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/transparent"/>
+
+</RelativeLayout>

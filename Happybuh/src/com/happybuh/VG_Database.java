@@ -544,6 +544,12 @@ public class VG_Database {
 	public void setUserCoins(int coins) {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_COINS, coins);
-		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 0", null);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
+	}
+
+	public void setUserColor(Long lc) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_COLOR, lc);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
 }

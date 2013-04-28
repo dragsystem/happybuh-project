@@ -147,8 +147,8 @@
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
     android:weightSum="1.0"
-    android:layout_below="@id/buh_body_change"
-    android:layout_marginTop="40dp">
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="20dp">
     
    	    <Button 
    	        android:id="@+id/body_boton_azul"
@@ -156,7 +156,7 @@
    	    	android:layout_height="wrap_content"
    	    	android:layout_weight=".20"
    	    	android:text="Azul"
-   	    	android:background="@color/blue"
+   	    	android:background="@drawable/bg_button_azul"
    	    	android:textSize="15dp"
    	    	android:onClick="cambio_color_azul"
    	    />
@@ -167,7 +167,7 @@
    	    	android:layout_height="wrap_content"
    	    	android:layout_weight=".20"
    	    	android:text="Verde"
-   	    	android:background="@color/green"
+   	    	android:background="@drawable/bg_button_verde"
    	    	android:textSize="15dp"
    	    	android:onClick="cambio_color_verde"
    	    />
@@ -177,7 +177,7 @@
 	   	    android:layout_height="wrap_content"
 	   	    android:layout_weight=".20"
 	   	    android:text="Amarillo"
-	   	    android:background="@color/yellow"
+	   	    android:background="@drawable/bg_button_amarillo"
 	   	    android:textSize="15dp"
 	   	    android:onClick="cambio_color_amarillo"
 	   	    />
@@ -187,7 +187,7 @@
    	    	android:layout_height="wrap_content"
    	    	android:layout_weight=".20"
 	   	    android:text="Rojo"
-	   	    android:background="@color/red"
+	   	    android:background="@drawable/bg_button_rojo"
 	   	    android:textSize="15dp"
 	   	    android:onClick="cambio_color_rojo"
 	   	    />
@@ -197,7 +197,7 @@
    	    	android:layout_height="wrap_content"
    	    	android:layout_weight=".20"
 	   	    android:text="Negro"
-	   	    android:background="@color/black"
+	   	    android:background="@drawable/bg_button_negro"
 	   	    android:textSize="15dp"
 	   	    android:onClick="cambio_color_negro"
 	   	    />

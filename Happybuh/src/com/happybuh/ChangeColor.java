@@ -28,6 +28,7 @@ public class ChangeColor extends Activity {
 	private int level_req;
 	private VG_Database db;
 	private Long lc;
+	private String color_name;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +133,7 @@ public class ChangeColor extends Activity {
     	iv.setImageResource(R.drawable.buh_blue);
     	lc = Long.parseLong("" +1);
     	carga_color(lc);
+    	color_name = "blue";
     }
     
     
@@ -144,6 +146,7 @@ public class ChangeColor extends Activity {
 		iv.setImageResource(R.drawable.buh_red);
     	lc = Long.parseLong("" + 2);
     	carga_color(lc);
+    	color_name = "red";
     }
     
     public void cambio_color_verde(View v) {
@@ -154,6 +157,7 @@ public class ChangeColor extends Activity {
     	iv.setImageResource(R.drawable.buh_green);
     	lc = Long.parseLong("" +4);
     	carga_color(lc);
+    	color_name = "green";
     }
     public void cambio_color_amarillo(View v) {
     	//CAMBIO LVL_REQ
@@ -163,6 +167,7 @@ public class ChangeColor extends Activity {
     	iv.setImageResource(R.drawable.buh_yellow);
     	lc = Long.parseLong("" +3);
     	carga_color(lc);
+    	color_name = "yellow";
     }
     public void cambio_color_negro(View v) {
     	//CAMBIO LVL_REQ
@@ -172,6 +177,7 @@ public class ChangeColor extends Activity {
     	iv.setImageResource(R.drawable.buh_black);
     	lc = Long.parseLong("" +5);
     	carga_color(lc);
+    	color_name = "black";
     }
 
     public void volver(View v) {
@@ -207,10 +213,15 @@ public class ChangeColor extends Activity {
     
     public void comprar_aplicar(View v) {
     	db.open();
-    		User_Info.coins -= precio_req;
-    		db.setUserCoins(User_Info.coins);
-    		db.setColorBought(lc);
-    		comprado = db.getColorBought(lc);
+    		if(comprado == 0) {
+	    		User_Info.coins -= precio_req;
+	    		db.setUserCoins(User_Info.coins);
+	    		db.setColorBought(lc);
+	    		comprado = db.getColorBought(lc);
+    		}
+    		User_Info.color = Integer.parseInt(""+lc);
+			User_Info.color_name = color_name;
+			db.setUserColor(lc);
     	db.close();
     }
 }
