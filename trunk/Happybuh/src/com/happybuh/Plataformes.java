@@ -150,11 +150,12 @@ public class Plataformes {
 	}
 	
 	public void draw(Canvas canvas, float dx, float w) {
-		
 		for(int i=0; i < objectes.size(); i++) {
 			Objecte o = objectes.get(i);
-			o.actualitza();
-			if(o.acabat) o.sfcount=0; 
+			if(GV.puntuacio_jump.gameover == 0 && GV.puntuacio_jump.pause == 0){ 
+				o.actualitza();
+				if(o.acabat) o.sfcount=0; 
+			}
 			o.draw(canvas);
 		}
 	}
@@ -182,7 +183,6 @@ public class Plataformes {
 	}
 	
 	public void muerte(Objecte j) {
-		GV.puntuacio_jump.gameover = 1;
 		for(int i = 0; i < objectes.size(); ++i) {
 			Objecte o = objectes.get(i);
 			o.vy = -GV.Screen.metrics.heightPixels*0.06f;

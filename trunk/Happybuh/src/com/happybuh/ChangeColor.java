@@ -218,6 +218,9 @@ public class ChangeColor extends Activity {
 	    		db.setUserCoins(User_Info.coins);
 	    		db.setColorBought(lc);
 	    		comprado = db.getColorBought(lc);
+	    		User_Info.actualizar_user(getApplicationContext());
+	    		tv = (TextView)findViewById(R.id.color_coins_et);
+	    		tv.setText(""+User_Info.coins);
     		}
     		User_Info.color = Integer.parseInt(""+lc);
 			User_Info.color_name = color_name;

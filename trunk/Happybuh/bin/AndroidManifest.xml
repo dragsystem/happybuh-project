@@ -113,11 +113,13 @@
         </activity>
         <activity
             android:name=".JumpGame"
-            android:label="@string/title_activity_jump_game" >
+            android:label="@string/title_activity_jump_game"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.happybuh.JUMPGAME" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

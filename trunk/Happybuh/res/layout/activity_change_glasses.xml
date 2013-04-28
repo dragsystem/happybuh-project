@@ -151,7 +151,8 @@
    	    android:src="@drawable/comprar"
    	    android:background="@android:color/transparent"
    	    android:layout_alignLeft="@id/glass_lvlreq"
-   	    android:layout_below="@id/glass_price_et"/>
+   	    android:layout_below="@id/glass_price_et"
+   	    android:onClick="comprar_aplicar"/>
    	
    	<ImageView 
    	    android:id="@+id/buh_body_change"

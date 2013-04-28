@@ -19,7 +19,7 @@ public class Jugador {
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		GV.puntuacio_bubble.vides = 3;
 		personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.buh_blue, options);
-		jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.10f),0,0);
+		jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.15f),0,0);
 	}
 	
 	public void actualitza(float yAccel, Plataformes plat) {
@@ -35,11 +35,17 @@ public class Jugador {
 		if(plat.colisio(jugador.x, jugador.y, jugador.tx, jugador.ty, jugador.vy)) {
 			novapy = GV.posiplataforma.posy;
 			salta(novapy);
+			GV.puntuacio_bubble.get_exp += 0.01;
 		}
 		else if((jugador.y + jugador.ty) >= GV.Screen.metrics.heightPixels) {
 			//FALTA PROGRAMAR MUERTE JUGADOR
 			--GV.puntuacio_jump.vides;
-			if(GV.puntuacio_jump.vides == 0) plat.muerte(jugador);
+			GV.Activities.jumpgame.handler.sendEmptyMessage(1);
+			if(GV.puntuacio_jump.vides == 0) {
+				GV.puntuacio_jump.gameover = 1;
+				GV.Activities.jumpgame.handler.sendEmptyMessage(3);
+				plat.muerte(jugador);
+			}
 			salta(GV.Screen.metrics.heightPixels);
 			GV.posiplataforma.modplataforma = false;
 		}

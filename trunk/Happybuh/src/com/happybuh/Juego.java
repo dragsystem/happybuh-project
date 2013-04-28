@@ -83,7 +83,8 @@ public class Juego extends Activity {
     }
     
     public void inicio_juego2(View v) {
-    	
+		Intent ourIntent = new Intent("com.happybuh.JUMPGAME");
+		startActivity(ourIntent);
     }
     
     public void inicio_juego3(View v) {
