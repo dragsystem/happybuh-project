@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+ 	  <com.happybuh.JumpGameSurfaceView
+   	android:id="@+id/jumpgameview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>  
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:padding="20dp">
+	    <TextView 
+		    android:id="@+id/bubble_coins"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Coins:"
+		    android:layout_alignParentTop="true"
+		    android:layout_alignParentLeft="true"
+		    android:textColor="@android:color/white"
+		    android:textStyle="bold"/>
+		
+		<TextView 
+		    android:id="@+id/bubble_getcoins"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="0"
+		    android:layout_toRightOf="@id/bubble_coins"
+		    android:layout_alignBaseline="@id/bubble_coins"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="@android:color/white"
+		    android:textStyle="bold"/>
+		
+		<TextView 
+		    android:id="@+id/bubble_lives"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Vidas:"
+		    android:layout_below="@id/bubble_coins"
+		    android:layout_alignLeft="@id/bubble_coins"
+		    android:layout_marginTop="10dp"
+		    android:textColor="@android:color/white"
+		    android:textStyle="bold"/>
+		<TextView 
+		    android:id="@+id/bubble_getlives"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="10"
+		    android:layout_below="@id/bubble_getcoins"
+		    android:layout_alignLeft="@id/bubble_getcoins"
+		    android:layout_marginTop="10dp"
+		    android:textColor="@android:color/white"
+		    android:textStyle="bold"/>
+		
+		<ImageButton 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/pause"
+		    android:onClick="pause"
+		    android:layout_alignParentRight="true"
+		    android:background="@android:color/transparent"/>
+		
+		<!--  VENTANA EMERGENTE GAMEOVER -->
+		<RelativeLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/ventana_gameover"
+		    android:background="@drawable/bg"
+		    android:visibility="gone"
+		    android:layout_centerInParent="true"
+		    android:layout_marginRight="50dp"
+		    android:layout_marginLeft="50dp">
+		    
+		    <TextView 
+		        android:id="@+id/tv_gameover"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/texto_gameover"
+		        android:textColor="@android:color/white"
+		        android:layout_centerHorizontal="true"
+		        android:textStyle="bold"/>
+		    
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/tv_gameover">
+		        <Button 
+		            android:id="@+id/b_gameover_retry"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Lo Reintento"
+		            android:textColor="@android:color/white"
+		            android:background="@drawable/bg_button"
+		            android:onClick="retry"
+		            android:layout_alignParentLeft="true"
+		            android:padding="10dp"
+		            android:textStyle="bold"/>
+		        
+		        <Button 
+		            android:id="@+id/b_gameover_cancel"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="   Me Rindo   "
+		            android:textColor="@android:color/white"
+		            android:background="@drawable/bg_button"
+		            android:onClick="cancel"
+		            android:layout_alignParentRight="true"
+		            android:padding="10dp"
+		            android:textStyle="bold"/>
+		    </RelativeLayout>
+		</RelativeLayout>
+		
+		<!--  VENTANA EMERGENTE PAUSE -->
+		
+		<RelativeLayout 
+		        android:id="@+id/ventana_pause"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerInParent="true"
+		        android:background="@drawable/bg"
+		        android:padding="20dp"
+		        android:visibility="gone">
+		        
+		        <TextView
+		            android:id="@+id/texto_pause" 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/juego_pausado"
+		            android:textColor="@android:color/white"
+		            android:layout_centerHorizontal="true"
+		            android:gravity="center_horizontal"
+		            android:textStyle="bold"/>
+		        
+		        <Button 
+		            android:id="@+id/boton_cont"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:background="@drawable/bg_button"
+		            android:text="Continuar"
+		            android:textColor="@android:color/white"
+		            android:layout_below="@id/texto_pause"
+		            android:layout_centerHorizontal="true"
+		            android:layout_marginTop="10dp"
+		            android:padding="5dp"
+		            android:onClick="continua"
+		            android:textStyle="bold"/>
+		        
+		        <Button 
+		            android:id="@+id/boton_exit"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:background="@drawable/bg_button"
+		            android:text="     Salir     "
+		            android:textColor="@android:color/white"
+		            android:layout_below="@id/boton_cont"
+		            android:layout_centerHorizontal="true"
+		            android:padding="5dp"
+		            android:layout_marginTop="10dp"
+		            android:onClick="exit"
+		            android:textStyle="bold"/>
+		    </RelativeLayout>
+	    
+	</RelativeLayout>
+</FrameLayout>
