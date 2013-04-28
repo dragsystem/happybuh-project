@@ -93,5 +93,6 @@
         \n wofjiwejfjwpejpowjefojwpefjpwoejfojwepfjpwjepfowejfpowjpfojwfjw </string>
     <string name="title_activity_bubble_game">BubbleGame</string>
     <string name="texto_gameover">Buuh...has perdido, pero: \n</string>
+    <string name="juego_pausado">Juego pausado \n ¿Qué deseas hacer?</string>
 
 </resources>
