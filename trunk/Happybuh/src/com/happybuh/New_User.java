@@ -65,15 +65,15 @@ public class New_User extends Activity {
 				// TODO Auto-generated method stub
 				VG_Database db = new VG_Database(New_User.this);
 				db.open();
-				Long n = db.Insert_color("Blue", 0, 0, 1);
+				Long n = db.Insert_color("blue", 0, 0, 1);
 				Log.v("INSERTO AZUL" , "" + n);
-				Long d = db.Insert_color("Red", 100, 5, 0);
+				Long d = db.Insert_color("red", 100, 5, 0);
 				Log.v("INSERTO rojo" , "" + d);
-				Long a = db.Insert_color("Yellow", 200, 7, 0);
+				Long a = db.Insert_color("yellow", 200, 7, 0);
 				Log.v("INSERTO AZUL" , "" + a);
-				Long b = db.Insert_color("Green", 300, 9, 0);
+				Long b = db.Insert_color("green", 300, 9, 0);
 				Log.v("INSERTO AZUL" , "" + b);
-				Long c = db.Insert_color("Black", 400, 20, 0);
+				Long c = db.Insert_color("black", 400, 20, 0);
 				Log.v("INSERTO AZUL" , "" + c);
 				db.close();
 			}

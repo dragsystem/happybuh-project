@@ -107,7 +107,7 @@ public class ChangeGlasses extends Activity {
         
         
 	    //COLOCO LA IMAGEN DE BUH
-        String cuerpo = "buh_" + User_Info.color_name;
+        String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
 	    iv3 = (ImageView)findViewById(R.id.buh_body_change);
 	    iv3.setImageResource(this.getResources().getIdentifier("drawable/" + cuerpo, null, this.getPackageName()));
 	    

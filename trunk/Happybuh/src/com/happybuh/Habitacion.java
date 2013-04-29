@@ -47,6 +47,7 @@ public class Habitacion extends Activity {
 	static Random rand;
 	static Context c;
 	public Handler handler;
+	private VG_Database db;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class Habitacion extends Activity {
 			
 		};
         //v = li.inflate(com.happybuh.R.layout.activity_habitacion, null);
-        inicializar_user();
+        User_Info.inicializar(getApplicationContext());
         rand = new Random();
         c = this;
         
@@ -266,8 +267,14 @@ public class Habitacion extends Activity {
 	    
 	    
 	    set_perfil_info();
-	    
-	    
+	    db = new VG_Database(getApplicationContext());
+	    db.open();
+	    Long lc = db.getUserBeard();
+	    Log.v("Index Barba habitacion",""+lc);
+	    lc = db.getUserGlasses();
+	    Log.v("Index Gafas habitacion",""+lc);
+	    Log.v("Color cuerpo habitacion",User_Info.color_name);
+	    db.close();
     }
 //--------------------------------------------------------INFORMACION DE PERFIL-------------------------------------------------    //
     public void set_perfil_info() {
@@ -296,32 +303,6 @@ public class Habitacion extends Activity {
     	
     }
   //-----------------------------------------------------------------------------------------------------------------------------    //
-    private void inicializar_user() {
-		// TODO Auto-generated method stub
-    	
-    	VG_Database db = new VG_Database(Habitacion.this);
-	    db.open();
-		    ArrayList<String> a = new ArrayList<String>();
-	        a = db.info_user();
-	        User_Info.name = a.get(1);
-	        User_Info.level = Integer.parseInt(a.get(2));
-	        User_Info.coins = Integer.parseInt(a.get(3));
-	        User_Info.color = Integer.parseInt(a.get(4));
-	        User_Info.glasses = Integer.parseInt(a.get(5));
-	        User_Info.beard = Integer.parseInt(a.get(6));
-	        
-	        Long lc, lg, lb;
-	        lc = Long.parseLong((String) a.get(4));
-	        Log.v("INDICE COLO", lc.toString());
-	        User_Info.color_name = db.getColorName(lc);
-	        lg = Long.parseLong((String) a.get(5));
-	        User_Info.num_glasses = db.getGlassNum(lg);
-	        User_Info.col_glasses = db.getGlassColor(lg);
-	        lb = Long.parseLong((String) a.get(6));
-	        User_Info.num_beard = db.getBeardNum(lb);
-	        User_Info.col_beard = db.getBeardColor(lb);
-	    db.close();
-	}
 
 	public void addListenerOnButton() {
    	 
@@ -407,18 +388,8 @@ public class Habitacion extends Activity {
 
     
     static void ChangeBuhAppearance(ImageView a, int num, int objeto) {
-    	/*iv_buh = (ImageView)v.findViewById(com.happybuh.R.id.buh);
-    	iv_gafas = (ImageView)v.findViewById(com.happybuh.R.id.buh_gafas);
-    	iv_barba = (ImageView)v.findViewById(com.happybuh.R.id.buh_barba);*/
-    	
     	if(objeto == 1) {
-    		/*if(User_Info.color_name.equals("blue")) a.setImageResource(R.drawable.buh_blue);
-    		else if(User_Info.color_name.equals("red")) a.setImageResource(R.drawable.buh_red);
-    		else if(User_Info.color_name.equals("yellow")) a.setImageResource(R.drawable.buh_yellow);
-    		else if(User_Info.color_name.equals("green")) a.setImageResource(R.drawable.buh_green);
-    		else if(User_Info.color_name.equals("black")) a.setImageResource(R.drawable.buh_black);*/
     		String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
-    		Log.v("CUERPO ", cuerpo);
     		a.setImageResource(c.getResources().getIdentifier("drawable/" + cuerpo, null, c.getPackageName()));
     	}
     	else if (objeto == 2) {
