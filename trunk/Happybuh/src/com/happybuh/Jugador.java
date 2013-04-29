@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 public class Jugador {
 	BitmapFactory.Options options;
-	public Bitmap personaje;
+	public Bitmap personaje, gafas_img, barba_img;
 	Objecte jugador;
 	public float novapy;
 	private VG_Database db;
@@ -23,10 +23,29 @@ public class Jugador {
 		options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		GV.puntuacio_bubble.vides = 3;
-		personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.buh_blue, options);
-		jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.12f),0,0);
+		
+		db = GV.Activities.jumpgame.db;
+		db.open();
+			//SET BUH
+			String buh = "buh_" + db.getUserColorName().toLowerCase();
+		    personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + buh, null, GV.Activities.jumpgame.getPackageName()));
+			//personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.buh_blue, options);
+			jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.12f),0,0);
+		
+			//SET GAFAS
+			lc = db.getUserGlasses();
+			String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
+			gafas_img = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + gafas, null, GV.Activities.jumpgame.getPackageName()));
+			gafas_img = Bitmap.createScaledBitmap(gafas_img,(int)GV.widthpc(0.10f),(int)GV.widthpc(0.12f),false);
+
+			//SET BARBA
+			lc = db.getUserBeard();
+			String barba = "barba_" + db.getBeardNum(lc) + "_" + db.getBeardColor(lc);
+		    barba_img = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + barba, null, GV.Activities.jumpgame.getPackageName()));
+		    barba_img = Bitmap.createScaledBitmap(barba_img,(int)GV.widthpc(0.10f),(int)GV.widthpc(0.12f),false);
+	    db.close();
 	}
-	public Jugador(float speed, int que) {
+	/*public Jugador(float speed, int que) {
 		// TODO inicialitzar Objecte (mirar protagonista)
 		options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
@@ -63,7 +82,7 @@ public class Jugador {
 	    db.close();
 		personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.buh_blue, options);
 		jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.12f),0,0);
-	}
+	}*/
 	
 	public void actualitza(float yAccel, Plataformes plat) {
 		//moviment accelerometre
@@ -104,6 +123,8 @@ public class Jugador {
 	
 	public void draw(Canvas canvas) {
 		canvas.drawBitmap(jugador.img,jugador.x, jugador.y, null);
+		canvas.drawBitmap(gafas_img,jugador.x, jugador.y, null);
+		canvas.drawBitmap(barba_img,jugador.x, jugador.y, null);
 	}
 	public float getX() {
 		return jugador.x;
