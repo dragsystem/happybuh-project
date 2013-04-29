@@ -39,17 +39,20 @@ public class ChangeGlasses extends Activity {
         setContentView(R.layout.activity_change_glasses);
         
         sel_glass = 0;
-        User_Info.color_name = "blue";
+        //User_Info.color_name = "blue";
        //User_Info.col_beard = "0";
+        
         
         db = new VG_Database(getApplicationContext());
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
+        db.open();
+	    	User_Info.color_name = db.getUserColor();
+	    db.close();
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
         iv4 = (ImageView)findViewById(R.id.glass_buy_bought);
-        iv4.setClickable(false);
         
         //TEXTO CUANDO NO CUMPLE REQUISITOS
         tv2 = (TextView)findViewById(R.id.requisitos);
@@ -61,7 +64,7 @@ public class ChangeGlasses extends Activity {
         tv.setTypeface(type);
         tv = (TextView)findViewById(R.id.glass_lvlreq_et);
         tv.setTypeface(type);
-        Long lc = Long.parseLong("" +User_Info.color);
+        lc = Long.parseLong("" +User_Info.color);
         db.open();
 	    	tv.setText(db.getColorLvl(lc));
 	    	comprado = db.getColorBought(lc);
@@ -245,38 +248,46 @@ public class ChangeGlasses extends Activity {
 		tv = (TextView)findViewById(R.id.glass_lvlreq_et);
         db.open();
         	Long lc = Long.parseLong(db.getGlassIndex(num, color));
+        	Log.v("indice gafa seleccionada" , ""+lc);
 	        level_req = Integer.parseInt(db.getGlassLvl(lc));
 	    	precio_req = Integer.parseInt(db.getGlassPrice(lc));
 	    	tv.setText(""+db.getGlassLvl(lc));
 	    	tv = (TextView)findViewById(R.id.glass_price_et);
 	    	tv.setText(""+db.getGlassPrice(lc));
 	    	comprado = db.getGlassBought(lc);
+	    	Log.v("COMPRADO - APLICAR" , ""+comprado);
 	    db.close();
 	    if(User_Info.level < level_req || User_Info.coins < precio_req) {
     		tv2.setVisibility(View.VISIBLE);
-    		iv4.setVisibility(View.INVISIBLE);
+    		iv4.setVisibility(View.GONE);
     	}
     	else if(comprado == 1) {
-    		tv2.setVisibility(View.INVISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv4.setImageResource(R.drawable.aplicar);
+    		iv4.setVisibility(View.VISIBLE);
     	}
     	else if(comprado == 0) {
-    		tv2.setVisibility(View.VISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv4.setImageResource(R.drawable.comprar);
+    		iv4.setVisibility(View.VISIBLE);
     	}
 	}
 	public void comprar_aplicar(View v) {
+		Log.v("COMPRAR ", "HE ENTRADO EN LA FUNCION");
     	db.open();
     		if(comprado == 0) {
 	    		User_Info.coins -= precio_req;
 	    		db.setUserCoins(User_Info.coins);
-	    		db.setColorBought(lc);
-	    		comprado = db.getColorBought(lc);
-	    		User_Info.actualizar_user(getApplicationContext());
+	    		db.setGlassesBought(lc);
+	    		comprado = db.getGlassBought(lc);
 	    		tv = (TextView)findViewById(R.id.glass_coins_et);
 	    		tv.setText(""+User_Info.coins);
+	    		iv4.setImageResource(R.drawable.aplicar);
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_LONG).show();
     		}
+    		else Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
 			db.setUserGlasses(lc);
+    		User_Info.actualizar_user(getApplicationContext());
     	db.close();
     }
 }

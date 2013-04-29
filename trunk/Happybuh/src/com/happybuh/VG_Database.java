@@ -132,7 +132,7 @@ public class VG_Database {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_LVL, 1);
-		cv.put(KEY_COINS, 100);
+		cv.put(KEY_COINS, 10000);
 		cv.put(KEY_COLOR, 1);
 		cv.put(KEY_GLASSES, 1);
 		cv.put(KEY_BEARD, 1);
@@ -363,7 +363,6 @@ public class VG_Database {
 		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
 		int iName = c.getColumnIndex(KEY_GLASSES_LVL);
-		Log.v("CURSOR LVLGLASS", ""+iName);
 		if(c != null) {
 			c.moveToFirst();
 			String name = c.getString(iName);
@@ -387,7 +386,7 @@ public class VG_Database {
 	public String getGlassColor(Long lg) {
 		String [] columns = new String[] {KEY_ROWID, KEY_NUM_GLASS, KEY_COLOR_GLASSES, KEY_GLASSES_PRICE, KEY_GLASSES_LVL, KEY_GLASSES_BOUGHT};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_GLASSES, columns, KEY_ROWID + " = " + lg, null, null, null, null);
-		int iName = c.getColumnIndex(KEY_GLASSES);
+		int iName = c.getColumnIndex(KEY_COLOR_GLASSES);
 		if(c != null) {
 			c.moveToFirst();
 			String name = c.getString(iName);
@@ -531,7 +530,7 @@ public class VG_Database {
 		ourDatabase.update(DATABASE_TABLE_COLOR, cv, KEY_ROWID + "= " + lc, null);
 	}
 	
-	public void setgLASSESBought(Long lc) {
+	public void setGlassesBought(Long lc) {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_GLASSES_BOUGHT, 1);
 		ourDatabase.update(DATABASE_TABLE_GLASSES, cv, KEY_ROWID + "= " + lc, null);
@@ -570,7 +569,7 @@ public class VG_Database {
 
 	public void setUserGlasses(Long lc) {
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_NUM_GLASS, lc);
+		cv.put(KEY_GLASSES, lc);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
 
@@ -588,7 +587,66 @@ public class VG_Database {
 	
 	public void setUserBeard(Long lc) {
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_NUM_BEARD, lc);
+		cv.put(KEY_BEARD, lc);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
+
+	public String getUserColor() {
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
+		
+		int iName = c.getColumnIndex(KEY_COLOR);
+		c.moveToFirst();
+		
+		Long lc = c.getLong(iName);
+		c.close();
+		
+		columns = new String[] {KEY_ROWID, KEY_COLOR_NAME, KEY_COLOR_PRICE, KEY_COLOR_LVL, KEY_COLOR_BOUGHT};
+		c = ourDatabase.query(DATABASE_TABLE_COLOR, columns, KEY_ROWID + " = " + lc, null, null, null, null);
+		iName = c.getColumnIndex(KEY_COLOR_NAME);
+		if(c != null) {
+			c.moveToFirst();
+			String name = c.getString(iName);
+			return name;
+		}
+		
+		c.close();
+		return null;
+	}
+
+	public Long getColorIndex() {
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
+		
+		int iName = c.getColumnIndex(KEY_COLOR);
+		c.moveToFirst();
+		
+		Long lc = c.getLong(iName);
+		c.close();
+		return lc;
+	}
+
+	public Long getUserGlasses() {
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
+		
+		int iName = c.getColumnIndex(KEY_GLASSES);
+		c.moveToFirst();
+		
+		Long lc = c.getLong(iName);
+		c.close();
+		return lc;
+	}
+	public Long getUserBeard() {
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
+		
+		int iName = c.getColumnIndex(KEY_BEARD);
+		c.moveToFirst();
+		
+		Long lc = c.getLong(iName);
+		c.close();
+		return lc;
+	}
+
 }

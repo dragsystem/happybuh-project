@@ -40,17 +40,19 @@ public class ChangeBeard extends Activity {
         setContentView(R.layout.activity_change_beard);
         
         sel_barba = 0;
-        User_Info.color_name = "blue";
        //User_Info.col_beard = "0";
         
         db = new VG_Database(getApplicationContext());
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
+        db.open();
+	    	User_Info.color_name = db.getUserColor();
+	    db.close();
+        
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
         iv4 = (ImageView)findViewById(R.id.beard_buy_bought);
-        iv4.setClickable(false);
         
         //TEXTO CUANDO NO CUMPLE REQUISITOS
         tv2 = (TextView)findViewById(R.id.requisitos);
@@ -108,13 +110,13 @@ public class ChangeBeard extends Activity {
 	    iv3.setImageResource(this.getResources().getIdentifier("drawable/" + cuerpo, null, this.getPackageName()));
 
 	    //COLOCO LAS GAFAS DE BUH
-	    int numg = Integer.parseInt(User_Info.num_beard);
-	    if (numg > 0) {
-		    String gafas = "gafas_" + User_Info.num_beard + "_" + User_Info.col_beard;
-		    iv2 = (ImageView)findViewById(R.id.buh_body_change);
+	    	db.open();
+	    	lc = db.getUserGlasses();
+		    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
+		    iv2 = (ImageView)findViewById(R.id.buh_beard_glasses);
 		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
 		    iv2.setVisibility(View.VISIBLE);
-	    }
+		    db.close();
 	    
         iv = (ImageView)findViewById(R.id.buh_beard_change);
     }
@@ -254,30 +256,36 @@ public class ChangeBeard extends Activity {
 	    db.close();
 	    if(User_Info.level < level_req || User_Info.coins < precio_req) {
     		tv2.setVisibility(View.VISIBLE);
-    		iv4.setVisibility(View.INVISIBLE);
+    		iv4.setVisibility(View.GONE);
     	}
     	else if(comprado == 1) {
-    		tv2.setVisibility(View.INVISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv4.setImageResource(R.drawable.aplicar);
+    		iv4.setVisibility(View.VISIBLE);
     	}
     	else if(comprado == 0) {
-    		tv2.setVisibility(View.INVISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv4.setImageResource(R.drawable.comprar);
+    		iv4.setVisibility(View.VISIBLE);
     	}
 	}
 	
 	public void comprar_aplicar(View v) {
+		Log.v("COMPRAR ", "HE ENTRADO EN LA FUNCION");
     	db.open();
     		if(comprado == 0) {
 	    		User_Info.coins -= precio_req;
 	    		db.setUserCoins(User_Info.coins);
-	    		db.setColorBought(lc);
-	    		comprado = db.getColorBought(lc);
-	    		User_Info.actualizar_user(getApplicationContext());
+	    		db.setBeardBought(lc);
+	    		comprado = db.getBeardBought(lc);
 	    		tv = (TextView)findViewById(R.id.beard_coins_et);
 	    		tv.setText(""+User_Info.coins);
+	    		iv4.setImageResource(R.drawable.aplicar);
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_LONG).show();
     		}
+    		else Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
 			db.setUserBeard(lc);
+    		User_Info.actualizar_user(getApplicationContext());
     	db.close();
     }
 }

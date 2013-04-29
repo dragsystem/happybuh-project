@@ -47,7 +47,6 @@ public class New_User extends Activity {
 			    		VG_Database entry = new VG_Database(New_User.this);
 			    		entry.open();
 			    		Long n = entry.createEntry_userinfo(username);
-			    		Log.v("INSERTO USUARIOS" , "" + n);
 			    		entry.close();
 			    		crear_entrada_color();
 			    		crear_entrada_glass();
