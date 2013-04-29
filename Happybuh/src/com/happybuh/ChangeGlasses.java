@@ -41,14 +41,15 @@ public class ChangeGlasses extends Activity {
         sel_glass = 0;
         //User_Info.color_name = "blue";
        //User_Info.col_beard = "0";
-        
+        num_gafas = User_Info.num_glasses;
+        col_gafas = User_Info.col_glasses;
         
         db = new VG_Database(getApplicationContext());
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
         db.open();
-	    	User_Info.color_name = db.getUserColor();
+	    	User_Info.color_name = db.getUserColorName();
 	    db.close();
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
@@ -130,45 +131,44 @@ public class ChangeGlasses extends Activity {
 
     public void cambio_gafas1(View v) {
     	sel_glass = 1;
-    	User_Info.num_glasses = "1";
+    	num_gafas = "1";
+    	col_gafas = "0";
     	carga_gafas();
     	carga_interficie("1", "0");
-    	num_gafas = "1";
     	db.open();
-    		lc = db.getIndexGlasses(num_gafas, "0");
+    		lc = db.getGlassIndex(num_gafas, col_gafas);
     	db.close();
     }
     
 	public void cambio_gafas2(View v) {
 		sel_glass = 1;
-		User_Info.num_glasses = "2";
+	    num_gafas = "2";
+	    col_gafas = "0";
 	    carga_interficie("2", "0");
 	    carga_gafas();
-	    num_gafas = "2";
 	    db.open();
-			lc = db.getIndexGlasses(num_gafas, "0");
+			lc = db.getGlassIndex(num_gafas, col_gafas);
 		db.close();
 	}
 
 	public void cambio_gafas3(View v) {
 		sel_glass = 1; 
-		User_Info.num_glasses = "3";
+		num_gafas = "3";
+		col_gafas= "0";
 	    carga_gafas();
 	    carga_interficie("3", "0");
-	    num_gafas = "3";
 	    db.open();
-			lc = db.getIndexGlasses(num_gafas, "0");
+			lc = db.getGlassIndex(num_gafas, col_gafas);
 		db.close();
 	}
 	
 	public void cambio_color_azul(View v){
 		if(sel_glass == 1) {
-			User_Info.col_glasses = "0";
-		    carga_interficie(User_Info.num_glasses,"0");
+			col_gafas = "0";
+		    carga_interficie(num_gafas,col_gafas);
 		    carga_color();
-		    col_gafas = "0";
 		    db.open();
-				lc = db.getIndexGlasses(num_gafas, "0");
+				lc = db.getGlassIndex(num_gafas, col_gafas);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -177,12 +177,11 @@ public class ChangeGlasses extends Activity {
 
 	public void cambio_color_rojo(View v){
 		if(sel_glass == 1) {
-			User_Info.col_glasses = "1";
-		    carga_interficie(User_Info.num_glasses,"1");
+			col_gafas = "1";
+		    carga_interficie(num_gafas,col_gafas);
 		    carga_color();
-		    col_gafas = "1";
 		    db.open();
-				lc = db.getIndexGlasses(num_gafas, "1");
+				lc = db.getGlassIndex(num_gafas, col_gafas);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -190,12 +189,11 @@ public class ChangeGlasses extends Activity {
 	
 	public void cambio_color_amarillo(View v){
 		if(sel_glass == 1) {
-			User_Info.col_glasses = "2";
-			carga_interficie(User_Info.num_glasses,"2");
-		    carga_color();
 		    col_gafas = "2";
+			carga_interficie(num_gafas,col_gafas);
+		    carga_color();
 		    db.open();
-				lc = db.getIndexGlasses(num_gafas, "2");
+				lc = db.getGlassIndex(num_gafas, col_gafas);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -203,12 +201,11 @@ public class ChangeGlasses extends Activity {
 	
 	public void cambio_color_verde(View v){
 		if(sel_glass == 1) {
-			User_Info.col_glasses = "3";
-			carga_interficie(User_Info.num_glasses,"3");
+			col_gafas = "3";
+			carga_interficie(num_gafas,col_gafas);
 		    carga_color();
-		    col_gafas = "3";
 		    db.open();
-				lc = db.getIndexGlasses(num_gafas, "3");
+				lc = db.getGlassIndex(num_gafas, col_gafas);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -216,46 +213,50 @@ public class ChangeGlasses extends Activity {
 	
 	public void cambio_color_negro(View v){
 		if(sel_glass == 1) {
-			User_Info.col_glasses = "4";
-			carga_interficie(User_Info.num_glasses,"4");
+			col_gafas = "4";
+			carga_interficie(num_gafas,col_gafas);
 		    carga_color();
-		    col_gafas = "4";
 		    db.open();
-				lc = db.getIndexGlasses(num_gafas, "4");
+				lc = db.getGlassIndex(num_gafas, col_gafas);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
 	}
 	
 	public void volver(View v) {
-    	//moveTaskToBack(true);
     	User_Info.inicializar(getApplicationContext());
     	finish();
     }
 	
+	
+	@Override
+	public void onBackPressed() {
+		User_Info.inicializar(getApplicationContext());
+    	finish();
+		//super.onBackPressed();
+	}
+
 	private void carga_gafas() {
-		String imagen = "gafas_" + User_Info.num_glasses + "_0"; 
+		String imagen = "gafas_" + num_gafas + "_0"; 
 	    iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
 	    iv.setVisibility(View.VISIBLE);
 	}
 	
 	private void carga_color() {
-		String imagen = "gafas_" + User_Info.num_glasses + "_" + User_Info.col_glasses; 
+		String imagen = "gafas_" + num_gafas + "_" + col_gafas; 
 	    iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
 	}
 	
 	private void carga_interficie(String num, String color) {
 		tv = (TextView)findViewById(R.id.glass_lvlreq_et);
         db.open();
-        	Long lc = Long.parseLong(db.getGlassIndex(num, color));
-        	Log.v("indice gafa seleccionada" , ""+lc);
+        	lc = db.getGlassIndex(num, color);
 	        level_req = Integer.parseInt(db.getGlassLvl(lc));
 	    	precio_req = Integer.parseInt(db.getGlassPrice(lc));
 	    	tv.setText(""+db.getGlassLvl(lc));
 	    	tv = (TextView)findViewById(R.id.glass_price_et);
 	    	tv.setText(""+db.getGlassPrice(lc));
 	    	comprado = db.getGlassBought(lc);
-	    	Log.v("COMPRADO - APLICAR" , ""+comprado);
 	    db.close();
 	    if(User_Info.level < level_req || User_Info.coins < precio_req) {
     		tv2.setVisibility(View.VISIBLE);
@@ -273,7 +274,6 @@ public class ChangeGlasses extends Activity {
     	}
 	}
 	public void comprar_aplicar(View v) {
-		Log.v("COMPRAR ", "HE ENTRADO EN LA FUNCION");
     	db.open();
     		if(comprado == 0) {
 	    		User_Info.coins -= precio_req;
@@ -285,9 +285,17 @@ public class ChangeGlasses extends Activity {
 	    		iv4.setImageResource(R.drawable.aplicar);
 	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_LONG).show();
     		}
-    		else Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
-			db.setUserGlasses(lc);
-    		User_Info.actualizar_user(getApplicationContext());
+    		else {
+    			lc = db.getGlassIndex(num_gafas, col_gafas);
+    			db.setUserGlasses(lc);
+    			Log.v("num_gafas ", num_gafas);
+    			Log.v("col_gafas", col_gafas);
+    			Log.v("indice guardado", ""+lc.intValue());
+    			User_Info.num_glasses = num_gafas;
+    			User_Info.col_glasses = col_gafas;
+    			User_Info.glasses = lc.intValue();
+    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
+    		}
     	db.close();
     }
 }

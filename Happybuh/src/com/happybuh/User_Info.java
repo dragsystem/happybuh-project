@@ -10,7 +10,7 @@ import android.util.Log;
 public class User_Info {
 	public static String name;
 	public static int level;
-	public static int exp; 
+	public static float exp; 
 	public static int coins;
 	public static int color;
 	public static int glasses;
@@ -34,14 +34,17 @@ public class User_Info {
 	        
 	        Long lc, lg, lb;
 	        lc = Long.parseLong((String) a.get(4));
-	        Log.v("INDICE COLO", lc.toString());
 	        User_Info.color_name = db.getColorName(lc);
 	        lg = Long.parseLong((String) a.get(5));
-	        User_Info.num_glasses = db.getNumGlasses(lg);
-	        User_Info.col_glasses = db.getColGlasses(lg);
+	        User_Info.num_glasses = db.getGlassNum(lg);
+	        User_Info.col_glasses = db.getGlassColor(lg);
 	        lb = Long.parseLong((String) a.get(6));
-	        User_Info.num_beard = db.getNumBeard(lb);
-	        User_Info.col_beard = db.getColBeard(lb);
+	        User_Info.num_beard = db.getBeardNum(lb);
+	        User_Info.col_beard = db.getBeardColor(lb);
+	        
+	        Log.v("COLOR NAME+INDEX", User_Info.color_name + " , " + User_Info.color);
+	        Log.v("GLASS NUM + COLOR + INDEX", User_Info.num_glasses + " , " + User_Info.col_glasses + " , " + User_Info.glasses);
+	        Log.v("BEARD NUM + COLOR + INDEX", User_Info.num_beard + " , " + User_Info.col_beard + " , " + User_Info.beard);
 	    db.close();
 	}
 	
@@ -63,7 +66,6 @@ public class User_Info {
 		VG_Database db = new VG_Database(c);
 	    db.open();
 	    	coins += ncoins;
-	    	Log.d("COINS TRAS JUGAR", ""+coins);
 	    	exp += nexp;
 	    	if(level >= 0 && level < 5) {
 	    		if (exp >= 1) {
@@ -97,5 +99,35 @@ public class User_Info {
 	    	}
 	    	db.actualiza_user(level, exp, coins);
 	    db.close();
+	}
+	
+	static float porcentaje_exp(){
+		if(level >= 0 && level < 5) {
+    		if (exp >= 1) {
+    			return exp*100;
+    		}
+    	}
+    	if(level >= 5 && level < 10) {
+    		if (exp >= 5) {
+    			return exp*100/5;
+    		}
+    	}
+    	if(level >= 10 && level < 15) {
+    		if (exp >= 10) {
+    			return exp*100/10;
+    		}
+    	}
+    	if(level >= 15 && level < 20) {
+    		if (exp >= 15) {
+    			return exp*100/15;
+    		}
+    	}
+    	if(level >= 25 && level < 30) {
+    		if (exp >= 20) {
+    			return exp*100/20;
+    		}
+    	}
+		
+		return 0;
 	}
 }

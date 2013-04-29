@@ -11,8 +11,8 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,9 +22,11 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,12 +46,24 @@ public class Habitacion extends Activity {
 	User_Info a;
 	static Random rand;
 	static Context c;
+	public Handler handler;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
+        GV.Activities.habitacion = this;
         setContentView(R.layout.activity_habitacion);
+        
+        
+        handler = new Handler() {
+
+			@Override
+			public void handleMessage(Message msg) {
+				if(msg.what == 1) set_perfil_info();
+			}
+			
+		};
         //v = li.inflate(com.happybuh.R.layout.activity_habitacion, null);
         inicializar_user();
         rand = new Random();
@@ -64,6 +78,9 @@ public class Habitacion extends Activity {
     	ChangeBuhAppearance(iv_barba, num, 3);
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
+        
+        Button b = (Button)findViewById(R.id.boton_help);
+        b.setTypeface(type);
         
         addListenerOnButton();
         
@@ -227,38 +244,7 @@ public class Habitacion extends Activity {
 	    t_armario.setTypeface(type);
 	    TextView t_mando = (TextView)findViewById(R.id.t_mando);
 	    t_mando.setTypeface(type);
-	    TextView info_tit = (TextView)findViewById(R.id.info_title);
-	    info_tit.setTypeface(type);
-	    info_tit.setText(Html.fromHtml("<h1>HAPPYBUH Help Menu</h1><br>"));
-	    TextView texto = (TextView)findViewById(R.id.desc); 
-	    texto.setMovementMethod(new ScrollingMovementMethod());
-	    texto.setTypeface(type);
-	    texto.setText(Html.fromHtml("<p>HappyBuh esta formado por una coleccion de mini-juegos</p>" +
-	    		"<p><i>Ahora</i><b> Haremos </b> pruebas varias con <font color='red'>los colores </font></p>" +
-	    		"<p>Deberas subir niveles a medida que juegues y alcances nuevos Records a la vez que consiguas coins para poder personalizar a tu personaje</p>" +
-	    		"<p>Tambien podras probar un nuevo juego que se desbloqueara al llegar al nivel 10</p>" + 
-	    		"<p>Hay 3 tipos de juegos. DIVERTIDISIMOS!!</p>"+
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" +
-	    		"<p>meeeeeeeeeerp</p>" ));
+	    
 	    
 	    try {
 	    	TextView name = (TextView)findViewById(R.id.user_name);
@@ -277,8 +263,39 @@ public class Habitacion extends Activity {
 	    }catch(Exception e) {
 	    	e.getMessage();
 	    }
+	    
+	    
+	    set_perfil_info();
+	    
+	    
     }
-    
+//--------------------------------------------------------INFORMACION DE PERFIL-------------------------------------------------    //
+    public void set_perfil_info() {
+    	tv = (TextView)findViewById(R.id.perfil_titulo);
+    	tv.setTypeface(type);
+    	tv = (TextView)findViewById(R.id.perfil_user);
+    	tv.setTypeface(type);
+    	tv = (TextView)findViewById(R.id.perfil_user_set);
+    	tv.setTypeface(type);
+    	tv.setText(User_Info.name);
+    	tv = (TextView)findViewById(R.id.perfil_level);
+    	tv.setTypeface(type);
+    	tv = (TextView)findViewById(R.id.perfil_level_set);
+    	tv.setTypeface(type);
+    	tv.setText(""+User_Info.level);
+    	tv = (TextView)findViewById(R.id.perfil_exp);
+    	tv.setTypeface(type);
+    	tv = (TextView)findViewById(R.id.perfil_exp_set);
+    	tv.setTypeface(type);
+    	tv.setText(""+User_Info.porcentaje_exp());
+    	
+    	int i = (int)User_Info.porcentaje_exp();
+    	
+    	ProgressBar pb = (ProgressBar)findViewById(R.id.perfil_exp_bar);
+    	pb.setProgress(i);
+    	
+    }
+  //-----------------------------------------------------------------------------------------------------------------------------    //
     private void inicializar_user() {
 		// TODO Auto-generated method stub
     	
@@ -298,11 +315,11 @@ public class Habitacion extends Activity {
 	        Log.v("INDICE COLO", lc.toString());
 	        User_Info.color_name = db.getColorName(lc);
 	        lg = Long.parseLong((String) a.get(5));
-	        User_Info.num_glasses = db.getNumGlasses(lg);
-	        User_Info.col_glasses = db.getColGlasses(lg);
+	        User_Info.num_glasses = db.getGlassNum(lg);
+	        User_Info.col_glasses = db.getGlassColor(lg);
 	        lb = Long.parseLong((String) a.get(6));
-	        User_Info.num_beard = db.getNumBeard(lb);
-	        User_Info.col_beard = db.getColBeard(lb);
+	        User_Info.num_beard = db.getBeardNum(lb);
+	        User_Info.col_beard = db.getBeardColor(lb);
 	    db.close();
 	}
 
@@ -382,6 +399,13 @@ public class Habitacion extends Activity {
         return true;
     }
     
+    @Override
+	public void onBackPressed() {
+    	Toast.makeText(getApplicationContext(), "hola",  Toast.LENGTH_SHORT).show();
+    	//super.onBackPressed();
+	}
+
+    
     static void ChangeBuhAppearance(ImageView a, int num, int objeto) {
     	/*iv_buh = (ImageView)v.findViewById(com.happybuh.R.id.buh);
     	iv_gafas = (ImageView)v.findViewById(com.happybuh.R.id.buh_gafas);
@@ -393,7 +417,8 @@ public class Habitacion extends Activity {
     		else if(User_Info.color_name.equals("yellow")) a.setImageResource(R.drawable.buh_yellow);
     		else if(User_Info.color_name.equals("green")) a.setImageResource(R.drawable.buh_green);
     		else if(User_Info.color_name.equals("black")) a.setImageResource(R.drawable.buh_black);*/
-    		String cuerpo = "buh_" + User_Info.color_name;
+    		String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
+    		Log.v("CUERPO ", cuerpo);
     		a.setImageResource(c.getResources().getIdentifier("drawable/" + cuerpo, null, c.getPackageName()));
     	}
     	else if (objeto == 2) {
@@ -424,5 +449,9 @@ public class Habitacion extends Activity {
     	}
 //    	iv_buh.startAnimation(AnimationUtils.loadAnimation(this, R.anim.carga_fantasma));
     }
-
+    
+    public void help(View v) {
+		Intent i = new Intent("com.happybuh.HELP");
+		startActivity(i);
+	}
 }

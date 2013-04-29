@@ -19,6 +19,7 @@ public class GV {
 	public static class Activities {
 		public static BubbleGame bubblegame;
 		public static JumpGame jumpgame;
+		public static Habitacion habitacion;
 	}
 	
 	public static class puntuacio_bubble {

@@ -21,6 +21,7 @@ public class JumpGame extends Activity {
 	public TextView tv;
 	public Button b;
 	private Typeface type;
+	public VG_Database db;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class JumpGame extends Activity {
 		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		GV.Screen.wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GameOnLock");
 				
+		db = new VG_Database(getApplicationContext());
+		
 		type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 		editar_estilo();
 		

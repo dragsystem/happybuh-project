@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
 						info.open();
 						ArrayList a = info.info_user();
 						info.setUserCoins(10000);
+						info.setUserLvl(30);
 						info.close();
 						if(a.isEmpty()) {
 							//poner el dialog alert del tutorial
