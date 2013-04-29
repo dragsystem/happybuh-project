@@ -107,14 +107,16 @@ public class ChangeBeard extends Activity {
         
         
 	    //COLOCO LA IMAGEN DE BUH
-        String cuerpo = "buh_" + User_Info.color_name;
+        db.open();
+        String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
 	    iv3 = (ImageView)findViewById(R.id.buh_body_change);
 	    iv3.setImageResource(this.getResources().getIdentifier("drawable/" + cuerpo, null, this.getPackageName()));
+	    db.close();
 
 	    //COLOCO LAS GAFAS DE BUH
 	    	db.open();
 	    	lc = db.getUserGlasses();
-	    	if(lc > 0) {
+	    	if(lc > 1) {
 			    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
 			    iv2 = (ImageView)findViewById(R.id.buh_beard_glasses);
 			    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));

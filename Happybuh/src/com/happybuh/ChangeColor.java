@@ -98,7 +98,8 @@ public class ChangeColor extends Activity {
         //COLOCO LAS GAFAS DE BUH
         db.open();
     	lc = db.getUserGlasses();
-    	if(lc > 0) {
+    	Log.v("INDEX GLASSES CHANGE COLOR", ""+lc);
+    	if(lc > 1) {
 		    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
 		    iv2 = (ImageView)findViewById(R.id.buh_color_glasses);
 		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
@@ -109,7 +110,8 @@ public class ChangeColor extends Activity {
 	    //COLOCO LA BARBA DE BUH
 	    db.open();
     	lc = db.getUserBeard();
-    	if(lc > 0) {
+    	Log.v("INDEX BEARD CHANGE COLOR", ""+lc);
+    	if(lc > 1) {
 		    String barba = "barba_" + db.getBeardNum(lc) + "_" + db.getBeardColor(lc);
 		    iv4 = (ImageView)findViewById(R.id.buh_color_beard);
 		    iv4.setImageResource(this.getResources().getIdentifier("drawable/" + barba, null, this.getPackageName()));
@@ -229,7 +231,6 @@ public class ChangeColor extends Activity {
 	    		db.setUserCoins(User_Info.coins);
 	    		db.setColorBought(lc);
 	    		comprado = db.getColorBought(lc);
-	    		User_Info.actualizar_user(getApplicationContext());
 	    		tv = (TextView)findViewById(R.id.color_coins_et);
 	    		tv.setText(""+User_Info.coins);
 	    		iv3.setImageResource(R.drawable.aplicar);

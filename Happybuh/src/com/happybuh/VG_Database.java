@@ -131,8 +131,8 @@ public class VG_Database {
 	public long createEntry_userinfo(String name) {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
-		cv.put(KEY_LVL, 1);
-		cv.put(KEY_COINS, 100);
+		cv.put(KEY_LVL, 40);
+		cv.put(KEY_COINS, 100000);
 		cv.put(KEY_COLOR, 1);
 		cv.put(KEY_GLASSES, 1);
 		cv.put(KEY_BEARD, 1);
