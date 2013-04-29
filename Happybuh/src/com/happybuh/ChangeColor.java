@@ -39,10 +39,13 @@ public class ChangeColor extends Activity {
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
+        db.open();
+	    	User_Info.color_name = db.getUserColor();
+	    	lc = db.getColorIndex();
+	    db.close();
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
         iv3 = (ImageView)findViewById(R.id.color_buy_bought);
-        iv3.setClickable(false);
         
         //TEXTO CUANDO NO CUMPLE REQUISITOS
         tv2 = (TextView)findViewById(R.id.requisitos);
@@ -197,15 +200,15 @@ public class ChangeColor extends Activity {
 	    db.close();
     	if(User_Info.level < level_req || User_Info.coins < precio_req) {
     		tv2.setVisibility(View.VISIBLE);
-    		iv3.setVisibility(View.INVISIBLE);
+    		iv3.setVisibility(View.GONE);
     	}
     	else if(comprado == 1) {
-    		tv2.setVisibility(View.INVISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv3.setImageResource(R.drawable.aplicar);
     		iv3.setVisibility(View.VISIBLE);
     	}
     	else if(comprado == 0) {
-    		tv2.setVisibility(View.VISIBLE);
+    		tv2.setVisibility(View.GONE);
     		iv3.setImageResource(R.drawable.comprar);
     		iv3.setVisibility(View.VISIBLE);
     	}
