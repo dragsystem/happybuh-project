@@ -40,6 +40,8 @@ public class ChangeBeard extends Activity {
         setContentView(R.layout.activity_change_beard);
         
         sel_barba = 0;
+        num_barba = User_Info.num_beard;
+        col_barba = User_Info.col_beard;
        //User_Info.col_beard = "0";
         
         db = new VG_Database(getApplicationContext());
@@ -47,7 +49,7 @@ public class ChangeBeard extends Activity {
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
         db.open();
-	    	User_Info.color_name = db.getUserColor();
+	    	User_Info.color_name = db.getUserColorName();
 	    db.close();
         
         
@@ -112,10 +114,12 @@ public class ChangeBeard extends Activity {
 	    //COLOCO LAS GAFAS DE BUH
 	    	db.open();
 	    	lc = db.getUserGlasses();
-		    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
-		    iv2 = (ImageView)findViewById(R.id.buh_beard_glasses);
-		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
-		    iv2.setVisibility(View.VISIBLE);
+	    	if(lc > 0) {
+			    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
+			    iv2 = (ImageView)findViewById(R.id.buh_beard_glasses);
+			    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
+			    iv2.setVisibility(View.VISIBLE);
+	    	}
 		    db.close();
 	    
         iv = (ImageView)findViewById(R.id.buh_beard_change);
@@ -129,45 +133,44 @@ public class ChangeBeard extends Activity {
 
     public void cambio_barba1(View v) {
     	sel_barba = 1;
-    	User_Info.num_beard = "1";
+    	num_barba = "1";
+    	col_barba = "0";
     	carga_barba();
     	carga_interficie("1", "0");
-    	num_barba = "1";
     	db.open();
-			lc = db.getIndexBeard(num_barba, "0");
+			lc = db.getBeardIndex(num_barba, col_barba);
 		db.close();
     }
     
 	public void cambio_barba2(View v) {
 		sel_barba = 1;
-		User_Info.num_beard = "2";
-	    carga_interficie("2", "0");
-	    carga_barba();
     	num_barba = "2";
+    	col_barba = "0";
+    	carga_barba();
+    	carga_interficie("2", "0");
     	db.open();
-			lc = db.getIndexBeard(num_barba, "0");
+			lc = db.getBeardIndex(num_barba, col_barba);
 		db.close();
 	}
 
 	public void cambio_barba3(View v) {
-		sel_barba = 1; 
-		User_Info.num_beard = "3";
-	    carga_barba();
-	    carga_interficie("3", "0");
-    	num_barba = "1";
+		sel_barba = 1;
+    	num_barba = "3";
+    	col_barba = "0";
+    	carga_barba();
+    	carga_interficie("3", "0");
     	db.open();
-			lc = db.getIndexBeard(num_barba, "0");
+			lc = db.getBeardIndex(num_barba, col_barba);
 		db.close();
 	}
 	
 	public void cambio_color_azul(View v){
 		if(sel_barba == 1) {
-			User_Info.col_beard = "0";
-		    carga_interficie(User_Info.num_beard,"0");
+			col_barba = "0";
+		    carga_interficie(num_barba,col_barba);
 		    carga_color();
-		    col_barba = "0";
 		    db.open();
-				lc = db.getIndexBeard(num_barba, "0");
+				lc = db.getBeardIndex(num_barba, col_barba);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -176,12 +179,11 @@ public class ChangeBeard extends Activity {
 
 	public void cambio_color_rojo(View v){
 		if(sel_barba == 1) {
-			User_Info.col_beard = "1";
-		    carga_interficie(User_Info.num_beard,"1");
+			col_barba = "1";
+		    carga_interficie(num_barba,col_barba);
 		    carga_color();
-		    col_barba = "1";
 		    db.open();
-				lc = db.getIndexBeard(num_barba, "0");
+				lc = db.getBeardIndex(num_barba, col_barba);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -189,12 +191,11 @@ public class ChangeBeard extends Activity {
 	
 	public void cambio_color_amarillo(View v){
 		if(sel_barba == 1) {
-			User_Info.col_beard = "2";
-			carga_interficie(User_Info.num_beard,"2");
+			col_barba = "2";
+		    carga_interficie(num_barba,col_barba);
 		    carga_color();
-		    col_barba = "2";
 		    db.open();
-				lc = db.getIndexBeard(num_barba, "0");
+				lc = db.getBeardIndex(num_barba, col_barba);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -202,12 +203,11 @@ public class ChangeBeard extends Activity {
 	
 	public void cambio_color_verde(View v){
 		if(sel_barba == 1) {
-			User_Info.col_beard = "3";
-			carga_interficie(User_Info.num_beard,"3");
+			col_barba = "3";
+		    carga_interficie(num_barba,col_barba);
 		    carga_color();
-		    col_barba = "3";
 		    db.open();
-				lc = db.getIndexBeard(num_barba, "0");
+				lc = db.getBeardIndex(num_barba, col_barba);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -215,12 +215,11 @@ public class ChangeBeard extends Activity {
 	
 	public void cambio_color_negro(View v){
 		if(sel_barba == 1) {
-			User_Info.col_beard = "4";
-			carga_interficie(User_Info.num_beard,"4");
+			col_barba = "4";
+		    carga_interficie(num_barba,col_barba);
 		    carga_color();
-		    col_barba = "4";
 		    db.open();
-				lc = db.getIndexBeard(num_barba, "0");
+				lc = db.getBeardIndex(num_barba, col_barba);
 			db.close();
 		}
 		else Toast.makeText(getApplicationContext(), "Debes elegir un modelo antes", Toast.LENGTH_LONG).show();
@@ -231,22 +230,28 @@ public class ChangeBeard extends Activity {
     	User_Info.inicializar(getApplicationContext());
     	finish();
     }
+	@Override
+	public void onBackPressed() {
+		User_Info.inicializar(getApplicationContext());
+    	finish();
+		//super.onBackPressed();
+	}
 	
 	private void carga_barba() {
-		String imagen = "barba_" + User_Info.num_beard + "_0"; 
+		String imagen = "barba_" + num_barba + "_0"; 
 	    iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
 	    iv.setVisibility(View.VISIBLE);
 	}
 	
 	private void carga_color() {
-		String imagen = "barba_" + User_Info.num_beard + "_" + User_Info.col_beard; 
+		String imagen = "barba_" + num_barba + "_" + col_barba; 
 	    iv.setImageResource(this.getResources().getIdentifier("drawable/" + imagen, null, this.getPackageName()));
 	}
 	
 	private void carga_interficie(String num, String color) {
 		tv = (TextView)findViewById(R.id.beard_lvlreq_et);
         db.open();
-        	Long lc = Long.parseLong(db.getBeardIndex(num, color));
+        	Long lc = db.getBeardIndex(num, color);
 	        level_req = Integer.parseInt(db.getBeardLvl(lc));
 	    	precio_req = Integer.parseInt(db.getBeardPrice(lc));
 	    	tv.setText(""+db.getBeardLvl(lc));
@@ -271,7 +276,6 @@ public class ChangeBeard extends Activity {
 	}
 	
 	public void comprar_aplicar(View v) {
-		Log.v("COMPRAR ", "HE ENTRADO EN LA FUNCION");
     	db.open();
     		if(comprado == 0) {
 	    		User_Info.coins -= precio_req;
@@ -281,11 +285,20 @@ public class ChangeBeard extends Activity {
 	    		tv = (TextView)findViewById(R.id.beard_coins_et);
 	    		tv.setText(""+User_Info.coins);
 	    		iv4.setImageResource(R.drawable.aplicar);
-	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_LONG).show();
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un modelo de barba", Toast.LENGTH_LONG).show();
     		}
-    		else Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
-			db.setUserBeard(lc);
-    		User_Info.actualizar_user(getApplicationContext());
+    		else {
+    			lc = db.getBeardIndex(num_barba, col_barba);
+    			db.setUserBeard(lc);
+    			Log.v("num_barba ", num_barba);
+    			Log.v("col_barba", col_barba);
+    			Log.v("indice guardado", ""+lc.intValue());
+    			User_Info.beard = lc.intValue();
+    			User_Info.num_beard = num_barba;
+    			User_Info.col_beard = col_barba;
+    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
+    		}
+			
     	db.close();
     }
 }

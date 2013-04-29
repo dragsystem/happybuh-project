@@ -140,7 +140,21 @@
 				android:layout_centerHorizontal="true"
 				android:layout_centerVertical="true"
 				android:visibility="invisible"/>
-		                
+			
+			<Button 
+			    android:id="@+id/boton_help"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:onClick="help"
+			    android:background="@drawable/bg_button_borde"
+			    android:textColor="@color/black"
+			    android:text="     AYUDA     "
+			    android:textStyle="bold"
+			    android:layout_alignParentBottom="true"
+			    android:padding="10dp"
+			    android:layout_marginBottom="20dp"
+			    android:layout_centerHorizontal="true"/>
+
 		</RelativeLayout>
         
 <!-- OPCIONES -->
@@ -155,7 +169,7 @@
 		        android:text="Opciones"
 		        android:textColor="@android:color/black"
 		        android:textStyle="bold"
-		        android:textSize="30dp"
+		        android:textSize="50dp"
 		        android:layout_centerHorizontal="true"
 		        android:layout_marginTop="20dp"/>
 		    
@@ -241,29 +255,113 @@
 				android:src="@drawable/opt_der"
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"/>
+
 			
-			<TextView
-				android:id="@+id/info_title"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="HELP MENU"
-				android:textColor="@android:color/black"
-				android:layout_centerHorizontal="true"
-				android:layout_marginTop="20dp"
-				android:layout_marginBottom="20dp"/>
-			       
-			<TextView
-				android:id="@+id/desc"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="akmsofm"
-				android:textColor="@android:color/black"
-				android:textColorHighlight="@android:color/primary_text_light"
-				android:layout_toRightOf="@id/b_room_izq"
+			<TextView 
+			    android:id="@+id/perfil_titulo"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Perfil"
+			    android:textStyle="bold"
+			    android:gravity="center_horizontal"
+			    android:layout_marginTop="20dp"
+			    android:textSize="50dp"
+			    android:layout_centerHorizontal="true"
+			    android:textColor="@android:color/black"/>
+			
+			<TextView 
+			    android:id="@+id/perfil_user"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Nombre:"
+			    android:textStyle="bold"
+			    android:gravity="left"
+			    android:layout_toRightOf="@id/b_room_izq"
 				android:layout_toLeftOf="@id/b_opt_der"
-				android:layout_below="@id/info_title"
-				android:maxLines="20"
-				android:scrollbars="vertical"/>
+				android:layout_above="@+id/perfil_user_set"
+				android:textColor="@android:color/black"
+				android:layout_marginBottom="5dp"/>
+			
+			<TextView 
+			    android:id="@id/perfil_user_set"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Nombre:"
+			    android:textStyle="bold"
+			    android:gravity="right"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_above="@+id/perfil_level"
+				android:textColor="@android:color/black"/>
+			
+			<TextView 
+			    android:id="@id/perfil_level"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Level:"
+			    android:textStyle="bold"
+			    android:gravity="left"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:textColor="@android:color/black"
+				android:layout_centerVertical="true"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="5dp"/>
+			
+			<TextView 
+			    android:id="@+id/perfil_level_set"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Level:"
+			    android:textStyle="bold"
+			    android:gravity="right"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_below="@id/perfil_level"
+				android:textColor="@android:color/black"/>
+			
+			<TextView 
+			    android:id="@+id/perfil_exp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Experiencia:"
+			    android:textStyle="bold"
+			    android:gravity="left"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_below="@id/perfil_level_set"
+				android:textColor="@android:color/black"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="5dp"/>
+			
+			<LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:weightSum="1.0"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_below="@id/perfil_exp">
+				
+			    <ProgressBar 
+			    android:id="@+id/perfil_exp_bar"
+			    style="?android:attr/progressBarStyleHorizontal"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight=".8"
+			    android:max="100"
+			    android:tag="algos"/>
+			    
+			    <TextView 
+			    android:id="@+id/perfil_exp_set"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight=".2"
+			    android:text="Experiencia:"
+			    android:textStyle="bold"
+			    android:textColor="@android:color/black"
+			    android:layout_marginLeft="10dp"/>
+			    
+			</LinearLayout>
 		            
 		</RelativeLayout>
     </ViewFlipper>

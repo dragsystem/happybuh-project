@@ -1,12 +1,15 @@
 package com.happybuh;
 
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Armario extends Activity {
@@ -48,6 +51,32 @@ public class Armario extends Activity {
 	}
 	public void volver(View v) {
 		User_Info.inicializar(getApplicationContext());
+		GV.Activities.habitacion.handler.sendEmptyMessage(1);
+		Random rand = new Random();
+		int num = rand.nextInt(2);
+		ImageView aux = GV.Activities.habitacion.iv_buh;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 1);
+		aux = GV.Activities.habitacion.iv_gafas;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 2);
+		aux = GV.Activities.habitacion.iv_barba;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 3);
     	finish();
 	}
+	@Override
+	public void onBackPressed() {
+		User_Info.inicializar(getApplicationContext());
+		GV.Activities.habitacion.handler.sendEmptyMessage(1);
+		Random rand = new Random();
+		int num = rand.nextInt(2);
+		ImageView aux = GV.Activities.habitacion.iv_buh;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 1);
+		aux = GV.Activities.habitacion.iv_gafas;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 2);
+		aux = GV.Activities.habitacion.iv_barba;
+		GV.Activities.habitacion.ChangeBuhAppearance(aux, num, 3);
+    	finish();
+		//super.onBackPressed();
+	}
+	
+	
 }

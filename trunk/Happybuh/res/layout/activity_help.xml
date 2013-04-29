@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" 
+	android:background="@drawable/fondo2">
+			
+			<TextView
+				android:id="@+id/help_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="AYUDA"
+				android:textColor="@android:color/black"
+				android:layout_centerHorizontal="true"
+				android:textSize="50dp"
+				android:layout_marginTop="20dp"/>
+		<ScrollView 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@id/help_title"
+		    android:layout_above="@+id/help_volver"
+		    android:layout_margin="20dp">
+		    <TextView
+				android:id="@+id/info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="akmsofm"
+				android:textColor="@android:color/black"
+				android:textColorHighlight="@android:color/primary_text_light"/>
+		</ScrollView>	       
+			
+			
+			<ImageButton 
+			    android:id="@id/help_volver"
+			    android:layout_height="wrap_content"
+			    android:layout_width="wrap_content"
+			    android:background="@android:color/transparent"
+			    android:layout_alignParentBottom="true"
+			    android:layout_marginBottom="10dp"
+			    android:layout_centerHorizontal="true"
+			    android:src="@drawable/menu_volver"
+			    android:onClick="volver"/>
+		            
+		</RelativeLayout>

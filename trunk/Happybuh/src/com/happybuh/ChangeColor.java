@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ChangeColor extends Activity {
 	private TextView tv, tv2;
 	private ImageButton ib;
-	private ImageView iv, iv2, iv3;
+	private ImageView iv, iv2, iv3, iv4;
 	private Button bt;
 	private Typeface type;
 	private int u_lvl;
@@ -39,10 +40,6 @@ public class ChangeColor extends Activity {
         
         type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 
-        db.open();
-	    	User_Info.color_name = db.getUserColor();
-	    	lc = db.getColorIndex();
-	    db.close();
         
         //RECOJO LA ID DEL BOTON COMPRAR / APLICAR
         iv3 = (ImageView)findViewById(R.id.color_buy_bought);
@@ -98,24 +95,28 @@ public class ChangeColor extends Activity {
         bt.setTypeface(type);
         
         
-	    
-	    //COLOCO LAS GAFAS DE BUH
-	    int numg = Integer.parseInt(User_Info.num_glasses);
-	    if (numg > 0) {
-		    String gafas = "gafas_" + User_Info.num_glasses + "_" + User_Info.col_glasses;
-		    iv2 = (ImageView)findViewById(R.id.buh_glasses_change);
+        //COLOCO LAS GAFAS DE BUH
+        db.open();
+    	lc = db.getUserGlasses();
+    	if(lc > 0) {
+		    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
+		    iv2 = (ImageView)findViewById(R.id.buh_color_glasses);
 		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + gafas, null, this.getPackageName()));
 		    iv2.setVisibility(View.VISIBLE);
-	    }
+    	}
+	    db.close();
 	    
 	    //COLOCO LA BARBA DE BUH
-	    int numb = Integer.parseInt(User_Info.num_beard);
-	    if (numb > 0) {
-		    String barba = "barba_" + User_Info.num_beard + "_" + User_Info.col_beard;
-		    iv2 = (ImageView)findViewById(R.id.buh_beard_change);
-		    iv2.setImageResource(this.getResources().getIdentifier("drawable/" + barba, null, this.getPackageName()));
-		    iv2.setVisibility(View.VISIBLE);
-	    }
+	    db.open();
+    	lc = db.getUserBeard();
+    	if(lc > 0) {
+		    String barba = "barba_" + db.getBeardNum(lc) + "_" + db.getBeardColor(lc);
+		    iv4 = (ImageView)findViewById(R.id.buh_color_beard);
+		    iv4.setImageResource(this.getResources().getIdentifier("drawable/" + barba, null, this.getPackageName()));
+		    iv4.setVisibility(View.VISIBLE);
+		    
+    	}
+	    db.close();
 	    
 	    //CARLO EL VIEW DE BUH
         iv = (ImageView)findViewById(R.id.buh_body_change);
@@ -188,6 +189,13 @@ public class ChangeColor extends Activity {
     	finish();
     }
     
+    @Override
+	public void onBackPressed() {
+		User_Info.inicializar(getApplicationContext());
+    	finish();
+		//super.onBackPressed();
+	}
+    
     private void carga_color(Long lc_aux) {
     	tv = (TextView)findViewById(R.id.color_lvlreq_et);
         db.open();
@@ -224,10 +232,15 @@ public class ChangeColor extends Activity {
 	    		User_Info.actualizar_user(getApplicationContext());
 	    		tv = (TextView)findViewById(R.id.color_coins_et);
 	    		tv.setText(""+User_Info.coins);
+	    		iv3.setImageResource(R.drawable.aplicar);
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un color de cuerpo", Toast.LENGTH_LONG).show();
     		}
-    		User_Info.color = Integer.parseInt(""+lc);
-			User_Info.color_name = color_name;
-			db.setUserColor(lc);
+    		else {
+    			Toast.makeText(getApplicationContext(), "Objeto aplicado", Toast.LENGTH_LONG).show();
+    			db.setUserColor(lc);
+    			User_Info.color = lc.intValue();
+    			User_Info.color_name = color_name;
+    		}
     	db.close();
     }
 }

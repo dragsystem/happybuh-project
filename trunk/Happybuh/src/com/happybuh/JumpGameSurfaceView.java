@@ -29,7 +29,7 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 	float yAct;
 	//joc
 	private Plataformes plataforma;
-	private Jugador jugador;
+	private Jugador jugador, jugador1, jugador2, jugador3;
 	//fons
 	Paint fons;
 	//control thread
@@ -90,6 +90,9 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 			    fons.setShader(shader);  
 				plataforma = new Plataformes();
 				jugador = new Jugador(0f);
+				jugador1 = new Jugador(0f, 1);
+				jugador2 = new Jugador(0f, 2);
+				jugador3 = new Jugador(0f, 3);
 				//avis de creació
 				surfacecreated = true;
 				GV.posiplataforma.modplataforma = false;
