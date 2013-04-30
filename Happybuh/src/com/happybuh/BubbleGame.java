@@ -142,5 +142,13 @@ public class BubbleGame extends Activity {
 		b = (Button)findViewById(R.id.boton_exit);
 		b.setTypeface(type);
 	}
+
+	@Override
+	public void onBackPressed() {
+		rl_pause.setVisibility(View.VISIBLE);
+		GV.puntuacio_bubble.pause = 1;
+	}
+	
+	
     
 }

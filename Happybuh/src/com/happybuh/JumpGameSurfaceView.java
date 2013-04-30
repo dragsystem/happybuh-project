@@ -55,7 +55,7 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 	
 	public void init(Context context) {
 		//Vides joc i jugador
-		GV.puntuacio_jump.vides = 4;
+		GV.puntuacio_jump.vides = 2;
 		GV.puntuacio_jump.gameover = 0;
 		//dades globals
 		GV.Instancies.jumpview = this;
@@ -94,10 +94,12 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 				surfacecreated = true;
 				GV.posiplataforma.modplataforma = false;
 				GV.posiplataforma.idplat = 0;
-				GV.puntuacio_bubble.vides = 3;
-				GV.puntuacio_bubble.coins = 0;
-				GV.puntuacio_bubble.gameover = 0;
-				GV.puntuacio_bubble.pause = 0;
+				GV.puntuacio_jump.vides = 2;
+				GV.puntuacio_jump.coins = 0;
+				GV.puntuacio_jump.gameover = 0;
+				GV.puntuacio_jump.pause = 0;
+				GV.puntuacio_jump.get_exp = 0;
+				GV.puntuacio_jump.termina = 0;
 			}
 			
 			
@@ -121,7 +123,10 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 		}
 		else {
 			jugador.draw(canvas);
+			plataforma.actualitza_gameover();
 			plataforma.draw(canvas, jugador.getX()-100, getWidth());
+			if(GV.puntuacio_jump.termina == 1)
+				GV.Activities.jumpgame.handler.sendEmptyMessage(3);
 		}
 		
 		//GV.Activities.jumpgame.handler.sendEmptyMessage(0);

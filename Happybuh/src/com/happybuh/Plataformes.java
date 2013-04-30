@@ -15,8 +15,9 @@ public class Plataformes {
 	ArrayList<Bitmap> bitmaps;
 	float ptx;			//tamany de x de la plataforma
 	float pty;
-	Bitmap plataf, platafd;
+	Bitmap plataf, platafd, moneda;
 	BitmapFactory.Options options;
+	float tmx, tmy;
 	
 	public Plataformes() {
 		rand = new Random();
@@ -28,6 +29,10 @@ public class Plataformes {
 		 options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		plataf = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.nuvesprite, options);
+		moneda = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.moneda, options);
+		tmx = 0.03f*GV.Screen.metrics.heightPixels;
+		tmy = 0.035f*GV.Screen.metrics.heightPixels;
+		moneda = Bitmap.createScaledBitmap(moneda,(int)tmx,(int)tmy,false);
 	//	plataf = new Objecte(plataf,100,GV.Screen.metrics.heightPixels/2,GV.heightpc(0.15f),GV.heightpc(0.15f),speed,0,3,1,3);
 	}
 	
@@ -59,49 +64,6 @@ public class Plataformes {
 	
 	
 	public void actualitza(Jugador j) {
-//		float limit = j.jugador.y;
-//		float dist;
-//		if(limit < GV.heightpc(0.4f)) {
-//			for(int i = 0; i < objectes.size(); ++i) {
-//				Objecte o = objectes.get(i);
-//				if (o.y > limit || o.y > GV.Screen.metrics.heightPixels) objectes.remove(o);
-//			}
-//			dist = GV.heightpc(1f) - objectes.get(objectes.size()-1).y - j.jugador.ty; 
-//			for(int i = objectes.size()-1; i >= 0 ; --i) {
-//				objectes.get(i).y += dist;
-//				j.jugador.y += dist;
-//			}
-//		}
-//		for(int i = 0; i < objectes.size(); ++i) {
-//			Objecte o = objectes.get(i);
-//			if (o.y > GV.Screen.metrics.heightPixels) objectes.remove(o);
-//		}
-//		if(objectes.size() < 10) novaplataforma();
-//		Log.w("COLISIONO ", "he chocado, la plataforma es la " + GV.posiplataforma.idplat);
-//		for(int i = 0; i < objectes.size(); ++i) {
-//			Objecte o = objectes.get(i);
-//			o.vy = GV.heightpc(0.0f);
-//			o.actualitza();
-//		}
-//		if(objectes.get(GV.posiplataforma.idplat).y >= GV.heightpc(0.90f)) {
-//			for(int i = 0; i < objectes.size(); ++i) {
-//				Objecte o = objectes.get(i);
-//				o.vy = 0;
-//				//if (o.y > GV.Screen.metrics.heightPixels) objectes.remove(o);
-//			}
-//		}
-//		if(objectes.size() < 10) novaplataforma();
-//		float v;
-//		if(j.jugador.y <= GV.heightpc(0.35f)) v = GV.heightpc(0.02f); 
-//		else v = 0f;
-//		if (j.jugador.y <= GV.heightpc(0.30f) && j.jugador.vy < 0) j.jugador.vy = 0f + (float)(GV.Screen.metrics.heightPixels*0.005);
-//		for(int i = 0; i < objectes.size(); ++i) {
-//				Objecte o = objectes.get(i);
-//				if(o.platafd && o.vy <= GV.heightpc(0.02f)) o.vy = v;
-//				else if (!o.platafd) o.vy = v;
-//				o.actualitza();
-//				if(o.y >= GV.Screen.metrics.heightPixels) objectes.remove(o);
-//		}
 		if (j.jugador.y <= GV.heightpc(0.30f) && j.jugador.vy < 0) j.jugador.vy = 0f + (float)(GV.Screen.metrics.heightPixels*0.005);
 		if(j.jugador.y <= GV.heightpc(0.35f)) {
 			for(int i = 0; i < objectes.size(); ++i) {
@@ -130,31 +92,16 @@ public class Plataformes {
 		if (objectes.size() < 20) novaplataforma();
 	}
 	
-	public void actualitza2 () {
-		if(objectes.size() > 0 && objectes.get(GV.posiplataforma.idplat).tocat && objectes.get(GV.posiplataforma.idplat).y >= GV.heightpc(0.90f)) {
-			for(int i = 0; i < objectes.size(); ++i) {
-				Objecte o = objectes.get(i);
-				o.tocat = false;
-				o.vy = 0;
-				if(o.y >= GV.Screen.metrics.heightPixels) objectes.remove(o);
-			}
-		}
-		else if (objectes.size() > 0) {
-			for(int i = 0; i < objectes.size(); ++i) {
-				Objecte o = objectes.get(i);
-				o.actualitza();
-			//	if(o.y >= GV.Screen.metrics.heightPixels) objectes.remove(o);
-			}
-		}
-		if(objectes.size() < 10) novaplataforma();
-	}
-	
 	public void draw(Canvas canvas, float dx, float w) {
 		for(int i=0; i < objectes.size(); i++) {
 			Objecte o = objectes.get(i);
 			if(GV.puntuacio_jump.gameover == 0 && GV.puntuacio_jump.pause == 0){ 
 				o.actualitza();
 				if(o.acabat) o.sfcount=0; 
+			}
+			if(o.moneda == 1 && (GV.puntuacio_jump.gameover == 0 && GV.puntuacio_jump.pause == 0)){
+				canvas.drawBitmap(moneda,o.x+(o.tx/2)-(tmx/2), o.y-(o.ty/2), null);
+				//canvas.drawBitmap(moneda,100, 100, null);
 			}
 			o.draw(canvas);
 		}
@@ -174,6 +121,13 @@ public class Plataformes {
 					GV.posiplataforma.idplat = i;
 //					o.vy = GV.heightpc(0.02f);
 					if (o.platafd) o.vy = GV.heightpc(0.05f);
+					if(o.moneda == 1) {
+						o.moneda = 0;
+						GV.puntuacio_jump.coins += o.preu_moneda;
+						GV.Activities.jumpgame.handler.sendEmptyMessage(2);
+						GV.Activities.jumpgame.handler.sendEmptyMessage(4);
+					}
+					GV.puntuacio_jump.get_exp += 0.01;
 					return true;
 				}
 			}
@@ -182,11 +136,30 @@ public class Plataformes {
 		return false;
 	}
 	
+	public void actualitza_gameover() {
+		for(int i = 0; i < objectes.size(); ++i) {
+			Objecte o = objectes.get(i);
+			if((o.y+o.ty) <= 0) objectes.remove(i);
+			else o.actualitza();
+		}
+		if(objectes.size() == 0) GV.puntuacio_jump.termina = 1;
+	}
+	
+	public void fugir() {
+		for(int i = 0; i < objectes.size(); ++i) {
+			Objecte o = objectes.get(i);
+			o.vy = GV.Screen.metrics.heightPixels*0.06f;
+			o.marxar = 1;
+			o.actualitza();
+		}
+	}
+	
 	public void muerte(Objecte j) {
 		for(int i = 0; i < objectes.size(); ++i) {
 			Objecte o = objectes.get(i);
 			o.vy = -GV.Screen.metrics.heightPixels*0.06f;
 			o.actualitza();
 		}
+		GV.Activities.jumpgame.handler.sendEmptyMessage(3);
 	}
 }

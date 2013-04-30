@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +24,12 @@ public class JumpGame extends Activity {
 	public Button b;
 	private Typeface type;
 	public VG_Database db;
+	private SoundPool sndPool;
+	private float rate = 1.0f;
+	private float masterVolume = 1.0f;
+	private float leftVolume = 1.0f;
+	private float rightVolume = 1.0f;
+    private float balance = 0.5f;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,7 @@ public class JumpGame extends Activity {
 		GV.Screen.wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GameOnLock");
 				
 		db = new VG_Database(getApplicationContext());
+		sndPool = new SoundPool(16, AudioManager.STREAM_MUSIC, 100);
 		
 		type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
 		editar_estilo();
@@ -46,6 +55,7 @@ public class JumpGame extends Activity {
 				if(msg.what == 1) resta_vida();
 				if(msg.what == 2) gana_coins();
 				if(msg.what == 3) game_over();
+				if(msg.what == 4) moneda_sound();
 			}
 		};
 		
@@ -79,6 +89,10 @@ public class JumpGame extends Activity {
 		super.onPostResume();
 	}
 	
+	public void moneda_sound () {
+		int id = sndPool.load(getApplicationContext(), R.raw.coin, 1);
+		sndPool.play(id, leftVolume, rightVolume, 1, 0, rate);
+	}
     public void game_over() {
     	User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
     	 rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
@@ -147,6 +161,11 @@ public class JumpGame extends Activity {
 		b.setTypeface(type);
 		b = (Button)findViewById(R.id.boton_exit);
 		b.setTypeface(type);
+	}
+	@Override
+	public void onBackPressed() {
+		rl_pause.setVisibility(View.VISIBLE);
+		GV.puntuacio_jump.pause = 1;
 	}
     
 }

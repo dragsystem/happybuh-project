@@ -219,6 +219,9 @@ public class Habitacion extends Activity {
 									tv.setText(et.getText());
 									tv = (TextView)findViewById(R.id.user_name2);
 									tv.setText(et.getText());
+									tv = (TextView)findViewById(R.id.perfil_user_set);
+									tv.setText(et.getText());
+									
 								}
 							}
 						  })
@@ -295,6 +298,11 @@ public class Habitacion extends Activity {
     	tv = (TextView)findViewById(R.id.perfil_exp_set);
     	tv.setTypeface(type);
     	tv.setText(""+User_Info.porcentaje_exp());
+    	tv = (TextView)findViewById(R.id.perfil_coins);
+    	tv.setTypeface(type);
+    	tv = (TextView)findViewById(R.id.perfil_coins_set);
+    	tv.setTypeface(type);
+    	tv.setText(""+User_Info.coins);
     	
     	int i = (int)User_Info.porcentaje_exp();
     	
