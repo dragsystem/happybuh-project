@@ -23,7 +23,6 @@ public class Jugador {
 		options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		GV.puntuacio_bubble.vides = 3;
-		
 		db = GV.Activities.jumpgame.db;
 		db.open();
 			//SET BUH
@@ -45,44 +44,7 @@ public class Jugador {
 		    barba_img = Bitmap.createScaledBitmap(barba_img,(int)GV.widthpc(0.10f),(int)GV.widthpc(0.12f),false);
 	    db.close();
 	}
-	/*public Jugador(float speed, int que) {
-		// TODO inicialitzar Objecte (mirar protagonista)
-		options = new BitmapFactory.Options();
-		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-		GV.puntuacio_bubble.vides = 3;
-		
-		db = GV.Activities.jumpgame.db;
-		db.open();
-		switch(que) {
-		case 1:
-			lc = db.getUserColor();
-	    	if(lc > 0) {
-			    String gafas = "buh_" + db.getUserColor();
-			   
-			    personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + gafas, null, GV.Activities.jumpgame.getPackageName()));
-	    	}
-			break;
-		case 2:
-			lc = db.getUserGlasses();
-	    	if(lc > 0) {
-			    String gafas = "gafas_" + db.getGlassNum(lc) + "_" + db.getGlassColor(lc);
-			   
-			    personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + gafas, null, GV.Activities.jumpgame.getPackageName()));
-	    	}
-			break;
-		case 3:
-			lc = db.getUserBeard();
-	    	if(lc > 0) {
-			    String barba = "barba_" + db.getBeardNum(lc) + "_" + db.getBeardColor(lc);
-			   
-			    personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), GV.Activities.jumpgame.getResources().getIdentifier("drawable/" + barba, null, GV.Activities.jumpgame.getPackageName()));
-	    	}
-			break;
-		}
-	    db.close();
-		personaje = BitmapFactory.decodeResource(GV.Instancies.jumpview.getResources(), R.drawable.buh_blue, options);
-		jugador = new Objecte(personaje,100,GV.Screen.metrics.heightPixels,GV.widthpc(0.10f),GV.widthpc(0.12f),0,0);
-	}*/
+
 	
 	public void actualitza(float yAccel, Plataformes plat) {
 		//moviment accelerometre
@@ -99,9 +61,9 @@ public class Jugador {
 			salta(novapy);
 			GV.puntuacio_bubble.get_exp += 0.01;
 		}
-		else if((jugador.y + jugador.ty) >= GV.Screen.metrics.heightPixels) {
+		else if((jugador.y + jugador.ty) > GV.Screen.metrics.heightPixels) {
 			//FALTA PROGRAMAR MUERTE JUGADOR
-			--GV.puntuacio_jump.vides;
+			/*--GV.puntuacio_jump.vides;
 			GV.Activities.jumpgame.handler.sendEmptyMessage(1);
 			if(GV.puntuacio_jump.vides == 0) {
 				GV.puntuacio_jump.gameover = 1;
@@ -109,7 +71,21 @@ public class Jugador {
 				plat.muerte(jugador);
 			}
 			salta(GV.Screen.metrics.heightPixels);
-			GV.posiplataforma.modplataforma = false;
+			GV.posiplataforma.modplataforma = false;*/
+			if(GV.puntuacio_jump.vides == 1) {
+				salta(GV.Screen.metrics.heightPixels);
+				--GV.puntuacio_jump.vides;
+				GV.Activities.jumpgame.handler.sendEmptyMessage(1);
+				plat.fugir();
+				GV.puntuacio_jump.gameover = 1;
+			}
+			else {
+				--GV.puntuacio_jump.vides;
+				GV.Activities.jumpgame.handler.sendEmptyMessage(1);
+				salta(GV.Screen.metrics.heightPixels);
+				GV.posiplataforma.modplataforma = false;
+			}
+			
 		}
 		else GV.posiplataforma.modplataforma = false;
 	}

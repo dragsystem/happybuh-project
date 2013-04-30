@@ -335,6 +335,7 @@
 				android:layout_marginBottom="5dp"/>
 			
 			<LinearLayout 
+			    android:id="@+id/perfil_linearlayout"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:weightSum="1.0"
@@ -362,6 +363,32 @@
 			    android:layout_marginLeft="10dp"/>
 			    
 			</LinearLayout>
+			
+			<TextView 
+			    android:id="@+id/perfil_coins"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Coins:"
+			    android:textStyle="bold"
+			    android:gravity="left"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_below="@id/perfil_linearlayout"
+				android:textColor="@android:color/black"/>
+			
+			<TextView 
+			    android:id="@+id/perfil_coins_set"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="coins"
+			    android:textStyle="bold"
+			    android:gravity="right"
+			    android:layout_toRightOf="@id/b_room_izq"
+				android:layout_toLeftOf="@id/b_opt_der"
+				android:layout_below="@id/perfil_coins"
+				android:textColor="@android:color/black"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="5dp"/>
 		            
 		</RelativeLayout>
     </ViewFlipper>

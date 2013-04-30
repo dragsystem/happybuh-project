@@ -1,8 +1,11 @@
 package com.happybuh;
 
+import java.util.Random;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Objecte {
 	int num_burbuja;
@@ -22,6 +25,10 @@ public class Objecte {
 		private Rect dest;
 		public boolean acabat;
 		public boolean tocat;
+		public int preu_moneda;
+		public int moneda;
+		private Random rand;
+		public int marxar;
 	public Objecte(){}
 	//Creacio del jugador
 	public Objecte(Bitmap nuvolnou, float i, float j,float ntx, float nty, float nvx, float nvy) {
@@ -55,6 +62,13 @@ public class Objecte {
 		src = new Rect();
 		dest = new Rect();
 		img = Bitmap.createScaledBitmap(bm,(int)tx*ih,(int)ty*iv,false);
+		Log.v("funcion plataforma 1", "entro aqui");
+		rand = new Random();
+		if(rand.nextBoolean()) {
+			moneda = 1;
+			preu_moneda = 1 + rand.nextInt(5);
+		}
+		marxar = 0;
 	}
 
 	
@@ -68,7 +82,14 @@ public class Objecte {
 		img = Bitmap.createScaledBitmap(plataforma,(int)ntx,(int)nty,false);
 		platafd = false;
 		sprite = false;
+		rand = new Random();
+		//if(rand.nextBoolean()) {
+			moneda = 1;
+			preu_moneda = 1 + rand.nextInt(5);
+		//}
+			Log.v("funcion plataforma 2", "entro aqui");
 	}
+	
 	//Creacio de plataformes dinamiques que cauen
 		public Objecte(Bitmap plataforma, float i, float j,float ntx, float nty, float nvy) {
 			tocat = false;
@@ -80,6 +101,7 @@ public class Objecte {
 			vx = 0;
 			platafd = true;
 			img = Bitmap.createScaledBitmap(plataforma,(int)ntx,(int)nty,false);
+			Log.v("funcion plataforma 3", "entro aqui, dinamicas caen");
 		}
 	
 	public Objecte(Bitmap burbuja, int num, float i, float j, float ntx,float nty, float nvx, float nvy) {
@@ -93,8 +115,13 @@ public class Objecte {
 		img = Bitmap.createScaledBitmap(burbuja,(int)ntx,(int)nty,false);
 	}
 	public void actualitza() {
-		x+=vx;
-		y+=vy;
+		if(marxar == 1)  {
+			y -= vy;
+		}
+		else {
+			x+=vx;
+			y+=vy;
+		}
 		if(sprite && sfcount/fpi>=(ih*iv)) acabat = true;
 	}
 	
