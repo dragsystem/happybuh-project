@@ -50,7 +50,7 @@ public class Peces {
 		//vy = (0.01f+(float)rand.nextInt(2)/100)*GV.Screen.metrics.heightPixels;
 		vy = GV.Screen.metrics.heightPixels/(60+rand.nextInt(10));
 		int num = rand.nextInt(bitmaps.size());
-		objectes.add(new Objecte(bitmaps.get(num),num ,x,y,tx,ty,vx,vy));
+		objectes.add(new Objecte(bitmaps.get(num),num,x,y,tx,ty,vx,vy));
 	}
 	
 	public void actualitza() {
@@ -73,11 +73,15 @@ public class Peces {
 			Objecte o = objectes.get(i);
 			if(o.y > GV.Screen.metrics.heightPixels) { //SE ESCAPAN BURBUJAS 
 				objectes.remove(i);
-				--GV.puntuacio_bubble.vides;
-				GV.Activities.bubblegame.handler.sendEmptyMessage(1);
-				if(GV.puntuacio_bubble.vides == 0){
-					GV.puntuacio_bubble.gameover = 1;
-					GV.Activities.bubblegame.handler.sendEmptyMessage(3);
+				
+				int num =objectes.get(i).num_burbuja;
+				if(num != 8) {
+					--GV.puntuacio_bubble.vides;
+					GV.Activities.bubblegame.handler.sendEmptyMessage(1);
+					if(GV.puntuacio_bubble.vides == 0){
+						GV.puntuacio_bubble.gameover = 1;
+						GV.Activities.bubblegame.handler.sendEmptyMessage(3);
+					}
 				}
 			}
 			else if(o.x+o.tx>x && o.x<x+tx && o.y+o.ty>y && o.y<y+ty) {

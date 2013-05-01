@@ -31,6 +31,7 @@ public class User_Info {
 	        User_Info.color = Integer.parseInt(a.get(4));
 	        User_Info.glasses = Integer.parseInt(a.get(5));
 	        User_Info.beard = Integer.parseInt(a.get(6));
+	        User_Info.exp = Float.parseFloat(a.get(7));
 	        
 	        Long lc, lg, lb;
 	        lc = Long.parseLong((String) a.get(4));
@@ -45,6 +46,7 @@ public class User_Info {
 	        Log.v("COLOR NAME+INDEX", User_Info.color_name + " , " + User_Info.color);
 	        Log.v("GLASS NUM + COLOR + INDEX", User_Info.num_glasses + " , " + User_Info.col_glasses + " , " + User_Info.glasses);
 	        Log.v("BEARD NUM + COLOR + INDEX", User_Info.num_beard + " , " + User_Info.col_beard + " , " + User_Info.beard);
+	        Log.v("Experiencia usuario ", ""+exp);
 	    db.close();
 	}
 	
@@ -63,6 +65,7 @@ public class User_Info {
 	}
 	
 	static void actualizar(Context c, float nexp, int ncoins) {
+		Log.v("Exp ganada ", ""+nexp);
 		VG_Database db = new VG_Database(c);
 	    db.open();
 	    	coins += ncoins;
@@ -97,37 +100,37 @@ public class User_Info {
 	    			exp = 20 - exp;
 	    		}
 	    	}
+	    	Log.v("Exp final y nivel final ", ""+exp + " "+level);
 	    	db.actualiza_user(level, exp, coins);
 	    db.close();
 	}
 	
 	static float porcentaje_exp(){
 		if(level >= 0 && level < 5) {
-    		if (exp >= 1) {
+			Log.v("level y porcentaje exp", level+"   "+exp*100);
     			return exp*100;
-    		}
     	}
     	if(level >= 5 && level < 10) {
-    		if (exp >= 5) {
     			return exp*100/5;
-    		}
     	}
     	if(level >= 10 && level < 15) {
-    		if (exp >= 10) {
     			return exp*100/10;
-    		}
     	}
     	if(level >= 15 && level < 20) {
-    		if (exp >= 15) {
     			return exp*100/15;
-    		}
+    	}
+    	if(level >= 20 && level < 25) {
+    			return (float)exp*100/20;
     	}
     	if(level >= 25 && level < 30) {
-    		if (exp >= 20) {
-    			return exp*100/20;
-    		}
+    			return (float)exp*100/25;
     	}
-		
+    	if(level >= 30 && level < 35) {
+    			return (float)exp*100.0f/30.0f;
+    	}
+    	if(level >= 35 && level < 40) {
+    			return (float)exp*100/35;
+    	}
 		return 0;
 	}
 }

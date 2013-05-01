@@ -283,7 +283,7 @@ public class ChangeGlasses extends Activity {
 	    		tv = (TextView)findViewById(R.id.glass_coins_et);
 	    		tv.setText(""+User_Info.coins);
 	    		iv4.setImageResource(R.drawable.aplicar);
-	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_LONG).show();
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar unas gafas", Toast.LENGTH_SHORT).show();
     		}
     		else {
     			lc = db.getGlassIndex(num_gafas, col_gafas);
@@ -294,7 +294,7 @@ public class ChangeGlasses extends Activity {
     			User_Info.num_glasses = num_gafas;
     			User_Info.col_glasses = col_gafas;
     			User_Info.glasses = lc.intValue();
-    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
+    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_SHORT).show();
     		}
     	db.close();
     }

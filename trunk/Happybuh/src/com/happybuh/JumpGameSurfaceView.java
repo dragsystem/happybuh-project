@@ -2,6 +2,7 @@ package com.happybuh;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Shader;
@@ -86,7 +87,8 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 				Log.w("SURFACE GO CREATED","Surfacebackground created");
 				//inicialització estructures
 				fons = new Paint(); 
-				Shader shader = new SweepGradient(0,0,0xFFFFCC00, 0xFFFFCC33);
+				//Shader shader = new SweepGradient(0,0,0xFFFFCC00, 0xFFFFCC33);
+				Shader shader = new LinearGradient(GV.Screen.metrics.widthPixels,0,GV.Screen.metrics.widthPixels,GV.Screen.metrics.heightPixels/1.2f,new int[]{0xFF05C0E8,0xFF12FFE9},null,Shader.TileMode.CLAMP);
 			    fons.setShader(shader);  
 				plataforma = new Plataformes();
 				jugador = new Jugador(0f);
@@ -94,12 +96,13 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 				surfacecreated = true;
 				GV.posiplataforma.modplataforma = false;
 				GV.posiplataforma.idplat = 0;
-				GV.puntuacio_jump.vides = 2;
+				GV.puntuacio_jump.vides = 1;
 				GV.puntuacio_jump.coins = 0;
 				GV.puntuacio_jump.gameover = 0;
 				GV.puntuacio_jump.pause = 0;
 				GV.puntuacio_jump.get_exp = 0;
 				GV.puntuacio_jump.termina = 0;
+				GV.puntuacio_jump.primera_colisio = 0;
 			}
 			
 			
@@ -115,16 +118,19 @@ public class JumpGameSurfaceView extends SurfaceView implements SensorEventListe
 		canvas.drawRect(0,0,getWidth(),getHeight(), fons);
 		if(GV.puntuacio_jump.gameover == 0) {
 			if(GV.puntuacio_jump.pause == 0)  {
-				jugador.actualitza(yAct, plataforma);
 				plataforma.actualitza(jugador);
+				jugador.actualitza(yAct, plataforma);
+				
 			}
-			jugador.draw(canvas);
 			plataforma.draw(canvas, jugador.getX()-100, getWidth());
+			jugador.draw(canvas);
+			
 		}
 		else {
-			jugador.draw(canvas);
+			
 			plataforma.actualitza_gameover();
 			plataforma.draw(canvas, jugador.getX()-100, getWidth());
+			jugador.draw(canvas);
 			if(GV.puntuacio_jump.termina == 1)
 				GV.Activities.jumpgame.handler.sendEmptyMessage(3);
 		}

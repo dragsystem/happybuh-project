@@ -29,8 +29,9 @@ public class Objecte {
 		public int moneda;
 		private Random rand;
 		public int marxar;
+		public int id;
 	public Objecte(){}
-	//Creacio del jugador
+	//JUGADOR
 	public Objecte(Bitmap nuvolnou, float i, float j,float ntx, float nty, float nvx, float nvy) {
 		tocat = false;
 		x = i;
@@ -45,7 +46,7 @@ public class Objecte {
 	}
 	
 	//Creacio de plataforma amb sprite
-	public Objecte(Bitmap bm, float nx, float ny, float ntx, float nty, float nvx, float nvy, int nih, int niv, int nfpi) {
+	public Objecte(Bitmap bm, float nx, float ny, float ntx, float nty, float nvx, float nvy, int nih, int niv, int nfpi, int cont) {
 		tocat = false;
 		x = nx;
 		y = ny;
@@ -62,14 +63,42 @@ public class Objecte {
 		src = new Rect();
 		dest = new Rect();
 		img = Bitmap.createScaledBitmap(bm,(int)tx*ih,(int)ty*iv,false);
-		Log.v("funcion plataforma 1", "entro aqui");
 		rand = new Random();
 		if(rand.nextBoolean()) {
 			moneda = 1;
 			preu_moneda = 1 + rand.nextInt(5);
 		}
 		marxar = 0;
+		id = cont;
 	}
+	
+	//Creacio de plataforma amb sprite que cauen
+		public Objecte(Bitmap bm, float nx, float ny, float ntx, float nty, float nvx, float nvy, int nih, int niv, int nfpi, int cau, int cont) {
+			tocat = false;
+			x = nx;
+			y = ny;
+			tx = ntx;
+			ty = nty;
+			vx = nvx;
+			vy = nvy;
+			sprite = true;
+			acabat = false;
+			ih = nih;
+			iv = niv;
+			sfcount = -1;
+			fpi = nfpi;
+			src = new Rect();
+			dest = new Rect();
+			img = Bitmap.createScaledBitmap(bm,(int)tx*ih,(int)ty*iv,false);
+			rand = new Random();
+			if(rand.nextBoolean()) {
+				moneda = 1;
+				preu_moneda = 1 + rand.nextInt(5);
+			}
+			marxar = 0;
+			if(cau == 1)platafd = true;
+			id = cont;
+		}
 
 	
 	//Creacio de plataformes
@@ -87,7 +116,6 @@ public class Objecte {
 			moneda = 1;
 			preu_moneda = 1 + rand.nextInt(5);
 		//}
-			Log.v("funcion plataforma 2", "entro aqui");
 	}
 	
 	//Creacio de plataformes dinamiques que cauen
@@ -101,7 +129,6 @@ public class Objecte {
 			vx = 0;
 			platafd = true;
 			img = Bitmap.createScaledBitmap(plataforma,(int)ntx,(int)nty,false);
-			Log.v("funcion plataforma 3", "entro aqui, dinamicas caen");
 		}
 	
 	public Objecte(Bitmap burbuja, int num, float i, float j, float ntx,float nty, float nvx, float nvy) {

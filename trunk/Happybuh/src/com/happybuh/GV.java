@@ -36,6 +36,7 @@ public class GV {
 		public static int gameover;
 		public static int pause;
 		public static int termina;
+		public static int primera_colisio;
 	}
 	
 	public static class posiplataforma {
