@@ -94,8 +94,7 @@ public class JumpGame extends Activity {
 		sndPool.play(id, leftVolume, rightVolume, 1, 0, rate);
 	}
     public void game_over() {
-    	User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
-    	 rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
+    	rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
     	rl.setVisibility(View.VISIBLE);
     }
     
@@ -136,7 +135,6 @@ public class JumpGame extends Activity {
 	}
 	
 	public void exit(View v) {
-		User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
 		finish();
 	}
 

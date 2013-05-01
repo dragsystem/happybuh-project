@@ -49,8 +49,7 @@ public class BubbleGame extends Activity {
     }
     
     public void game_over() {
-    	User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
-    	 rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
+    	rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
     	rl.setVisibility(View.VISIBLE);
     }
     
@@ -117,7 +116,6 @@ public class BubbleGame extends Activity {
 	}
 	
 	public void exit(View v) {
-		User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
 		finish();
 	}
 	public void editar_estilo() {

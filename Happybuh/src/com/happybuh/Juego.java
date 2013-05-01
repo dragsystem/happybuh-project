@@ -143,4 +143,14 @@ public class Juego extends Activity {
     	ScrollView sv = (ScrollView)findViewById(R.id.scroll_info3);
     	sv.setVisibility(v.INVISIBLE);
     }
+
+	@Override
+	public void onBackPressed() {
+		User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
+		User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
+		GV.Activities.habitacion.handler.sendEmptyMessage(1);
+		finish();
+	}
+    
+    
 }

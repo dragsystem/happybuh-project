@@ -297,7 +297,11 @@ public class Habitacion extends Activity {
     	tv.setTypeface(type);
     	tv = (TextView)findViewById(R.id.perfil_exp_set);
     	tv.setTypeface(type);
-    	tv.setText(""+User_Info.porcentaje_exp());
+    	String expe = ""+ User_Info.porcentaje_exp();
+    	int index = expe.indexOf(".");
+    	if(index == -1) expe = expe + ".0";
+    	else expe = expe.substring(0, index+2);
+    	tv.setText(expe);
     	tv = (TextView)findViewById(R.id.perfil_coins);
     	tv.setTypeface(type);
     	tv = (TextView)findViewById(R.id.perfil_coins_set);
@@ -305,6 +309,7 @@ public class Habitacion extends Activity {
     	tv.setText(""+User_Info.coins);
     	
     	int i = (int)User_Info.porcentaje_exp();
+    	Log.v("PORCENTAJE EXPERIENCIA",""+i);
     	
     	ProgressBar pb = (ProgressBar)findViewById(R.id.perfil_exp_bar);
     	pb.setProgress(i);

@@ -234,10 +234,10 @@ public class ChangeColor extends Activity {
 	    		tv = (TextView)findViewById(R.id.color_coins_et);
 	    		tv.setText(""+User_Info.coins);
 	    		iv3.setImageResource(R.drawable.aplicar);
-	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un color de cuerpo", Toast.LENGTH_LONG).show();
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un color de cuerpo", Toast.LENGTH_SHORT).show();
     		}
     		else {
-    			Toast.makeText(getApplicationContext(), "Objeto aplicado", Toast.LENGTH_LONG).show();
+    			Toast.makeText(getApplicationContext(), "Objeto aplicado", Toast.LENGTH_SHORT).show();
     			db.setUserColor(lc);
     			User_Info.color = lc.intValue();
     			User_Info.color_name = color_name;

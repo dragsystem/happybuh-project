@@ -287,7 +287,7 @@ public class ChangeBeard extends Activity {
 	    		tv = (TextView)findViewById(R.id.beard_coins_et);
 	    		tv.setText(""+User_Info.coins);
 	    		iv4.setImageResource(R.drawable.aplicar);
-	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un modelo de barba", Toast.LENGTH_LONG).show();
+	    		Toast.makeText(getApplicationContext(), "Acabas de comprar un modelo de barba", Toast.LENGTH_SHORT).show();
     		}
     		else {
     			lc = db.getBeardIndex(num_barba, col_barba);
@@ -298,7 +298,7 @@ public class ChangeBeard extends Activity {
     			User_Info.beard = lc.intValue();
     			User_Info.num_beard = num_barba;
     			User_Info.col_beard = col_barba;
-    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_LONG).show();
+    			Toast.makeText(getApplicationContext(), "Objeto Aplicado", Toast.LENGTH_SHORT).show();
     		}
 			
     	db.close();
