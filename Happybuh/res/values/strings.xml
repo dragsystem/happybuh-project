@@ -96,5 +96,6 @@
     <string name="juego_pausado">Juego pausado \n ¿Qué deseas hacer?</string>
     <string name="title_activity_jump_game">JumpGame</string>
     <string name="title_activity_help">Help</string>
+    <string name="title_activity_world_game">WorldGame</string>
 
 </resources>

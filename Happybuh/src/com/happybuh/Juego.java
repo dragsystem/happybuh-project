@@ -88,7 +88,8 @@ public class Juego extends Activity {
     }
     
     public void inicio_juego3(View v) {
-    	
+    	Intent ourIntent = new Intent("com.happybuh.WORLDGAME");
+		startActivity(ourIntent);
     }
     
     public void inicio_help1(View v) {

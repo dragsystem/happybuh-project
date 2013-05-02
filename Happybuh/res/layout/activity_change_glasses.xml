@@ -163,7 +163,7 @@
    	    android:layout_below="@id/glass_buy_bought"
    	    android:layout_centerHorizontal="true"
    	    android:layout_marginTop="20dp"
-   	    />
+   	    android:scaleType="fitCenter"/>
    	
    	<ImageView
    	    android:id="@+id/buh_glasses_change"
@@ -172,7 +172,8 @@
    	    android:layout_alignTop="@id/buh_body_change"
    	    android:layout_alignLeft="@id/buh_body_change"
    	    android:src="@drawable/gafas_1_0" 
-   	    android:visibility="invisible"/>
+   	    android:visibility="invisible"
+   	    android:scaleType="fitCenter"/>
    	
    	<ImageView
    	    android:id="@+id/buh_glasses_beard"
@@ -181,7 +182,8 @@
    	    android:layout_alignTop="@id/buh_body_change"
    	    android:layout_alignLeft="@id/buh_body_change"
    	    android:src="@drawable/barba_1_0" 
-   	    android:visibility="invisible"/>
+   	    android:visibility="invisible"
+   	    android:scaleType="fitCenter"/>
    	
    	
    	<LinearLayout
