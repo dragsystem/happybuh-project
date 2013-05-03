@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:layout_width="match_parent"
-		    android:layout_height="match_parent" >
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/fondo">
 		    
 			<ImageButton
 				android:id="@+id/b_room_izq"
@@ -101,33 +102,15 @@
 				android:layout_marginTop="20dp"
 				android:layout_marginBottom="5dp"/>
 			
-			<LinearLayout 
+			<Button 
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:weightSum="1.0"
-			    android:layout_toRightOf="@id/b_room_izq"
-				android:layout_toLeftOf="@id/b_opt_der"
-				android:layout_below="@id/perfil_exp">
-				
-			    <ProgressBar 
-			    android:id="@+id/perfil_exp_bar"
-			    style="?android:attr/progressBarStyleHorizontal"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_weight=".8"
-			    android:max="100"
-			    android:tag="algos"/>
-			    
-			    <TextView 
-			    android:id="@+id/perfil_exp_set"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_weight=".2"
-			    android:text="Experiencia:"
-			    android:textStyle="bold"
-			    android:textColor="@android:color/black"
-			    android:layout_marginLeft="10dp"/>
-			    
-			</LinearLayout>
+			    android:text="Cambiar"
+			    android:background="@drawable/bg_boton"
+			    android:padding="5dp"
+			    android:layout_below="@id/perfil_exp"
+			    android:layout_centerHorizontal="true"
+			    android:textColor="#FF0383E6"
+			    android:textStyle="bold"/>
 		            
 		</RelativeLayout>
