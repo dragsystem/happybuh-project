@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +73,7 @@ public class BubbleGame extends Activity {
 
 	@Override
 	protected void onResume() {
+		GV.Screen.metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(GV.Screen.metrics);
 		GV.Screen.wl.acquire();
 		GV.Instancies.bubbleview.startthread();

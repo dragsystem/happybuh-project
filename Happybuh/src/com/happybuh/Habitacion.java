@@ -206,8 +206,8 @@ public class Habitacion extends Activity {
 							public void onClick(DialogInterface dialog,int id) {
 								// if this button is clicked, close
 								// current activity
-								if (et.getText().toString().isEmpty()) {
-									Toast t = Toast.makeText(getApplicationContext(), "a = " + a.name + "es distinta de " + User_Info.name, Toast.LENGTH_LONG);
+								if (et.getText().toString().length() < 5) {
+									Toast t = Toast.makeText(getApplicationContext(), "El usuario debe contener entre 5 y 10 carácteres", Toast.LENGTH_SHORT);
 									t.show();
 								}
 								else {
@@ -215,6 +215,8 @@ public class Habitacion extends Activity {
 									db.open();
 									db.setUser(db.getUserName(), et.getText().toString());
 									db.close();
+									User_Info.name = et.getText().toString();
+									set_perfil_info();
 									tv = (TextView)findViewById(R.id.user_name);
 									tv.setText(et.getText());
 									tv = (TextView)findViewById(R.id.user_name2);
@@ -273,10 +275,7 @@ public class Habitacion extends Activity {
 	    db = new VG_Database(getApplicationContext());
 	    db.open();
 	    Long lc = db.getUserBeard();
-	    Log.v("Index Barba habitacion",""+lc);
 	    lc = db.getUserGlasses();
-	    Log.v("Index Gafas habitacion",""+lc);
-	    Log.v("Color cuerpo habitacion",User_Info.color_name);
 	    db.close();
     }
 //--------------------------------------------------------INFORMACION DE PERFIL-------------------------------------------------    //
@@ -309,7 +308,6 @@ public class Habitacion extends Activity {
     	tv.setText(""+User_Info.coins);
     	
     	int i = (int)User_Info.porcentaje_exp();
-    	Log.v("PORCENTAJE EXPERIENCIA",""+i);
     	
     	ProgressBar pb = (ProgressBar)findViewById(R.id.perfil_exp_bar);
     	pb.setProgress(i);
@@ -404,6 +402,9 @@ public class Habitacion extends Activity {
     	if(objeto == 1) {
     		String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
     		a.setImageResource(c.getResources().getIdentifier("drawable/" + cuerpo, null, c.getPackageName()));
+    		if(a.getVisibility() == View.VISIBLE && num != 0) {
+        		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_desaparece));
+        	}
     	}
     	else if (objeto == 2) {
     		int numg = Integer.parseInt(User_Info.num_glasses);
@@ -428,9 +429,9 @@ public class Habitacion extends Activity {
     	if(a.getVisibility() == View.VISIBLE && num == 0) {
     		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_move));
     	}
-    	else if(a.getVisibility() == View.VISIBLE && num != 0) {
+    	/*else if(a.getVisibility() == View.VISIBLE && num != 0) {
     		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_desaparece));
-    	}
+    	}*/
 //    	iv_buh.startAnimation(AnimationUtils.loadAnimation(this, R.anim.carga_fantasma));
     }
     

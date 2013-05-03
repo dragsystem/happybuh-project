@@ -10,19 +10,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.Chronometer;
+import android.widget.Chronometer.OnChronometerTickListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class WorldGame extends Activity {
 	public Handler handler;
-	public RelativeLayout rl, rl_pause;
-	public TextView tv;
+	public RelativeLayout rl, rl_pause, rl_final;
+	public TextView tv, tv_resultado;
 	public Button b;
 	private Typeface type;
 	public VG_Database db;
@@ -32,7 +35,12 @@ public class WorldGame extends Activity {
 	private float leftVolume = 1.0f;
 	private float rightVolume = 1.0f;
     private float balance = 0.5f;
-	public ImageButton izquierda, derecha;
+	public ImageView izquierda, derecha, salto;
+	public LinearLayout ll;
+	public Chronometer cc;
+	public int sec, min;
+	private Long lastPause; 
+	private int para_contador;
     
     
     @Override
@@ -52,7 +60,6 @@ public class WorldGame extends Activity {
 		sndPool = new SoundPool(16, AudioManager.STREAM_MUSIC, 100);
 		
 		type = Typeface.createFromAsset(this.getAssets(), "neuropol.ttf");
-		editar_estilo();
 		
 		handler = new Handler() {
 
@@ -62,49 +69,59 @@ public class WorldGame extends Activity {
 				if(msg.what == 2) gana_coins();
 				if(msg.what == 3) game_over();
 				if(msg.what == 4) moneda_sound();
+				if(msg.what == 5) llega_casa();
 			}
+
 		};
-		
+		tv_resultado = (TextView)findViewById(R.id.resultado);
+		rl_final = (RelativeLayout)findViewById(R.id.rl_final);
 		rl_pause = (RelativeLayout)findViewById(R.id.ventana_pause);
-		
-		izquierda = (ImageButton) findViewById(R.id.botonizq);
-		izquierda.setOnTouchListener(new View.OnTouchListener() {
+		izquierda = (ImageView) findViewById(R.id.botonizq);
+		derecha = (ImageView) findViewById(R.id.botonder);	
+		ll = (LinearLayout)findViewById(R.id.ll_worldgame);
+		salto = (ImageView)findViewById(R.id.salto);
+		cc = (Chronometer)findViewById(R.id.contador);
+		cc.setTypeface(type);
+		cc.setBase(SystemClock.elapsedRealtime());
+		cc.start();
+		sec = 0;
+		min = 0;
+		para_contador = 0;
+		cc.setOnChronometerTickListener(new OnChronometerTickListener() {
 			
-			public boolean onTouch(View v, MotionEvent event) {
-				
-				if(event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-					GV.puntuacio_world.control = 3;
-					return true;
+			@Override
+			public void onChronometerTick(Chronometer chronometer) {
+				if(para_contador == 0){
+					++sec;
+					if(sec == 60){
+						min++;
+						sec = 0;
+					}
 				}
-				else if(event.getActionMasked() == MotionEvent.ACTION_UP) {
-					GV.puntuacio_world.control = 0;
-					return true;
-				}
-				return true;
 			}
 		});
-		
-		derecha = (ImageButton) findViewById(R.id.botonder);		
-		derecha.setOnTouchListener(new View.OnTouchListener() {
-			
-			public boolean onTouch(View v, MotionEvent event) {
-				
-				if(event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-//					GV.Instancies.desplazamiento = 10;
-					GV.puntuacio_world.control = 1;
-					return true;
-				}
-				else if(event.getActionMasked() == MotionEvent.ACTION_UP) {
-					GV.puntuacio_world.control = 0;
-//					GV.Instancies.desplazamiento = 0;
-					return true;
-				}
-				return true;
-			}
-		});
-		
+		editar_estilo();
     }
 
+    @Override
+    public void onWindowFocusChanged (boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            GV.World_mov.izq_right = izquierda.getRight();
+            GV.World_mov.der_left = derecha.getLeft();
+            GV.World_mov.ll_bot = ll.getBottom();
+            GV.World_mov.ll_left = ll.getLeft();
+            GV.World_mov.ll_right = ll.getRight();
+            GV.World_mov.ll_top = ll.getTop();
+            GV.World_mov.s_left = salto.getLeft();
+    
+            GV.World_mov.s_right = salto.getRight();
+            GV.World_mov.s_bot = salto.getBottom();
+            GV.World_mov.s_top = salto.getTop();
+            
+        }
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_world_game, menu);
@@ -120,6 +137,8 @@ public class WorldGame extends Activity {
 	protected void onPause() {
 		GV.Screen.wl.release();
     	GV.Instancies.worldview.stopthread();
+    	lastPause = SystemClock.elapsedRealtime();
+    	cc.stop();
     	super.onPause();
 	}
 
@@ -132,6 +151,15 @@ public class WorldGame extends Activity {
 		super.onPostResume();
 	}
 	
+	public void llega_casa() {
+		para_contador = 1;
+		lastPause = SystemClock.elapsedRealtime();
+    	cc.stop();
+    	GV.puntuacio_world.get_exp = 2 +(GV.puntuacio_world.num_monedas - min);
+    	rl_final.setVisibility(View.VISIBLE);
+    	String res = "¡¡" + min + " minutos y " + sec + " segundos!!";
+    	tv_resultado.setText(res);
+	}
 	
 	public void mov_jump (View v) {
 		if (GV.puntuacio_world.csalto == 0) {
@@ -149,6 +177,8 @@ public class WorldGame extends Activity {
     public void game_over() {
     	rl = (RelativeLayout)findViewById(R.id.ventana_gameover);
     	rl.setVisibility(View.VISIBLE);
+    	ll.setVisibility(View.GONE);
+    	salto.setVisibility(View.GONE);
     }
     
     public void gana_coins() {
@@ -173,18 +203,24 @@ public class WorldGame extends Activity {
 	}
 	
 	public void cancel (View v) {
-		rl.setVisibility(v.GONE);
+		if (para_contador == 0)rl.setVisibility(v.GONE);
 		finish();
 	}
 	
 	public void pause(View v) {
-		rl_pause.setVisibility(v.VISIBLE);
-		GV.puntuacio_world.pause = 1;
+		if(GV.puntuacio_world.gameover == 0){
+			rl_pause.setVisibility(v.VISIBLE);
+			GV.puntuacio_world.pause = 1;
+			lastPause = SystemClock.elapsedRealtime();
+	    	cc.stop();
+		}
 	}
 	
 	public void continua(View v) {
 		rl_pause.setVisibility(v.GONE);
 		GV.puntuacio_world.pause = 0;
+		cc.setBase(cc.getBase() + SystemClock.elapsedRealtime() - lastPause);
+		cc.start();
 	}
 	
 	public void exit(View v) {
@@ -194,6 +230,8 @@ public class WorldGame extends Activity {
 	public void editar_estilo() {
 		tv = (TextView)findViewById(R.id.bubble_coins);
 		tv.setTypeface(type);
+		tv = (TextView)findViewById(R.id.tv_final);
+		tv.setTypeface(type);
 		tv = (TextView)findViewById(R.id.bubble_getcoins);
 		tv.setTypeface(type);
 		tv = (TextView)findViewById(R.id.bubble_lives);
@@ -202,6 +240,7 @@ public class WorldGame extends Activity {
 		tv.setTypeface(type);
 		tv = (TextView)findViewById(R.id.tv_gameover);
 		tv.setTypeface(type);
+		tv_resultado.setTypeface(type);
 		tv = (TextView)findViewById(R.id.texto_pause);
 		tv.setTypeface(type);
 		b = (Button)findViewById(R.id.b_gameover_retry);
@@ -212,10 +251,16 @@ public class WorldGame extends Activity {
 		b.setTypeface(type);
 		b = (Button)findViewById(R.id.boton_exit);
 		b.setTypeface(type);
+		b = (Button)findViewById(R.id.boton_final_1);
+		b.setTypeface(type);
+		b = (Button)findViewById(R.id.boton_final_2);
+		b.setTypeface(type);
 	}
 	@Override
 	public void onBackPressed() {
-		rl_pause.setVisibility(View.VISIBLE);
-		GV.puntuacio_world.pause = 1;
+		if(GV.puntuacio_world.gameover == 0) {
+			rl_pause.setVisibility(View.VISIBLE);
+			GV.puntuacio_world.pause = 1;
+		}
 	}
 }

@@ -73,31 +73,49 @@ public class User_Info {
 	    	if(level >= 0 && level < 5) {
 	    		if (exp >= 1) {
 	    			++level;
-	    			exp = 1 - exp;
+	    			exp = exp-1;
 	    		}
 	    	}
 	    	if(level >= 5 && level < 10) {
 	    		if (exp >= 5) {
 	    			++level;
-	    			exp = 5 - exp;
+	    			exp = exp -5;
 	    		}
 	    	}
 	    	if(level >= 10 && level < 15) {
 	    		if (exp >= 10) {
 	    			++level;
-	    			exp = 10 - exp;
+	    			exp = exp - 10;
 	    		}
 	    	}
 	    	if(level >= 15 && level < 20) {
 	    		if (exp >= 15) {
 	    			++level;
-	    			exp = 15 - exp;
+	    			exp = exp - 15;
+	    		}
+	    	}
+	    	if(level >= 20 && level < 25) {
+	    		if (exp >= 20) {
+	    			++level;
+	    			exp = exp - 20;
 	    		}
 	    	}
 	    	if(level >= 25 && level < 30) {
-	    		if (exp >= 20) {
+	    		if (exp >= 25) {
 	    			++level;
-	    			exp = 20 - exp;
+	    			exp = exp - 25;
+	    		}
+	    	}
+	    	if(level >= 30 && level < 35) {
+	    		if (exp >= 30) {
+	    			++level;
+	    			exp = exp - 30;
+	    		}
+	    	}
+	    	if(level >= 35 && level < 40) {
+	    		if (exp >= 35) {
+	    			++level;
+	    			exp = exp - 35;
 	    		}
 	    	}
 	    	Log.v("Exp final y nivel final ", ""+exp + " "+level);

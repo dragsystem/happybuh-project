@@ -5,7 +5,7 @@
 
     <TextView 
         android:id="@+id/titulo_body"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Personaliza tus gafas"
         android:textStyle="bold"
@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"/>
    	<ImageButton 
    	    android:id="@+id/body_volver"
    	    android:layout_width="wrap_content"

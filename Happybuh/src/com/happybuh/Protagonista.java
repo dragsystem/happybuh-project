@@ -32,7 +32,7 @@ public class Protagonista {
 	    //Limite de choque con el suelo
 	    suelo = (GV.Screen.metrics.heightPixels)-(ty*2.3f);
 	    
-		float x  = tx*2;
+		float x  = (float)(GV.Screen.metrics.widthPixels/2)-tx;
 		float y = (float)(GV.Screen.metrics.heightPixels)-(ty*2f);
 		//ty = (float)((GV.Screen.metrics.heightPixels*0.2));
 		//suelo -= ty;
@@ -97,6 +97,8 @@ public class Protagonista {
 			}
 		}
 	}
+	
+	
 	
 	public void draw(Canvas canvas){
 			jugador.actualitza();

@@ -67,6 +67,9 @@ public class GV {
 		public static ArrayList<Plataforma> plataformes;
 		public static float desplazamiento;
 		public static int pos0;
+		public static int plataforma_limite;
+		public static int plataforma_casa;
+		public static int num_monedas;
 	}
 	public static class Control_mapas {
 		public static int parar;
@@ -88,5 +91,20 @@ public class GV {
 	}
 	public static float heightpc(float pc) {
 		return Screen.metrics.heightPixels*pc;
+	}
+	
+	public static class World_mov {
+		public static int ll_left;
+		public static int ll_right;
+		public static int ll_top;
+		public static int ll_bot;
+		public static int izq_right;
+		public static int der_left;
+		public static int s_left;
+		public static int s_right;
+		public static int s_top;
+		public static int s_bot;
+		
+		
 	}
 }

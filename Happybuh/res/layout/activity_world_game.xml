@@ -7,7 +7,7 @@
  	<com.happybuh.WorldGameSurfaceView
 	   	android:id="@+id/worldgameview"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"/> 
+	    android:layout_height="match_parent"/>
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
@@ -54,6 +54,15 @@
 		    android:textColor="@android:color/white"
 		    android:textStyle="bold"/>
 		
+		<Chronometer 
+		    android:id="@+id/contador"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textColor="@android:color/white"
+		    android:layout_below="@id/bubble_lives"
+		    android:layout_alignLeft="@id/bubble_lives"
+		    android:layout_marginTop="10dp"/>
+		
 		<ImageButton 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
@@ -62,36 +71,34 @@
 		    android:layout_alignParentRight="true"
 		    android:background="@android:color/transparent"/>
 		<LinearLayout
+		    android:id="@+id/ll_worldgame"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentBottom="true"
 		    android:background="@drawable/bg_worldgame"
 		    android:weightSum="1.0">
-		    		<ImageButton 
+		    		<ImageView
 					    android:id="@+id/botonizq"
 			        	android:layout_width="wrap_content"
 			        	android:layout_height="wrap_content"
 			        	android:src="@drawable/left"
-			        	android:onClick="mov_left"
 			        	android:background="@android:color/transparent"
 			        	android:layout_margin="10dp"
 			        	android:layout_weight="0.5"/>
-					<ImageButton 
+					<ImageView
 					    android:id="@+id/botonder"
 			        	android:layout_width="wrap_content"
 			        	android:layout_height="wrap_content"
 			        	android:src="@drawable/right"
-			        	android:onClick="mov_right"
 			        	android:background="@android:color/transparent"
 			        	android:layout_margin="10dp"
 			        	android:layout_weight="0.5"/>
 		</LinearLayout>
-		<ImageButton 
+		<ImageView 
 		    android:id="@+id/salto"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:src="@drawable/jump"
-        	android:onClick="mov_jump"
         	android:background="@drawable/bg_worldgame"
         	android:layout_alignParentBottom="true"
         	android:layout_alignParentRight="true"
@@ -196,6 +203,79 @@
 		            android:onClick="exit"
 		            android:textStyle="bold"/>
 		    </RelativeLayout>
+	    
+	</RelativeLayout>
+<!-- PANTALLA TRAS ACABAR LA PARTIDA -->
+	<RelativeLayout 
+	    android:id="@+id/rl_final"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:visibility="gone">
+		<RelativeLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/bg_button"
+		    android:layout_margin="20dp"
+		    android:padding="10dp">
+		    
+		    <TextView 
+		        android:id="@+id/tv_final"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/fin_worldgame"
+		        android:gravity="center_horizontal"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="30dp"
+		        android:textSize="30dp"
+		        android:textColor="@android:color/black"/>
+		    <TextView 
+		        android:id="@+id/resultado"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+		        android:textSize="30dp"
+		        android:gravity="center_horizontal"
+		        android:textColor="@android:color/black"
+		        android:layout_below="@id/tv_final"
+		        android:layout_marginTop="20dp"
+		        android:text="2 minutos y 30 segundos"/>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:weightSum="1.0"
+			    android:layout_below="@id/resultado">
+				    <Button 
+				        android:id="@+id/boton_final_1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_alignParentBottom="true"
+				        android:text="Volver a Jugar"
+				        android:background="@drawable/bg_boton"
+				        android:padding="10dp"
+				        android:layout_marginBottom="10dp"
+				        android:textColor="#FF0383E6"
+				        android:layout_weight="0.5"
+				        android:textStyle="bold"
+				        android:layout_margin="20dp"
+				        android:onClick="retry"/>
+				    
+				    <Button 
+				        android:id="@+id/boton_final_2"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_alignParentBottom="true"
+				        android:text="Regresar a la sala"
+				        android:background="@drawable/bg_boton"
+				        android:padding="10dp"
+				        android:layout_marginBottom="10dp"
+				        android:layout_weight="0.5"
+				        android:textColor="#FF0383E6"
+				        android:textStyle="bold"
+				        android:layout_margin="20dp"
+				        android:onClick="cancel"/>
+			</LinearLayout>
+		</RelativeLayout>
+	    
 	    
 	</RelativeLayout>
 </FrameLayout>

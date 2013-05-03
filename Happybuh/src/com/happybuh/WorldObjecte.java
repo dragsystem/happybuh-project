@@ -16,6 +16,7 @@ public class WorldObjecte {
 	public int marca;
 	public int vides;
 	public int mundo;
+	public int limit;
 	private Bitmap img;
 	//Sprites
 	public boolean sprite; //es sprite o no
@@ -27,8 +28,9 @@ public class WorldObjecte {
 	private Rect dest;
 	private int casa;
 	public boolean acabat;
+	public float posicio_inicial;
 	
-	public WorldObjecte(float nx, float ny, float nvx, float nvy, float ntx, float nty, int nmarca, Bitmap imgn) {
+	public WorldObjecte(int indica_limite, float nx, float ny, float nvx, float nvy, float ntx, float nty, int nmarca, Bitmap imgn) {
 		x = nx;
 		y = ny;
 		vx = nvx;
@@ -38,6 +40,8 @@ public class WorldObjecte {
 		img = imgn;
 		marca = nmarca;
 		sprite = false;
+		limit  = indica_limite;
+		posicio_inicial = nx;
 		img = Bitmap.createScaledBitmap(imgn,(int)tx,(int)ty,false);
 	}
 	
@@ -185,6 +189,11 @@ public class WorldObjecte {
 			else if (id == 1) x = 0;
 			vx = 0;
 		}
+	}
+
+	public boolean colisio_casa(WorldObjecte casa) {
+		if(x >= casa.x && x <= casa.x+casa.tx) return true;
+		return false;
 	}
 
 }
