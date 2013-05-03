@@ -50,6 +50,7 @@ public class Disparo {
 		float LacyM = y + ty/2;
 		if(posx <= LacxM && posx+tamx >= LacxM && posy <= LacyM && posy+tamy >= LacyM) {
 			GV.puntuacio_world.vides--;
+			GV.Activities.worldgame.handler.sendEmptyMessage(1);
 			return num;
 		}
 		else return -1;

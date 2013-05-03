@@ -149,6 +149,7 @@ public class Juego extends Activity {
 	public void onBackPressed() {
 		User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
 		User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
+		User_Info.actualizar(getApplicationContext(), GV.puntuacio_world.get_exp, GV.puntuacio_world.coins);
 		GV.Activities.habitacion.handler.sendEmptyMessage(1);
 		finish();
 	}

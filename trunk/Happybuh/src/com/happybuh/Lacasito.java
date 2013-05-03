@@ -44,6 +44,7 @@ public class Lacasito {
 		float LacxM = x + tx/2;
 		float LacyM = y + ty/2;
 		if(posx <= LacxM && posx+tamx >= LacxM && posy <= LacyM && posy+tamy >= LacyM) {
+			GV.puntuacio_world.num_monedas--;
 			return num;
 		}
 		else {

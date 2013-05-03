@@ -99,21 +99,23 @@ public class CrearMapa {
 				}
 				else if(sa[z].equals("7")) {
 					//CASA FINAL
+					GV.puntuacio_world.plataforma_casa = GV.puntuacio_world.plataformes_mapa.size()-1;
 					y += ty;
 					tx = (float)(GV.Screen.metrics.widthPixels*0.075)*2.5f;
 					ty = (float)((GV.Screen.metrics.heightPixels/1.5)*0.075)*8f;
 					y = y - ty;
-					GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) ), 1 ) );
+					GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(Integer.valueOf(sa[z]),x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) )) );
 				}
 				else if(sa[z].equals("9")) {
 					//CHUPACHUPS
 					y = (GV.Screen.metrics.heightPixels)-(ty*3.5f);
 					ty = tx + tx*0.82f;					
 					y -= ty;
-					GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) ) ) );
+					GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(Integer.valueOf(sa[z]),x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) ) ) );
 				}
 				else if(sa[z].equals("8")) {
-					//LACASITOS
+					//MONEDAS
+					GV.puntuacio_world.num_monedas++;
 					GV.puntuacio_world.lacasitos.add(new Lacasito(bitmaps.get( Integer.valueOf(sa[z]) ), x, y, tx, ty));
 				}
 				else if(sa[z].equals("3")) {
@@ -122,9 +124,14 @@ public class CrearMapa {
 					ty *= 2;
 					GV.puntuacio_world.plataformes.add(new Plataforma(bitmaps.get( Integer.valueOf(sa[z]) ), x, y, tx, ty));
 				}
-				else GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) ) ) );
+				else if(sa[z].equals("10")) {
+					GV.puntuacio_world.plataforma_limite = GV.puntuacio_world.plataformes_mapa.size()-1;
+					GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(Integer.valueOf(sa[z]),x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) ) ) );
+				}
+				else GV.puntuacio_world.plataformes_mapa.add(new WorldObjecte(Integer.valueOf(sa[z]),x, y, 0, 0, tx, ty, 0,bitmaps.get( Integer.valueOf(sa[z]) )) );
 			}
 			++i;
+			
 			if (sa[z].equals("\n")) {
 				if(j == 4) GV.puntuacio_world.pos0 = i;
 				--j;
@@ -143,25 +150,24 @@ public class CrearMapa {
 				GV.puntuacio_world.desplazamiento = - (piezax - GV.Screen.metrics.widthPixels)*0.25f;
 			}
 			else if (piezax == GV.Screen.metrics.widthPixels) GV.puntuacio_world.desplazamiento = 0;
-//			else GV.puntuacio_world.desplazamiento = -10;
 			else GV.puntuacio_world.desplazamiento = -GV.widthpc(0.02f);
 		}
 		else if (GV.puntuacio_world.control == 0){
 			GV.puntuacio_world.desplazamiento = 0;
 		}
 		else if (GV.puntuacio_world.control == 3){
-			//IZQUIERDA  --> PLATAFORMA DERECHA
-			int c = GV.puntuacio_world.pos0;
-			float posicion = GV.puntuacio_world.plataformes_mapa.get(c).x;
-			float piezax = GV.puntuacio_world.plataformes_mapa.get(c).x + GV.puntuacio_world.plataformes_mapa.get(c).tx;
-			float tam = GV.puntuacio_world.plataformes_mapa.get(c).tx;
-			if (posicion == 0) GV.puntuacio_world.desplazamiento = 0; 
-			else if (posicion >  0 && posicion < 1) {
+			int index = GV.puntuacio_world.plataforma_limite;
+			float posicionx = GV.puntuacio_world.plataformes_mapa.get(index).x;
+			float posicionx_inicial = GV.puntuacio_world.plataformes_mapa.get(index).posicio_inicial;
+			System.out.println("CREARMAPA posicion de la columna " + posicionx);
+			if (posicionx >= posicionx_inicial) {
 				GV.puntuacio_world.desplazamiento = 0;
 			}
-			else if(piezax < tam && piezax > 0) GV.puntuacio_world.desplazamiento = -posicion*0.3f;
-//			else GV.puntuacio_world.desplazamiento = 10;
 			else GV.puntuacio_world.desplazamiento = GV.widthpc(0.02f);
+		}
+		
+		if(GV.puntuacio_world.prot.colisio_casa(GV.puntuacio_world.plataformes_mapa.get(GV.puntuacio_world.plataforma_casa))){
+			GV.Activities.worldgame.handler.sendEmptyMessage(5);
 		}
 	}
 	
@@ -201,7 +207,6 @@ public class CrearMapa {
 		}
 		
 		for(int i = 0; i < GV.puntuacio_world.monstres.size(); ++i) {
-//				GV.puntuacio_world.monstres.get(i).choque();
 				GV.puntuacio_world.monstres.get(i).actualitza(GV.puntuacio_world.desplazamiento);
 				GV.puntuacio_world.monstres.get(i).draw(canvas);
 		}
