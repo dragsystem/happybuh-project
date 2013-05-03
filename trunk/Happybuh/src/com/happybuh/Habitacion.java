@@ -402,9 +402,6 @@ public class Habitacion extends Activity {
     	if(objeto == 1) {
     		String cuerpo = "buh_" + User_Info.color_name.toLowerCase();
     		a.setImageResource(c.getResources().getIdentifier("drawable/" + cuerpo, null, c.getPackageName()));
-    		if(a.getVisibility() == View.VISIBLE && num != 0) {
-        		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_desaparece));
-        	}
     	}
     	else if (objeto == 2) {
     		int numg = Integer.parseInt(User_Info.num_glasses);
@@ -429,9 +426,9 @@ public class Habitacion extends Activity {
     	if(a.getVisibility() == View.VISIBLE && num == 0) {
     		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_move));
     	}
-    	/*else if(a.getVisibility() == View.VISIBLE && num != 0) {
+    	else if(a.getVisibility() == View.VISIBLE && num != 0) {
     		a.startAnimation(AnimationUtils.loadAnimation(c, R.anim.buh_desaparece));
-    	}*/
+    	}
 //    	iv_buh.startAnimation(AnimationUtils.loadAnimation(this, R.anim.carga_fantasma));
     }
     
