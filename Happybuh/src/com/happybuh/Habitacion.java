@@ -421,8 +421,7 @@ public class Habitacion extends Activity {
     
     @Override
 	public void onBackPressed() {
-    	Toast.makeText(getApplicationContext(), "hola",  Toast.LENGTH_SHORT).show();
-    	//super.onBackPressed();
+    	super.onBackPressed();
 	}
 
     

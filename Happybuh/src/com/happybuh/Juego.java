@@ -29,7 +29,7 @@ public class Juego extends Activity {
 	private int mapa;
 	private VG_Database db;
 	private LinearLayout ll; 
-	private WebView webview,webview2,webview3;
+	private WebView webview,webview2,webview3, webview4;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +142,10 @@ public class Juego extends Activity {
 		Intent ourIntent = new Intent("com.happybuh.JUMPGAME");
 		startActivity(ourIntent);
     }
-    
+    public void inicio_juego4(View v) {
+		Intent ourIntent = new Intent("com.happybuh.SEARCHGAME");
+		startActivity(ourIntent);
+    }
     
     public void inicio_help1(View v) {
     	ImageView iv = (ImageView)findViewById(R.id.info_juego1);
@@ -195,6 +198,17 @@ public class Juego extends Activity {
     	//webview.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
     	webview3.setVisibility(v.VISIBLE);
     }
+    public void inicio_help4(View v) {
+    	ImageView iv = (ImageView)findViewById(R.id.info_juego4);
+    	iv.setVisibility(v.VISIBLE);
+    	ImageButton ib = (ImageButton)findViewById(R.id.cerrar_info_juego4);
+    	ib.setVisibility(v.VISIBLE);
+    	webview4 = (WebView) findViewById(R.id.web_info4);
+    	webview4.loadUrl("file:///android_asset/www/index4.html");
+    	webview4.setBackgroundColor(0x00000000);
+    	//webview.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+    	webview4.setVisibility(v.VISIBLE);
+    }
     
     public void cerrar_info_juego1(View v) {
     	ImageView iv = (ImageView)findViewById(R.id.info_juego1);
@@ -220,12 +234,19 @@ public class Juego extends Activity {
     	ib.setVisibility(v.INVISIBLE);
     	webview3.setVisibility(v.INVISIBLE);
     }
-
+    public void cerrar_info_juego4(View v) {
+    	ImageView iv = (ImageView)findViewById(R.id.info_juego4);
+    	iv.setVisibility(v.INVISIBLE);
+    	ImageButton ib = (ImageButton)findViewById(R.id.cerrar_info_juego4);
+    	ib.setVisibility(v.INVISIBLE);
+    	webview4.setVisibility(v.INVISIBLE);
+    }
 	@Override
 	public void onBackPressed() {
 		User_Info.actualizar(getApplicationContext(), GV.puntuacio_bubble.get_exp, GV.puntuacio_bubble.coins);
 		User_Info.actualizar(getApplicationContext(), GV.puntuacio_jump.get_exp, GV.puntuacio_jump.coins);
 		User_Info.actualizar(getApplicationContext(), GV.puntuacio_world.get_exp, GV.puntuacio_world.coins);
+		User_Info.actualizar(getApplicationContext(), GV.puntuacio_search.get_exp, GV.puntuacio_search.coins);
 		GV.Activities.habitacion.handler.sendEmptyMessage(1);
 		finish();
 	}
