@@ -70,6 +70,11 @@ public class GV {
 		public static int plataforma_limite;
 		public static int plataforma_casa;
 		public static int num_monedas;
+		public static int pasa_pantalla;
+	}
+	
+	public static class mapa {
+		public static int pant;
 	}
 	public static class Control_mapas {
 		public static int parar;

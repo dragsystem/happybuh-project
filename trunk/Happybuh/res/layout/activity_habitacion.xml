@@ -73,7 +73,8 @@
 				android:layout_centerHorizontal="true"
 				android:textSize="50dp"
 				android:layout_marginTop="20dp"
-				android:layout_marginBottom="10dp"/>
+				android:layout_marginBottom="10dp"
+				android:singleLine="true"/>
 			<LinearLayout 
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
@@ -238,14 +239,44 @@
 						    android:layout_alignLeft="@id/nombre"
 						    android:textColor="@android:color/black"
 						    android:textSize="20dp"/>
-			         <ImageButton 
-		                    android:id="@+id/change_name"
-			                android:layout_width="match_parent"
-						    android:layout_height="wrap_content"
-						    android:background="@android:color/transparent"
-			            	android:src="@drawable/cambiar"
-			            	android:layout_below="@id/user_name2"
-			            	android:layout_alignLeft="@id/user_name2"/>
+					<Button 
+			            android:id="@+id/change_name"
+			        	android:text="Cambiar"
+				        android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    style="@style/BotonText"
+					    android:layout_below="@id/user_name2"
+				       	android:layout_alignLeft="@id/user_name2"
+				       	android:layout_marginTop="10dp"/>
+					
+					<ImageView 
+					    android:id="@+id/iv_buh_especial"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_below="@id/change_name"
+					    android:src="@drawable/contenedor_buh_especial"
+					    android:layout_centerHorizontal="true"/>
+					<TextView 
+					    android:id="@+id/tv_buh_especial"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="Objeto desbloqueable a nivel 5"
+					    android:textColor="@android:color/black"
+					    android:layout_below="@id/iv_buh_especial"
+					    android:layout_centerHorizontal="true"
+					    android:layout_marginTop="10dp"/>
+					<Button 
+			            android:id="@+id/b_buh_especial"
+			        	android:text="Desbloquear"
+				        android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    style="@style/BotonText"
+					    android:layout_below="@id/tv_buh_especial"
+				       	android:layout_alignRight="@id/iv_buh_especial"
+				       	android:layout_marginTop="10dp"
+				       	android:visibility="gone"
+				       	android:onClick="setNewBuh"/>
+			            
 		</RelativeLayout>
  <!-- INFO HELP -->       
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

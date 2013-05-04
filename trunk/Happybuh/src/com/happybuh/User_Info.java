@@ -15,6 +15,7 @@ public class User_Info {
 	public static int color;
 	public static int glasses;
 	public static int beard;
+	public static int map;
 	public static String color_name;
 	public static String num_glasses;
 	public static String col_glasses;
@@ -32,6 +33,8 @@ public class User_Info {
 	        User_Info.glasses = Integer.parseInt(a.get(5));
 	        User_Info.beard = Integer.parseInt(a.get(6));
 	        User_Info.exp = Float.parseFloat(a.get(7));
+	        User_Info.map = Integer.parseInt(a.get(8));
+	        GV.mapa.pant = User_Info.map; 
 	        
 	        Long lc, lg, lb;
 	        lc = Long.parseLong((String) a.get(4));

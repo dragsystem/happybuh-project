@@ -15,30 +15,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
- <!-- HABITACION -->       
+ <!-- BUBBLEGAME -->       
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent" 
 		    android:background="@drawable/juego1">
 		                
-			<ImageButton 
+			<Button 
 			    android:id="@+id/inicio_juego1"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/room_izq"
+			    android:text=" JUGAR "
 			    android:onClick="inicio_juego1"
-			    android:background="@android:color/transparent"
-			    android:layout_centerInParent="true"/>
+			    style="@style/BotonText"
+			    android:layout_centerInParent="true"
+			    android:padding="10dp"/>
 		    
-			<ImageButton 
+			<Button 
 			    android:id="@+id/inicio_help1"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/help_der"
+			    android:text="AYUDA"
 			    android:onClick="inicio_help1"
 			    android:layout_below="@id/inicio_juego1"
-			    android:background="@android:color/transparent"
-			    android:layout_alignLeft="@id/inicio_juego1"/>
+			    style="@style/BotonText"
+			    android:layout_alignLeft="@id/inicio_juego1"
+			    android:padding="10dp"
+			    android:layout_marginTop="20dp"/>
 			
 			<ImageView 
 			    android:id="@+id/info_juego1"
@@ -48,8 +51,21 @@
 			    android:visibility="invisible"
 			    android:layout_centerInParent="true"/>
 			
-			
-			<ScrollView 
+			<WebView 
+			    android:id="@+id/web_info1"
+			    android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego1"
+			  android:layout_alignLeft="@id/info_juego1"
+			  android:layout_alignBottom="@id/info_juego1"
+			  android:layout_alignRight="@id/info_juego1"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:background="@android:color/transparent"
+			  android:visibility="invisible"/>
+		<!-- <ScrollView 
 		      android:id="@+id/scroll_info1" 
 		      android:layout_width="wrap_content"
 		      android:layout_height="wrap_content"
@@ -73,11 +89,11 @@
 						android:id="@+id/texto_info1"
 				    	android:layout_width="match_parent"
 				    	android:layout_height="wrap_content"
-				    	android:text="@string/t_info1"
+				    	android:text="caca"
 				    	android:layout_alignParentTop="true"
 				    	android:textColor="@android:color/white"/>
 				</RelativeLayout>
-			</ScrollView>
+			</ScrollView> -->
 			
 			<ImageButton 
 			    android:id="@+id/cerrar_info_juego1"
@@ -91,30 +107,35 @@
 			    android:visibility="invisible"/>
 		</RelativeLayout>
         
-<!-- JUEGO 2 -->
+<!-- JUMPGAME -->
 		<RelativeLayout 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent" 
 		    android:background="@drawable/juego2">
 		    
-		    <ImageButton 
+			<Button 
 			    android:id="@+id/inicio_juego2"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/room_izq"
+			    android:text=" JUGAR "
 			    android:onClick="inicio_juego2"
-			    android:background="@android:color/transparent"
-			    android:layout_centerInParent="true"/>
+			    style="@style/BotonText"
+			    android:layout_centerInParent="true"
+			    android:padding="10dp"/>
 		    
-			<ImageButton 
+			<Button 
 			    android:id="@+id/inicio_help2"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/help_der"
+			    android:text="AYUDA"
 			    android:onClick="inicio_help2"
 			    android:layout_below="@id/inicio_juego2"
-			    android:background="@android:color/transparent"
-			    android:layout_alignLeft="@id/inicio_juego2"/>
+			    style="@style/BotonText"
+			    android:layout_alignLeft="@id/inicio_juego2"
+			    android:padding="10dp"
+			    android:layout_marginTop="20dp"/>
+			
+			
 			
 			<ImageView 
 			    android:id="@+id/info_juego2"
@@ -124,8 +145,20 @@
 			    android:visibility="invisible"
 			    android:layout_centerInParent="true"/>
 			
-			
-			<ScrollView 
+			<WebView 
+			    android:id="@+id/web_info2"
+			    android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego2"
+			  android:layout_alignLeft="@id/info_juego2"
+			  android:layout_alignBottom="@id/info_juego2"
+			  android:layout_alignRight="@id/info_juego2"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"/>
+			<!--  <ScrollView 
 		      android:id="@+id/scroll_info2" 
 		      android:layout_width="wrap_content"
 		      android:layout_height="wrap_content"
@@ -152,7 +185,7 @@
 				    	android:layout_alignParentTop="true"
 				    	android:textColor="@android:color/white"/>
 				</RelativeLayout>
-			</ScrollView>
+			</ScrollView> -->
 			
 			<ImageButton 
 			    android:id="@+id/cerrar_info_juego2"
@@ -167,30 +200,87 @@
 		   
 		    
 		</RelativeLayout>
- <!-- JUEGO 3 -->       
+ <!-- WORLDGAME -->       
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent" 
 		    android:background="@drawable/juego3">
-		    
-			<ImageButton 
+
+    
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pantallas"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="200dp"
+                android:weightSum="0.9">
+				<LinearLayout 
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content">
+				    <Button 
+					    android:id="@+id/pantalla1"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="     1     "
+					    android:onClick="pantalla1"
+					    style="@style/BotonText"
+					    android:padding="5dp"
+					    android:layout_margin="10dp"
+					    android:layout_weight="0.3"/>
+					<Button 
+					    android:id="@+id/pantalla2"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="     2     "
+					    android:onClick="pantalla2"
+					    style="@style/BotonText"
+					    android:padding="5dp"
+					    android:layout_margin="10dp"
+					    android:layout_weight="0.3"/>
+					<Button 
+					    android:id="@+id/pantalla3"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="     3     "
+					    android:onClick="pantalla3"
+					    style="@style/BotonText"
+					    android:padding="5dp"
+					    android:layout_margin="10dp"
+					    android:layout_weight="0.3"/>
+				</LinearLayout>
+            </LinearLayout>
+            <Button 
+					    android:id="@+id/pantalla4"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="          FINAL          "
+					    android:onClick="pantalla4"
+					    style="@style/BotonText"
+					    android:layout_below="@id/pantallas"
+					    android:padding="5dp"
+					    android:layout_centerHorizontal="true"/>
+            
+			<!-- <Button 
 			    android:id="@+id/inicio_juego3"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/room_izq"
+			    android:text=" JUGAR "
 			    android:onClick="inicio_juego3"
-			    android:background="@android:color/transparent"
-			    android:layout_centerInParent="true"/>
+			    style="@style/BotonText"
+			    android:layout_centerInParent="true"
+			    android:padding="10dp"/>-->
 		    
-			<ImageButton 
+			<Button 
 			    android:id="@+id/inicio_help3"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/help_der"
+			    android:text="         AYUDA         "
 			    android:onClick="inicio_help3"
-			    android:layout_below="@id/inicio_juego3"
-			    android:background="@android:color/transparent"
-			    android:layout_alignLeft="@id/inicio_juego3"/>
+			    android:layout_below="@id/pantalla4"
+			    style="@style/BotonText"
+			    android:padding="5dp"
+			    android:layout_marginTop="20dp"
+			    android:layout_centerHorizontal="true"/>
 			
 			<ImageView 
 			    android:id="@+id/info_juego3"
@@ -200,8 +290,20 @@
 			    android:visibility="invisible"
 			    android:layout_centerInParent="true"/>
 			
-			
-			<ScrollView 
+			<WebView 
+			    android:id="@+id/web_info3"
+			    android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego3"
+			  android:layout_alignLeft="@id/info_juego3"
+			  android:layout_alignBottom="@id/info_juego3"
+			  android:layout_alignRight="@id/info_juego3"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"/>
+			<!--  <ScrollView 
 		      android:id="@+id/scroll_info3" 
 		      android:layout_width="wrap_content"
 		      android:layout_height="wrap_content"
@@ -228,7 +330,7 @@
 				    	android:layout_alignParentTop="true"
 				    	android:textColor="@android:color/white"/>
 				</RelativeLayout>
-			</ScrollView>
+			</ScrollView> -->
 			
 			<ImageButton 
 			    android:id="@+id/cerrar_info_juego3"
