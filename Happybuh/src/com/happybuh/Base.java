@@ -20,7 +20,7 @@ public class Base {
 		ty = ((float)GV.Screen.metrics.heightPixels*0.05f);
 		options = new BitmapFactory.Options();
 		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-		bowser = BitmapFactory.decodeResource(GV.Instancies.bubbleview.getResources(), R.drawable.caparazonp, options);
+		bowser = BitmapFactory.decodeResource(GV.Instancies.bubbleview.getResources(), R.drawable.caparazon2, options);
 		px = ((float)GV.Screen.metrics.widthPixels/2) - (tx/2);
 		py = (float)GV.Screen.metrics.heightPixels - (bowser.getHeight()/2);
 	}

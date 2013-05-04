@@ -3,6 +3,7 @@ package com.happybuh;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class WorldObjecte {
 
@@ -58,6 +59,7 @@ public class WorldObjecte {
 		sprite = false;
 		casa = ncasa;
 		img = Bitmap.createScaledBitmap(imgn,(int)tx,(int)ty,false);
+		limit = -1;
 	}
 	
 	//Creacio protagonista
@@ -73,6 +75,7 @@ public class WorldObjecte {
 		vides = nvides;
 		sprite = false;
 		img = Bitmap.createScaledBitmap(imgn,(int)tx,(int)ty,false);
+		limit = -1;
 	}
 	
 	//Creacio fondos
@@ -88,6 +91,7 @@ public class WorldObjecte {
 			sprite = false;
 			mundo = nmundo;
 			img = Bitmap.createScaledBitmap(imgn,(int)tx,(int)ty,false);
+			limit = -1;
 		}
 	
 	public WorldObjecte(Bitmap bm, float nx, float ny, float ntx, float nty, float nvx, float nvy, int nih, int niv, int nfpi) {
@@ -110,6 +114,7 @@ public class WorldObjecte {
 		//y = GV.heightpercent(100f) - ty;
 		y = y - ty;
 		img = Bitmap.createScaledBitmap(bm,(int)tx*ih,(int)ty*iv,false);
+		limit = -1;
 	}
 	
 	public void actualitza(float desplazamiento) {
@@ -146,17 +151,20 @@ public class WorldObjecte {
 			//sfcount++;
 		}
 	}
-	
-	public void choque() {
+	 
+	public boolean choque() {
 		float posx = GV.puntuacio_world.prot.x;
 		float tamx = GV.puntuacio_world.prot.tx;
 		float posy = GV.puntuacio_world.prot.y;
 		float tamy = GV.puntuacio_world.prot.ty;
 		float LacxM = x;
 		float LacyM = y;
-		if(posx+tamx >= LacxM && posy+tamy >= LacyM) {
-			//GV.Game.pasa_pantalla = 1;
+		if(limit == 7) {
+			if(posx+tamx >= LacxM && posy+tamy >= LacyM) {
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	
@@ -195,5 +203,7 @@ public class WorldObjecte {
 		if(x >= casa.x && x <= casa.x+casa.tx) return true;
 		return false;
 	}
+	
+
 
 }

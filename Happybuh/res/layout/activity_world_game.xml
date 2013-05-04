@@ -257,7 +257,7 @@
 				        android:layout_weight="0.5"
 				        android:textStyle="bold"
 				        android:layout_margin="20dp"
-				        android:onClick="retry"/>
+				        android:onClick="retry2"/>
 				    
 				    <Button 
 				        android:id="@+id/boton_final_2"

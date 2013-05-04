@@ -27,8 +27,9 @@ public class CrearMapa {
 	private int tp;
 	private int surt = 0;
 	public Protagonista prot;
+	private int num_pant;
 	
-	public CrearMapa(int pant) {
+	public CrearMapa(int pant, int num) {
 		GV.puntuacio_world.control = 0;
 		GV.puntuacio_world.plataformes_mapa = new ArrayList<WorldObjecte>();
 		GV.puntuacio_world.plataformes = new ArrayList<Plataforma>();
@@ -44,8 +45,9 @@ public class CrearMapa {
 		rand = new Random();
 		tp = 17;
 		pantallas.add(resources.openRawResource(R.raw.pantalla2));
-		loadbitmaps();
+		loadbitmaps(num);
 		nova_pantalla(pant);
+		num_pant = num;
 	}
 	
 	public void nova_pantalla(int x){
@@ -149,7 +151,9 @@ public class CrearMapa {
 			if ((piezax - GV.Screen.metrics.widthPixels) < GV.puntuacio_world.plataformes_mapa.get(p).tx && piezax > GV.Screen.metrics.widthPixels ) {
 				GV.puntuacio_world.desplazamiento = - (piezax - GV.Screen.metrics.widthPixels)*0.25f;
 			}
-			else if (piezax == GV.Screen.metrics.widthPixels) GV.puntuacio_world.desplazamiento = 0;
+			else if (piezax == GV.Screen.metrics.widthPixels) {
+				GV.puntuacio_world.desplazamiento = 0;
+			}
 			else GV.puntuacio_world.desplazamiento = -GV.widthpc(0.02f);
 		}
 		else if (GV.puntuacio_world.control == 0){
@@ -165,33 +169,98 @@ public class CrearMapa {
 			}
 			else GV.puntuacio_world.desplazamiento = GV.widthpc(0.02f);
 		}
-		
-		if(GV.puntuacio_world.prot.colisio_casa(GV.puntuacio_world.plataformes_mapa.get(GV.puntuacio_world.plataforma_casa))){
-			GV.Activities.worldgame.handler.sendEmptyMessage(5);
-		}
 	}
 	
-	private void loadbitmaps() {
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.azucar, options)); 		// pos 0
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho, options));		// pos 1
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho2, options));	// pos 2
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.plataforma2, options));		// pos 3 PIRULETA GRANDE
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.galleta2, options));		// pos 4 COCO
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.llamas, options)); //pos 5 Llamas
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.pinchos, options)); //pos 6 Pinchos
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.casaf, options)); //Casita Final (7)
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.moneda_world, options)); //pos 8
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 9
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho_borde, options)); //pos 10
-/*		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito2, options)); //pos 9 
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito3, options)); //pos 10 
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito4, options)); //pos 11
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito5, options)); //pos 12 
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito6, options)); //pos 13 
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito7, options)); //pos 14 
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito8, options)); //pos 15
-		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito9, options)); //pos 16*/
-		//bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 17
+	private void loadbitmaps(int pant) {
+		if(pant == 1) {
+			System.out.print("Obtengo mapa otoño");
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.hierba3, options)); 		// pos 0
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.hierba, options));		// pos 1
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.hierba2, options));	// pos 2
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.plataforma_hierba, options));		// pos 3 PIRULETA GRANDE
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.galleta2, options));		// pos 4 COCO
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.llamas, options)); //pos 5 Llamas
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.pinchos, options)); //pos 6 Pinchos
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.casaf, options)); //Casita Final (7)
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.moneda_world, options)); //pos 8
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.arbol, options)); //pos 9
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.hierba, options)); //pos 10
+	/*		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito2, options)); //pos 9 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito3, options)); //pos 10 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito4, options)); //pos 11
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito5, options)); //pos 12 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito6, options)); //pos 13 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito7, options)); //pos 14 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito8, options)); //pos 15
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito9, options)); //pos 16*/
+			//bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 17
+		}
+		if(pant == 2) {
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.azucar, options)); 		// pos 0
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho, options));		// pos 1
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho2, options));	// pos 2
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.plataforma2, options));		// pos 3 PIRULETA GRANDE
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.galleta2, options));		// pos 4 COCO
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.llamas, options)); //pos 5 Llamas
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.pinchos, options)); //pos 6 Pinchos
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.casaf, options)); //Casita Final (7)
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.moneda_world, options)); //pos 8
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 9
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho, options)); //pos 10
+	/*		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito2, options)); //pos 9 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito3, options)); //pos 10 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito4, options)); //pos 11
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito5, options)); //pos 12 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito6, options)); //pos 13 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito7, options)); //pos 14 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito8, options)); //pos 15
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito9, options)); //pos 16*/
+			//bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 17
+		}
+		if(pant == 3) {
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.azucar, options)); 		// pos 0
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho, options));		// pos 1
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho2, options));	// pos 2
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.plataforma2, options));		// pos 3 PIRULETA GRANDE
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.galleta2, options));		// pos 4 COCO
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.llamas, options)); //pos 5 Llamas
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.pinchos, options)); //pos 6 Pinchos
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.casaf, options)); //Casita Final (7)
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.moneda_world, options)); //pos 8
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 9
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho_borde, options)); //pos 10
+	/*		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito2, options)); //pos 9 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito3, options)); //pos 10 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito4, options)); //pos 11
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito5, options)); //pos 12 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito6, options)); //pos 13 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito7, options)); //pos 14 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito8, options)); //pos 15
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito9, options)); //pos 16*/
+			//bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 17
+		}
+		if(pant == 4) {
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.azucar, options)); 		// pos 0
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho, options));		// pos 1
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho2, options));	// pos 2
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.plataforma2, options));		// pos 3 PIRULETA GRANDE
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.galleta2, options));		// pos 4 COCO
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.llamas, options)); //pos 5 Llamas
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.pinchos, options)); //pos 6 Pinchos
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.casaf, options)); //Casita Final (7)
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.moneda_world, options)); //pos 8
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 9
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.bizcocho_borde, options)); //pos 10
+	/*		bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito2, options)); //pos 9 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito3, options)); //pos 10 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito4, options)); //pos 11
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito5, options)); //pos 12 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito6, options)); //pos 13 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito7, options)); //pos 14 
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito8, options)); //pos 15
+			bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.lacasito9, options)); //pos 16*/
+			//bitmaps.add(BitmapFactory.decodeResource(resources, R.drawable.chupachups, options)); //pos 17
+		}
 	}
 	
 	public void draw(Canvas canvas){
@@ -202,8 +271,15 @@ public class CrearMapa {
 		}
 		
 		for (int i = 0; i < GV.puntuacio_world.plataformes_mapa.size(); ++i) {
-				GV.puntuacio_world.plataformes_mapa.get(i).actualitza(GV.puntuacio_world.desplazamiento);
-				GV.puntuacio_world.plataformes_mapa.get(i).draw(canvas);
+			if(GV.puntuacio_world.plataformes_mapa.get(i).choque()) {
+				if(User_Info.map < 4 && User_Info.map == num_pant && GV.puntuacio_world.pasa_pantalla == 0){ 
+					++GV.mapa.pant;
+					GV.Activities.worldgame.handler.sendEmptyMessage(5);
+					GV.puntuacio_world.pasa_pantalla = 1;
+				}
+			}
+			GV.puntuacio_world.plataformes_mapa.get(i).actualitza(GV.puntuacio_world.desplazamiento);
+			GV.puntuacio_world.plataformes_mapa.get(i).draw(canvas);
 		}
 		
 		for(int i = 0; i < GV.puntuacio_world.monstres.size(); ++i) {

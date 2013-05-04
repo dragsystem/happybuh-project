@@ -85,8 +85,9 @@ public class WorldGameSurfaceView extends SurfaceView {
 			    GV.puntuacio_world.gameover = 0;
 			    GV.puntuacio_world.fast_die = 0;
 			    GV.puntuacio_world.num_monedas = 0;
+			    GV.puntuacio_world.pasa_pantalla = 0;
 			    prota = new Protagonista();
-			    mapa = new CrearMapa(0);
+			    mapa = new CrearMapa(0,GV.mapa.pant);
 				surfacecreated = true;
 			}
 			
@@ -99,7 +100,7 @@ public class WorldGameSurfaceView extends SurfaceView {
 	@Override
 	protected void onDraw(Canvas canvas) {
 //		canvas.drawRect(0,0,getWidth(),getHeight(), fons);
-		if (GV.puntuacio_world.gameover == 0) {
+		if (GV.puntuacio_world.gameover == 0 && GV.puntuacio_world.pasa_pantalla == 0) {
 			canvas.drawBitmap(scaled, 0, 0, null); // draw the background
 			mapa.plataforma_limit();
 			mapa.draw(canvas);
@@ -112,10 +113,15 @@ public class WorldGameSurfaceView extends SurfaceView {
 			--GV.puntuacio_world.disparo;
 			//GV.Activities.worldgame.handler.sendEmptyMessage(0);
 		}
-		else  if(GV.puntuacio_world.gameover == 1){
+		else {
+			if(GV.puntuacio_world.gameover == 1) {
 //			GV.Instancies.game11layout.acaba();
-			canvas.drawColor(Color.parseColor("#FFCC00"));
-			GV.Activities.worldgame.handler.sendEmptyMessage(3);
+				canvas.drawColor(Color.parseColor("#FFCC00"));
+				GV.Activities.worldgame.handler.sendEmptyMessage(3);
+			}
+			else if(GV.puntuacio_world.pasa_pantalla == 1) {
+				canvas.drawColor(Color.parseColor("#FFCC00"));
+			}
 		}
 	}
 	

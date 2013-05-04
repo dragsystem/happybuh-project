@@ -74,7 +74,7 @@ public class Peces {
 			if(o.y > GV.Screen.metrics.heightPixels) { //SE ESCAPAN BURBUJAS 
 				objectes.remove(i);
 				
-				int num =objectes.get(i).num_burbuja;
+				int num = objectes.get(i).num_burbuja;
 				if(num != 8) {
 					--GV.puntuacio_bubble.vides;
 					GV.Activities.bubblegame.handler.sendEmptyMessage(1);
@@ -86,7 +86,7 @@ public class Peces {
 			}
 			else if(o.x+o.tx>x && o.x<x+tx && o.y+o.ty>y && o.y<y+ty) {
 				sprites.add(new Sprite(explosio, o.x, o.y, o.tx, o.ty, 0, 0, 4, 2, 1));
-				int num =objectes.get(i).num_burbuja; 
+				int num = objectes.get(i).num_burbuja; 
 				switch (num) {
 					case 0:
 						GV.puntuacio_bubble.coins += 1;
@@ -106,19 +106,19 @@ public class Peces {
 						break;
 					case 4:
 						GV.puntuacio_bubble.coins += 1;
-						GV.puntuacio_bubble.get_exp += 0.01;
+						GV.puntuacio_bubble.get_exp += 0.02;
 						break;
 					case 5:
 						GV.puntuacio_bubble.coins += 1;
-						GV.puntuacio_bubble.get_exp += 0.01;
+						GV.puntuacio_bubble.get_exp += 0.02;
 						break;
 					case 6:
 						GV.puntuacio_bubble.coins += 1;
-						GV.puntuacio_bubble.get_exp += 0.01;
+						GV.puntuacio_bubble.get_exp += 0.02;
 						break;
 					case 7:
 						GV.puntuacio_bubble.coins += 1;
-						GV.puntuacio_bubble.get_exp += 0.01;
+						GV.puntuacio_bubble.get_exp += 0.02;
 						break;
 					case 8:
 						GV.puntuacio_bubble.coins -= 2;
@@ -131,7 +131,7 @@ public class Peces {
 						break;
 					case 9:
 						GV.puntuacio_bubble.coins += 2;
-						GV.puntuacio_bubble.get_exp += 0.001;
+						GV.puntuacio_bubble.get_exp += 0.05;
 						break;
 				}
 				objectes.remove(i);

@@ -39,9 +39,10 @@ public class Habitacion extends Activity {
 	private float old, now;
 	ImageButton boton_armario;
 	ImageButton boton_mando;
-	TextView tv;
+	Button b_buh_especial;
+	TextView tv, tv_buh_especial;
 	Typeface type;
-	static ImageView iv_buh, iv_gafas, iv_barba;
+	static ImageView iv_buh, iv_gafas, iv_barba, iv_buh_especial;
 	static View v;
 	User_Info a;
 	static Random rand;
@@ -70,6 +71,7 @@ public class Habitacion extends Activity {
         rand = new Random();
         c = this;
         
+        iv_buh_especial = (ImageView)findViewById(R.id.iv_buh_especial);
         iv_buh = (ImageView)findViewById(R.id.buh);
     	iv_gafas = (ImageView)findViewById(R.id.buh_gafas);
     	iv_barba = (ImageView)findViewById(R.id.buh_barba);
@@ -184,7 +186,8 @@ public class Habitacion extends Activity {
 	    });
 	    
 	    
-	    ImageButton cambiar = (ImageButton)findViewById(R.id.change_name);
+	    Button cambiar = (Button)findViewById(R.id.change_name);
+	    cambiar.setTypeface(type);
 	    cambiar.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -250,6 +253,10 @@ public class Habitacion extends Activity {
 	    t_armario.setTypeface(type);
 	    TextView t_mando = (TextView)findViewById(R.id.t_mando);
 	    t_mando.setTypeface(type);
+	    b_buh_especial = (Button)findViewById(R.id.b_buh_especial);
+	    b_buh_especial.setTypeface(type);
+	    tv_buh_especial = (TextView)findViewById(R.id.tv_buh_especial);
+	    tv_buh_especial.setTypeface(type);
 	    
 	    
 	    try {
@@ -312,8 +319,29 @@ public class Habitacion extends Activity {
     	ProgressBar pb = (ProgressBar)findViewById(R.id.perfil_exp_bar);
     	pb.setProgress(i);
     	
+    	if(User_Info.level >= 5) {
+    		b_buh_especial.setVisibility(View.VISIBLE);
+    		db.open();
+    			Long lc = Long.parseLong("" +6);
+    			if(db.getColorBought(lc) == 1) b_buh_especial.setText("Aplicar");
+    		db.close();
+    	}
+    	
     }
   //-----------------------------------------------------------------------------------------------------------------------------    //
+    public void setNewBuh(View v) {
+    	iv_buh_especial.setImageResource(R.drawable.contenedor_buh_especial_p);
+    	db.open();
+    		db.setUserBuh();
+    		Long lc = Long.parseLong("" +6);
+    		db.setUserColor(lc);
+    		db.setColorBought(lc);
+			User_Info.color = lc.intValue();
+			User_Info.color_name = "especial";
+    	db.close();
+    	int num = rand.nextInt(2); 
+    	ChangeBuhAppearance(iv_buh, num, 1);
+    }
 
 	public void addListenerOnButton() {
    	 

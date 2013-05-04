@@ -155,10 +155,13 @@ public class WorldGame extends Activity {
 		para_contador = 1;
 		lastPause = SystemClock.elapsedRealtime();
     	cc.stop();
-    	GV.puntuacio_world.get_exp = 2 +(GV.puntuacio_world.num_monedas - min);
+    	GV.puntuacio_world.get_exp = 0.2f +(float)(GV.puntuacio_world.num_monedas - min)/((float)min + (float)sec/60);
     	rl_final.setVisibility(View.VISIBLE);
     	String res = "¡¡" + min + " minutos y " + sec + " segundos!!";
     	tv_resultado.setText(res);
+    	Button b_final = (Button)findViewById(R.id.boton_final_1);
+    	if(User_Info.map < 4) b_final.setText("Siguiente pantalla");
+    	else b_final.setText("Volver a Jugar");
 	}
 	
 	public void mov_jump (View v) {
@@ -202,8 +205,30 @@ public class WorldGame extends Activity {
 		}
 	}
 	
+	public void retry2 (View v) {
+		try{
+			if(User_Info.map < 4 && GV.puntuacio_world.gameover == 0) {
+				++GV.mapa.pant;
+				db.open();
+				if(db.getUserMap() < 4) db.setUserMap(db.getUserMap()+1);
+				User_Info.map = db.getUserMap(); 
+				db.close();
+			}
+			Intent i = new Intent("com.happybuh.WORLDGAME");
+			startActivity(i);
+		}
+		finally{
+			finish();
+		}
+	}
 	public void cancel (View v) {
 		if (para_contador == 0)rl.setVisibility(v.GONE);
+		if(GV.mapa.pant < 4) {
+			++GV.mapa.pant;
+			db.open();
+			if(db.getUserMap() < 4) db.setUserMap(db.getUserMap()+1);
+			db.close();
+		}
 		finish();
 	}
 	

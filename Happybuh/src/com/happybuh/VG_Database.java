@@ -19,6 +19,8 @@ public class VG_Database {
 	public static final String KEY_GLASSES = "user_glasses";
 	public static final String KEY_BEARD = "user_beard";
 	public static final String KEY_EXP = "user_exp";
+	public static final String KEY_MAP = "user_map";
+	public static final String KEY_ESP = "user_esp";
 	
 	//VARIABLES USER_COLOR
 	public static final String KEY_COLOR_NAME = "name_color";
@@ -99,6 +101,8 @@ public class VG_Database {
 					KEY_GLASSES + " INTEGER NOT NULL, " + 
 					KEY_BEARD + " INTEGER NOT NULL, " +
 					KEY_EXP + " FLOAT NOT NULL, " +
+					KEY_MAP + " INTEGER NOT NULL, " +
+					KEY_ESP + " INTEGER NOT NULL, " +
 					"FOREIGN KEY (" + KEY_COLOR + ") REFERENCES " + DATABASE_TABLE_COLOR + " (" + KEY_ROWID + "), " +
 					"FOREIGN KEY (" + KEY_GLASSES + ") REFERENCES " + DATABASE_TABLE_GLASSES + " (" + KEY_ROWID + "), " +
 					"FOREIGN KEY (" + KEY_BEARD + ") REFERENCES " + DATABASE_TABLE_BEARD + " (" + KEY_ROWID + ")); "
@@ -137,11 +141,13 @@ public class VG_Database {
 		cv.put(KEY_GLASSES, 1);
 		cv.put(KEY_BEARD, 1);
 		cv.put(KEY_EXP, 0);
+		cv.put(KEY_MAP, 1);
+		cv.put(KEY_ESP, 0);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	
 	public ArrayList<String> info_user() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		ArrayList<String> a = new ArrayList<String>();
@@ -154,6 +160,7 @@ public class VG_Database {
 		int iGlasses = c.getColumnIndex(KEY_GLASSES);
 		int iBeard = c.getColumnIndex(KEY_BEARD);
 		int iExp = c.getColumnIndex(KEY_EXP);
+		int iMap = c.getColumnIndex(KEY_MAP);
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			a.add(c.getString(iRow));
@@ -164,6 +171,7 @@ public class VG_Database {
 			a.add(c.getString(iGlasses));
 			a.add(c.getString(iBeard));
 			a.add(c.getString(iExp));
+			a.add(c.getString(iMap));
 		}
 		c.close();
 		
@@ -475,7 +483,7 @@ public class VG_Database {
 //---------------------------------------------USER METODO GET-----------------------------------------------------//
 	
 	public String getUserColorName() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_COLOR);
@@ -498,7 +506,7 @@ public class VG_Database {
 	}
 	
 	public Long getUserColor() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_COLOR);
@@ -510,7 +518,7 @@ public class VG_Database {
 	}
 	
 	public Long getUserGlasses() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_GLASSES);
@@ -521,7 +529,7 @@ public class VG_Database {
 		return lc;
 	}
 	public Long getUserBeard() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_BEARD);
@@ -532,7 +540,7 @@ public class VG_Database {
 		return lc;
 	}
 	public String getUserName() {
-		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP};
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
 		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
 		
 		int iName = c.getColumnIndex(KEY_NAME);
@@ -543,6 +551,17 @@ public class VG_Database {
 		return name;
 	}
 	
+	public int getUserMap() {
+		String[] columns = new String[]{KEY_ROWID, KEY_NAME, KEY_LVL, KEY_COINS, KEY_COLOR, KEY_GLASSES, KEY_BEARD, KEY_EXP, KEY_MAP, KEY_ESP};
+		Cursor c = ourDatabase.query(DATABASE_TABLE,columns, null, null, null, null, null);
+		
+		int iName = c.getColumnIndex(KEY_MAP);
+		c.moveToFirst();
+		
+		int num = c.getInt(iName);
+		c.close();
+		return num;
+	}
 //---------------------------------------------COLOR METODO SET-----------------------------------------------------//
 	public void setUser(String user, String new_user) {
 		// TODO Auto-generated method stub
@@ -580,4 +599,17 @@ public class VG_Database {
 		cv.put(KEY_LVL, i);
 		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);
 	}
+
+	public void setUserMap(int i) {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_MAP, i);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);		
+	}
+
+	public void setUserBuh() {
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ESP, 6);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "= 1", null);	
+	}
+
 }
