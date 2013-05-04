@@ -26,6 +26,7 @@ public class GV {
 		public static JumpGame jumpgame;
 		public static Habitacion habitacion;
 		public static WorldGame worldgame;
+		public static SearchGame searchgame;
 	}
 	
 	public static class puntuacio_bubble {
@@ -44,6 +45,7 @@ public class GV {
 		public static int termina;
 		public static int primera_colisio;
 	}
+	
 	
 	public static class puntuacio_world {
 		public static int vides;
@@ -73,6 +75,15 @@ public class GV {
 		public static int pasa_pantalla;
 	}
 	
+	public static class puntuacio_search {
+		public static int vides;
+		public static int coins;
+		public static float get_exp;
+		public static int gameover;
+		public static int pause;
+		public static int actual;
+		public static int index;
+	}
 	public static class mapa {
 		public static int pant;
 	}
@@ -111,5 +122,64 @@ public class GV {
 		public static int s_bot;
 		
 		
+	}
+	
+	public static class ristras {
+		public static Integer[] mThumbIds = {
+	            R.drawable.gafas1, R.drawable.gafas13,
+	            R.drawable.gafas2, R.drawable.gafas14,
+	            R.drawable.gafas3, R.drawable.gafas12,
+	            R.drawable.gafas4, R.drawable.barba1,
+	            R.drawable.gafas5, R.drawable.barba4,
+	            R.drawable.gafas6, R.drawable.barba2,
+	            R.drawable.gafas7, R.drawable.barba3,
+	            R.drawable.gafas10, R.drawable.barba5,
+	            R.drawable.gafas9, R.drawable.buh1,
+	            R.drawable.gafas11, R.drawable.buh2,
+	            R.drawable.gafas8, R.drawable.buh3,
+	            R.drawable.buh4, R.drawable.buh5
+	    };
+		public static Integer[] mThumbIds2 = {
+            R.drawable.gafas10, R.drawable.gafas13,
+            R.drawable.buh2, R.drawable.gafas1,
+            R.drawable.gafas3, R.drawable.gafas12,
+            R.drawable.buh5, R.drawable.buh1,
+            R.drawable.barba5, R.drawable.barba4,
+            R.drawable.gafas6, R.drawable.barba2,
+            R.drawable.gafas7, R.drawable.buh3,
+            R.drawable.gafas9, R.drawable.gafas5,
+            R.drawable.gafas14, R.drawable.barba1,
+            R.drawable.gafas11, R.drawable.gafas2,
+            R.drawable.gafas8, R.drawable.barba3,
+            R.drawable.gafas4, R.drawable.buh4
+    };
+		public static Integer[] mThumbIds3 = {
+            R.drawable.barba5, R.drawable.buh3,
+            R.drawable.gafas14, R.drawable.barba2,
+            R.drawable.buh5, R.drawable.gafas13,
+            R.drawable.gafas8, R.drawable.gafas6,
+            R.drawable.buh1, R.drawable.gafas5,
+            R.drawable.gafas7, R.drawable.gafas2,
+            R.drawable.gafas12, R.drawable.barba3,
+            R.drawable.buh2, R.drawable.gafas10,
+            R.drawable.gafas9, R.drawable.buh4,
+            R.drawable.gafas3, R.drawable.gafas11,
+            R.drawable.barba4, R.drawable.gafas4,
+            R.drawable.gafas1, R.drawable.barba1,
+            };
+		public static Integer[] mThumbIds4 = {
+			R.drawable.gafas10, R.drawable.gafas8,
+            R.drawable.buh4, R.drawable.gafas13,
+            R.drawable.gafas9, R.drawable.gafas11,
+            R.drawable.gafas2, R.drawable.buh2,
+            R.drawable.gafas6, R.drawable.gafas14,
+            R.drawable.barba1, R.drawable.gafas3,
+            R.drawable.buh1, R.drawable.barba2,
+            R.drawable.barba3, R.drawable.gafas7,
+            R.drawable.gafas1, R.drawable.barba4,
+            R.drawable.gafas5, R.drawable.gafas12,
+            R.drawable.barba5, R.drawable.buh3,
+            R.drawable.buh5, R.drawable.gafas4,
+    };
 	}
 }

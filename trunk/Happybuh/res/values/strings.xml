@@ -98,5 +98,7 @@
     <string name="title_activity_help">Help</string>
     <string name="title_activity_world_game">WorldGame</string>
     <string name="fin_worldgame">¡¡FELICIDADES!! \n Tu tiempo ha sido de: </string>
+    <string name="title_activity_search_game">SearchGame</string>
+    <string name="title_activity_search_mostrar_actual">SearchMostrarActual</string>
 
 </resources>

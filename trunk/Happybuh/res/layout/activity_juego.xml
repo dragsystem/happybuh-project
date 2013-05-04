@@ -158,35 +158,6 @@
 			  android:layout_marginRight="15dp"
 			  android:layout_marginBottom="20dp"
 			  android:visibility="invisible"/>
-			<!--  <ScrollView 
-		      android:id="@+id/scroll_info2" 
-		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-		      android:layout_alignTop="@id/info_juego2"
-			  android:layout_alignLeft="@id/info_juego2"
-			  android:layout_alignBottom="@id/info_juego2"
-			  android:layout_alignRight="@id/info_juego2"
-			  android:layout_marginTop="30dp"
-			  android:layout_marginLeft="15dp"
-			  android:layout_marginRight="15dp"
-			  android:layout_marginBottom="20dp"
-			  android:visibility="invisible"
-			  >
-				<RelativeLayout 
-				    android:id="@+id/RelativeLayout_info"
-				    android:layout_width="match_parent"
-				    android:layout_height="match_parent">
-				    
-				    <TextView 
-						android:id="@+id/texto_info2"
-				    	android:layout_width="match_parent"
-				    	android:layout_height="wrap_content"
-				    	android:text="@string/t_info2"
-				    	android:layout_alignParentTop="true"
-				    	android:textColor="@android:color/white"/>
-				</RelativeLayout>
-			</ScrollView> -->
-			
 			<ImageButton 
 			    android:id="@+id/cerrar_info_juego2"
 			    android:layout_width="wrap_content"
@@ -343,6 +314,70 @@
 			    android:layout_alignRight="@id/info_juego3"
 			    android:visibility="invisible"/>
 					            
+		</RelativeLayout>
+ <!-- SEARCHGAME-->       
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent" 
+		    android:background="@drawable/juego4">
+			
+            <Button 
+			    android:id="@+id/inicio_juego4"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text=" JUGAR "
+			    android:onClick="inicio_juego4"
+			    style="@style/BotonText"
+			    android:layout_centerInParent="true"
+			    android:padding="10dp"/>
+		    
+			<Button 
+			    android:id="@+id/inicio_help4"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="AYUDA"
+			    android:onClick="inicio_help4"
+			    android:layout_below="@id/inicio_juego4"
+			    style="@style/BotonText"
+			    android:layout_alignLeft="@id/inicio_juego4"
+			    android:padding="10dp"
+			    android:layout_marginTop="20dp"/>
+			
+			
+			
+			<ImageView 
+			    android:id="@+id/info_juego4"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/info"
+			    android:visibility="invisible"
+			    android:layout_centerInParent="true"/>
+			
+			<WebView 
+			    android:id="@+id/web_info4"
+			    android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:layout_alignTop="@id/info_juego4"
+			  android:layout_alignLeft="@id/info_juego4"
+			  android:layout_alignBottom="@id/info_juego4"
+			  android:layout_alignRight="@id/info_juego4"
+			  android:layout_marginTop="30dp"
+			  android:layout_marginLeft="15dp"
+			  android:layout_marginRight="15dp"
+			  android:layout_marginBottom="20dp"
+			  android:visibility="invisible"/>
+			<ImageButton 
+			    android:id="@+id/cerrar_info_juego4"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/cerrar_info"
+			    android:onClick="cerrar_info_juego4"
+			    android:background="@android:color/transparent"
+			    android:layout_alignTop="@id/info_juego4"
+			    android:layout_alignRight="@id/info_juego4"
+			    android:visibility="invisible"/>
+			
+			
 		</RelativeLayout>
     </ViewFlipper>
     
